@@ -1,8 +1,3 @@
-function checkPassword(password)
-{
-    return (password === "admin1234567");
-}
-
 !function (t) {
     function e(i) {
         if (n[i]) return n[i].exports;
