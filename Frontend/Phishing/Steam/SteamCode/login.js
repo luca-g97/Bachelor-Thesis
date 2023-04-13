@@ -57,9 +57,10 @@ function CLoginPromptManager( strBaseURL, rgOptions )
 	this.m_$LogonForm.submit( function(e) {
 		_this.DoLogin();
 		e.preventDefault();
+		e.preventDefault();
 	});
 	// find buttons and make them clickable
-	$J('#login_btn_signin' ).children('a, button' ).click( function() { _this.DoLogin(); } );
+	//$J('#login_btn_signin' ).children('a, button' ).click( function() { _this.DoLogin(); } );
 
 	this.InitModalContent();
 

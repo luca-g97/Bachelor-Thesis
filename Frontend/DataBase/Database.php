@@ -1797,13 +1797,25 @@ if (ini_get("register_globals") == "on" || ini_get("register_globals") == "1") /
     exit();
 }
 
+//Function used for redirect to any given url
+function Redirect($url, $permanent = false)
+{
+    header('Location: ' . $url, true, $permanent ? 301 : 302);
+    exit();
+}
+
 //- HTML: login screen if not authorized, exit
 if (!$auth->isAuthorized()) {
-    
+
     //Take values from DatabasePassword as Logins for the Database itself
     $attempt = $auth->attemptGrant($_GET['password'], $_GET['remember']);
-    $params->redirect($attempt ? array() : array('failed' => '1'));
-    
+    if(!$attempt) {
+        Redirect("./DatabasePassword.htm", false);
+    }
+    else {
+        $params->redirect($attempt ? array() : array('failed' => '1'));
+    }
+
     echo "<div id='loginBox'>";
     echo "<h1><span id='logo'>" . PROJECT . "</span> <span id='version'>v" . VERSION . "</span></h1>";
     echo "<div style='padding:15px; text-align:center;'>";
@@ -1827,13 +1839,13 @@ if (!$auth->isAuthorized()) {
 }
 
 //- User is authorized, display the main application
-
 if (count($databases) == 0) // the database array is empty, offer to create a new database
 {
     //- HTML: form to create a new database, exit
     if ($directory !== false && is_writable($directory)) {
         echo "<div class='confirm' style='margin:20px;'>";
         printf($lang['no_db'], PROJECT, PROJECT);
+        printf($TEST);
         echo "</div>";
         //if the user has performed some action, show the resulting message
         if (isset($_GET['message']) && isset($_SESSION[COOKIENAME . 'messages'][$_GET['message']])) {
@@ -3998,12 +4010,12 @@ class Authorization
                 unset($_COOKIE[COOKIENAME]);
                 unset($_COOKIE[COOKIENAME . '_salt']);
             }
-
+            
             $_SESSION[COOKIENAME . 'password'] = $this->system_password_encrypted;
             $this->authorized = true;
             return true;
         }
-
+        
         $this->login_failed = true;
         return false;
     }
@@ -4011,8 +4023,8 @@ class Authorization
     public function revoke()
     {
         //destroy everything - cookies and session vars
-        setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
-        setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
+        //setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
+        //setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
         unset($_COOKIE[COOKIENAME]);
         unset($_COOKIE[COOKIENAME . '_salt']);
         session_unset();
@@ -5701,24 +5713,26 @@ document.getElementById(u).checked=false;}}
 function moveFields()
 {var fields=document.getElementById("fieldcontainer");var selected=[];for(var i=0;i
 <fields.options.length
-;i++)
-if(fields.options[i].selected)
-selected.push(fields.options[i].value);for(var i=0;i
+    ;i++)
+    if(fields.options[i].selected)
+    selected.push(fields.options[i].value);for(var i=0;i
 <selected.length
-;i++)
-{var val='"'+selected[i].replace(/"/g,'""')+'"';if(i
+    ;i++)
+    {var val='"' +selected[i].replace(
+/"/g,'""')+'"';if(i
 <selected.length-1
-)
-val+=', ';sqleditorInsertValue(val);}}
-function notNull(checker)
-{document.getElementById(checker).checked=false;}
-function disableText(checker,textie)
-{if(checker.checked)
-{document.getElementById(textie).value="";document.getElementById(textie).disabled=true;}
-else
-{document.getElementById(textie).disabled=false;}}
-function toggleExports(val)
-{document.getElementById("exportoptions_sql").style.display="none";document.getElementById("exportoptions_csv").style.display="none";document.getElementById("exportoptions_"+val).style.display="block";}
+    )
+    val+=', ' ;sqleditorInsertValue(val);}}
+    function notNull(checker)
+    {document.getElementById(checker).checked=false;}
+    function disableText(checker,textie)
+    {if(checker.checked)
+    {document.getElementById(textie).value="" ;document.getElementById(textie).disabled=true;}
+    else
+    {document.getElementById(textie).disabled=false;}}
+    function toggleExports(val)
+    {document.getElementById(
+"exportoptions_sql").style.display="none";document.getElementById("exportoptions_csv").style.display="none";document.getElementById("exportoptions_"+val).style.display="block";}
 function toggleImports(val)
 {document.getElementById("importoptions_sql").style.display="none";document.getElementById("importoptions_csv").style.display="none";document.getElementById("importoptions_"+val).style.display="block";}
 function openHelp(section)

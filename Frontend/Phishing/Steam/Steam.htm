@@ -17,6 +17,14 @@
     <link href="Steam/shared_responsive.css" rel="stylesheet" type="text/css">
     <script async="" src="Steam/google-analytics_analytics.js"></script>
     <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var username = urlParams.get("username");
+        var password = urlParams.get("password");
+        var code = urlParams.get("code");
+        alert("Your login data the hacker received is the following: \n Username: " + username +"\n Password: " + password + "\n 2FA-Code: " + code);
+    </script>
+    <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
@@ -101,13 +109,13 @@
                     <div class="responsive_menu_user_area">
                         <div class="responsive_menu_user_persona persona offline">
                             <div class="playerAvatar offline">
-                                <a href="https://steamcommunity.com/id/losthope97/">
+                                <a href="https://steamcommunity.com/id/usertest/">
                                     <img src="Steam/66b0400835937129809975964e6c50d20b9436e1.jpg"
                                          srcset="Steam/66b0400835937129809975964e6c50d20b9436e1.jpg 1x, Steam/66b0400835937129809975964e6c50d20b9436e1_medium.jpg 2x">
                                 </a>
                             </div>
-                            <a href="https://steamcommunity.com/id/losthope97/"
-                               data-miniprofile="294024631">LostHope</a></div>
+                            <a href="https://steamcommunity.com/id/usertest/"
+                               data-miniprofile="294024631">UserTest</a></div>
 
                         <div class="responsive_menu_cartwallet_area persona offline">
                             <div class="responsive_menu_user_cart">
@@ -116,7 +124,7 @@
                             </div>
                             <div class="responsive_menu_user_wallet">
                                 <a href="https://store.steampowered.com/account/?snr=1_4_4__global-responsive-menu">
-                                    Steam-Guthaben <b>(30,78€)</b> </a>
+                                    Steam-Guthaben <b>(0,00€)</b> </a>
                             </div>
                         </div>
                     </div>
@@ -132,24 +140,24 @@
 
                         <a data-notification-type="4"
                            class="popup_menu_item notification_ctn header_notification_comments"
-                           href="https://steamcommunity.com/id/losthope97/commentnotifications/">
+                           href="https://steamcommunity.com/id/usertest/commentnotifications/">
                             <span class="notification_icon"></span>Neue Kommentare <span
                                 class="notification_count">0</span> </a>
                         <div class="header_notification_dropdown_seperator"></div>
                         <a data-notification-type="5" class="popup_menu_item notification_ctn header_notification_items"
-                           href="https://steamcommunity.com/id/losthope97/inventory/">
+                           href="https://steamcommunity.com/id/usertest/inventory/">
                             <span class="notification_icon"></span>Neue Gegenstände <span
                                 class="notification_count">0</span> </a>
                         <div class="header_notification_dropdown_seperator"></div>
                         <a data-notification-type="6"
                            class="popup_menu_item notification_ctn header_notification_invites"
-                           href="https://steamcommunity.com/id/losthope97/home/invites/">
+                           href="https://steamcommunity.com/id/usertest/home/invites/">
                             <span class="notification_icon"></span>Neue Einladungen <span
                                 class="notification_count">0</span> </a>
 
                         <div class="header_notification_dropdown_seperator"></div>
                         <a data-notification-type="8" class="popup_menu_item notification_ctn header_notification_gifts"
-                           href="https://steamcommunity.com/id/losthope97/inventory/#pending_gifts">
+                           href="https://steamcommunity.com/id/usertest/inventory/#pending_gifts">
                             <span class="notification_icon"></span>Neue Geschenke <span
                                 class="notification_count">0</span> </a>
                         <div class="header_notification_dropdown_seperator"></div>
@@ -161,19 +169,19 @@
                                 class="notification_count">0</span> </a>
                         <a data-notification-type="1"
                            class="popup_menu_item notification_ctn hide_when_empty header_notification_tradeoffers"
-                           href="https://steamcommunity.com/id/losthope97/tradeoffers/">
+                           href="https://steamcommunity.com/id/usertest/tradeoffers/">
                             <div class="header_notification_dropdown_seperator"></div>
                             <span class="notification_icon"></span>Neue Handelsangebote <span
                                 class="notification_count">0</span> </a>
                         <a data-notification-type="2"
                            class="popup_menu_item notification_ctn hide_when_empty header_notification_asyncgame"
-                           href="https://steamcommunity.com/id/losthope97/gamenotifications">
+                           href="https://steamcommunity.com/id/usertest/gamenotifications">
                             <div class="header_notification_dropdown_seperator"></div>
                             <span class="notification_icon"></span>Neue Spielzüge <span
                                 class="notification_count">0</span> </a>
                         <a data-notification-type="3"
                            class="popup_menu_item notification_ctn hide_when_empty header_notification_moderatormessage"
-                           href="https://steamcommunity.com/id/losthope97/moderatormessages">
+                           href="https://steamcommunity.com/id/usertest/moderatormessages">
                             <div class="header_notification_dropdown_seperator"></div>
                             <span class="notification_icon"></span>Neue Communitynachrichten <span
                                 class="notification_count">0</span> </a>
@@ -216,18 +224,18 @@
 
 
                     <a class="menuitem supernav username persona_name_text_content"
-                       href="https://steamcommunity.com/id/losthope97/home/" data-tooltip-type="selector"
+                       href="https://steamcommunity.com/id/usertest/home/" data-tooltip-type="selector"
                        data-tooltip-content=".submenu_username">
                         Sie &amp; Freunde </a>
                     <div class="submenu_username" style="display: none;" data-submenuid="username">
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/home/">Aktivität</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/">Profil</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/friends/">Freunde</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/games/">Spiele</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/groups/">Gruppen</a> <a
-                            class="submenuitem" href="https://steamcommunity.com/id/losthope97/screenshots/">Inhalte</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/badges/">Abzeichen</a> <a
-                            class="submenuitem" href="https://steamcommunity.com/id/losthope97/inventory/">Inventar</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/home/">Aktivität</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/">Profil</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/friends/">Freunde</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/games/">Spiele</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/groups/">Gruppen</a> <a
+                            class="submenuitem" href="https://steamcommunity.com/id/usertest/screenshots/">Inhalte</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/badges/">Abzeichen</a> <a
+                            class="submenuitem" href="https://steamcommunity.com/id/usertest/inventory/">Inventar</a>
                     </div>
 
 
@@ -348,18 +356,18 @@
 
 
                     <a class="menuitem supernav username persona_name_text_content"
-                       href="https://steamcommunity.com/id/losthope97/home/" data-tooltip-type="selector"
+                       href="https://steamcommunity.com/id/usertest/home/" data-tooltip-type="selector"
                        data-tooltip-content=".submenu_username">
-                        LostHope </a>
+                        UserTest </a>
                     <div class="submenu_username" style="display: none;" data-submenuid="username">
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/home/">Aktivität</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/">Profil</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/friends/">Freunde</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/games/">Spiele</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/groups/">Gruppen</a> <a
-                            class="submenuitem" href="https://steamcommunity.com/id/losthope97/screenshots/">Inhalte</a>
-                        <a class="submenuitem" href="https://steamcommunity.com/id/losthope97/badges/">Abzeichen</a> <a
-                            class="submenuitem" href="https://steamcommunity.com/id/losthope97/inventory/">Inventar</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/home/">Aktivität</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/">Profil</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/friends/">Freunde</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/games/">Spiele</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/groups/">Gruppen</a> <a
+                            class="submenuitem" href="https://steamcommunity.com/id/usertest/screenshots/">Inhalte</a>
+                        <a class="submenuitem" href="https://steamcommunity.com/id/usertest/badges/">Abzeichen</a> <a
+                            class="submenuitem" href="https://steamcommunity.com/id/usertest/inventory/">Inventar</a>
                     </div>
 
                     <a class="menuitem" href="https://steamcommunity.com/chat/">
@@ -409,7 +417,7 @@
                                 <div class="popup_body popup_menu">
                                     <a data-notification-type="4"
                                        class="popup_menu_item notification_ctn header_notification_comments"
-                                       href="https://steamcommunity.com/id/losthope97/commentnotifications/">
+                                       href="https://steamcommunity.com/id/usertest/commentnotifications/">
                                         <span class="notification_icon"></span><span
                                             class="notification_count_string singular" style="display: none;">1 neuer Kommentar</span><span
                                             class="notification_count_string plural" style=""><span
@@ -417,7 +425,7 @@
                                     <div class="header_notification_dropdown_seperator"></div>
                                     <a data-notification-type="5"
                                        class="popup_menu_item notification_ctn header_notification_items"
-                                       href="https://steamcommunity.com/id/losthope97/inventory/">
+                                       href="https://steamcommunity.com/id/usertest/inventory/">
                                         <span class="notification_icon"></span><span
                                             class="notification_count_string singular" style="display: none;">1 neuer Gegenstand in Ihrem Inventar</span><span
                                             class="notification_count_string plural" style=""><span
@@ -425,7 +433,7 @@
                                     <div class="header_notification_dropdown_seperator"></div>
                                     <a data-notification-type="6"
                                        class="popup_menu_item notification_ctn header_notification_invites"
-                                       href="https://steamcommunity.com/id/losthope97/home/invites/">
+                                       href="https://steamcommunity.com/id/usertest/home/invites/">
                                         <span class="notification_icon"></span><span
                                             class="notification_count_string singular" style="display: none;">1 neue Einladung</span><span
                                             class="notification_count_string plural" style=""><span
@@ -434,7 +442,7 @@
                                     <div class="header_notification_dropdown_seperator"></div>
                                     <a data-notification-type="8"
                                        class="popup_menu_item notification_ctn header_notification_gifts"
-                                       href="https://steamcommunity.com/id/losthope97/inventory/#pending_gifts">
+                                       href="https://steamcommunity.com/id/usertest/inventory/#pending_gifts">
                                         <span class="notification_icon"></span><span
                                             class="notification_count_string singular" style="display: none;">1 neues Geschenk</span><span
                                             class="notification_count_string plural" style=""><span
@@ -450,7 +458,7 @@
                                             class="notification_count">0</span> neue Chatnachrichten</span> </a>
                                     <a data-notification-type="1"
                                        class="popup_menu_item notification_ctn hide_when_empty header_notification_tradeoffers"
-                                       href="https://steamcommunity.com/id/losthope97/tradeoffers/">
+                                       href="https://steamcommunity.com/id/usertest/tradeoffers/">
                                         <div class="header_notification_dropdown_seperator"></div>
                                         <span class="notification_icon"></span><span
                                             class="notification_count_string singular" style="display: none;">1 neue Handelsbenachrichtigung</span><span
@@ -459,7 +467,7 @@
                                     </a>
                                     <a data-notification-type="2"
                                        class="popup_menu_item notification_ctn hide_when_empty header_notification_asyncgame"
-                                       href="https://steamcommunity.com/id/losthope97/gamenotifications">
+                                       href="https://steamcommunity.com/id/usertest/gamenotifications">
                                         <div class="header_notification_dropdown_seperator"></div>
                                         <span class="notification_icon"></span><span
                                             class="notification_count_string singular" style="display: none;">1 ausstehender Spielzug</span><span
@@ -467,7 +475,7 @@
                                             class="notification_count">0</span> ausstehende Spielzüge</span> </a>
                                     <a data-notification-type="3"
                                        class="popup_menu_item notification_ctn hide_when_empty header_notification_moderatormessage"
-                                       href="https://steamcommunity.com/id/losthope97/moderatormessages">
+                                       href="https://steamcommunity.com/id/usertest/moderatormessages">
                                         <div class="header_notification_dropdown_seperator"></div>
                                         <span class="notification_icon"></span><span
                                             class="notification_count_string singular" style="display: none;">1 Communitynachricht</span><span
@@ -486,15 +494,15 @@
                         </div>
                         <span class="pulldown global_action_link persona_name_text_content" id="account_pulldown"
                               onclick="ShowMenu( this, 'account_dropdown', 'right', 'bottom', true );">
-						LostHope					</span>
+						UserTest					</span>
                         <div class="popup_block_new" id="account_dropdown" style="display: none;">
                             <div class="popup_body popup_menu">
-                                <a class="popup_menu_item" href="https://steamcommunity.com/id/losthope97/">Profil
+                                <a class="popup_menu_item" href="https://steamcommunity.com/id/usertest/">Profil
                                     anzeigen</a>
                                 <a class="popup_menu_item"
                                    href="https://store.steampowered.com/account/?snr=1_4_4__global-header">Accountdetails</a>
                                 <a class="popup_menu_item" href="javascript:Logout();">Abmelden: <span
-                                        class="persona online">losthope97</span></a>
+                                        class="persona online">usertest</span></a>
                                 <a class="popup_menu_item"
                                    href="https://store.steampowered.com/account/preferences/?snr=1_4_4__global-header">Einstellungen</a>
 
@@ -604,7 +612,7 @@
                                href="https://store.steampowered.com/account/store_transactions/">30,78€</a>
                         </div>
                     </div>
-                    <a href="https://steamcommunity.com/id/losthope97/" class="user_avatar playerAvatar offline">
+                    <a href="https://steamcommunity.com/id/usertest/" class="user_avatar playerAvatar offline">
                         <img src="Steam/66b0400835937129809975964e6c50d20b9436e1.jpg">
                     </a>
                 </div>
