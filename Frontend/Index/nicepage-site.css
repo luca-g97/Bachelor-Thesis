@@ -1,6 +1,6 @@
 /*begin-variables font-family*/
 .u-body {
-  font-family: 'Open Sans',sans-serif;
+  font-family: 'Open Sans',sans-serif;  
 }
 h1,
 h2,
@@ -25,6 +25,8 @@ h6 {
   color: #111111;
   background-color: #ffffff;
   --effect-scale: 1.1;
+  height: 100%;
+  width: 100%;
 }
 /*end-variables color*/
 /*begin-variables font*/
