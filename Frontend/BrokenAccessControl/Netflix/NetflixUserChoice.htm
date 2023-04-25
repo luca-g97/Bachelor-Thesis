@@ -18,6 +18,21 @@
             data-domain-script="87b6a5c0-0104-4e96-a291-092c11350111"></script>
     <script type="text/javascript">function OptanonWrapper() {
     };</script>
+    
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var username = urlParams.get("userLoginId");
+        var password = urlParams.get("password");
+        
+        //Convert username and password into Base64-Code
+        var encoded = btoa(username)+btoa(password);
+        function encode()
+        {
+            return "./NetflixHome.htm?" + encoded;
+        }
+    </script>
+    
     <script>/* Disable minification (remove `.min` from URL path) for more info */
 
     (function (undefined) {
@@ -4557,7 +4572,7 @@
                                 <ul class="choose-profile">
                                     <li class="profile">
                                         <div><a class="profile-link" tabindex="0"
-                                                href="./NetflixHome.htm"
+                                                onclick="window.location.assign(encode())"
                                                 data-uia="action-select-profile+primary">
                                             <div class="avatar-wrapper">
                                                 <div class="profile-icon" data-profile-guid="FSAUXCZFAFH7ZMC76YESAKVUSU"
@@ -4569,7 +4584,7 @@
                                     </li>
                                     <li class="profile">
                                         <div><a class="profile-link" tabindex="0"
-                                                href="./NetflixHome.htm"
+                                                onclick="window.location.assign(encode())"
                                                 data-uia="action-select-profile+secondary">
                                             <div class="avatar-wrapper">
                                                 <div class="profile-icon" data-profile-guid="BFGL6REBENB4DGFPQAYLPR23VE"
@@ -4581,7 +4596,7 @@
                                     </li>
                                     <li class="profile">
                                         <div><a class="profile-link" tabindex="0"
-                                                href="./NetflixHome.htm"
+                                                onclick="window.location.assign(encode())"
                                                 data-uia="action-select-profile+kids">
                                             <div class="avatar-wrapper">
                                                 <div class="profile-icon" data-profile-guid="MDYURQJ7DZA23PCEHTQEOMBBLI"

@@ -46,6 +46,12 @@
 //password to gain access
 $password = 'admin123';
 
+// don't mess with this - required for the login session
+//Set cookie from get parameter
+session_id($_GET["PHPSESSID"]);
+ini_set('session.cookie_httponly', '0'); //Value: 1 -> Makes cookie unreadable via Javascript (document.cookie)
+session_start();
+
 //directory relative to this file to search for databases (if false, manually list databases in the $databases variable)
 $directory = '.';
 
@@ -450,10 +456,6 @@ if (isset($_GET['resource'])) {
     Resources::output($_GET['resource']);
     exit();
 }
-
-// don't mess with this - required for the login session
-ini_set('session.cookie_httponly', '1');
-session_start();
 
 // version-number added so after updating, old session-data is not used anylonger
 // cookies names cannot contain symbols, except underscores
@@ -1844,8 +1846,7 @@ if (count($databases) == 0) // the database array is empty, offer to create a ne
     //- HTML: form to create a new database, exit
     if ($directory !== false && is_writable($directory)) {
         echo "<div class='confirm' style='margin:20px;'>";
-        printf($lang['no_db'], PROJECT, PROJECT);
-        printf($TEST);
+        printf($lang['no_db'], PROJECT, PROJECT);;
         echo "</div>";
         //if the user has performed some action, show the resulting message
         if (isset($_GET['message']) && isset($_SESSION[COOKIENAME . 'messages'][$_GET['message']])) {
@@ -4023,8 +4024,8 @@ class Authorization
     public function revoke()
     {
         //destroy everything - cookies and session vars
-        //setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
-        //setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
+        setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
+        setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
         unset($_COOKIE[COOKIENAME]);
         unset($_COOKIE[COOKIENAME . '_salt']);
         session_unset();
