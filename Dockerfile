@@ -9,4 +9,4 @@ USER nobody
 
 # Copy Websites into folder
 COPY Frontend /var/www/html/
-COPY Config /etc/nginx/conf.d/
+COPY Config /etc/nginx/Configs/
