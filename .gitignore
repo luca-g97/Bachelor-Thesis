@@ -1,1 +1,6 @@
 .idea/
+/Frontend/admin
+/Frontend/Commands/changeToVulnerable.sh
+/Frontend/Commands/changeToSecure.sh
+/Frontend/secureConfig.txt
+/Frontend/vulnerableConfig.txt
