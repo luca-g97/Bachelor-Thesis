@@ -151,7 +151,7 @@
                         </div>
                         <div class="u-form-group u-form-password">
                             <label for="password-a30d" class="u-label u-text-grey-5 u-label-2">Password *</label>
-                            <input type="text" placeholder="Enter your Password" id="password-a30d" name="password"
+                            <input type="password" placeholder="Enter your Password" id="password-a30d" name="password"
                                    class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-input-2"
                                    required="">
                         </div>
@@ -173,7 +173,7 @@
                     {
                         var username = document.getElementById("username-a30d").value;
                         var password = document.getElementById("password-a30d").value;
-                        if (username === "admin" && password === "admin123")
+                        if (username === "admin" && password === "YouWillNeverFindOut!")
                         {
                             window.location.assign("./DatabasePassword.htm");
                             alert("Login successful!"); //WICHTIG!!! Wenn alert entfernt oder vorangestellt wird, wird ein 405-Fehler geworfen

@@ -112,10 +112,10 @@ function leet_text($value)
 /* ---- Advanced options ---- */
 
 //changing the following variable allows multiple phpLiteAdmin installs to work under the same domain.
-$cookie_name = 'pla3412';
+$cookie_name = 'PasswordVulnerable';
 
 //whether or not to put the app in debug mode where errors are outputted
-$debug = false;
+$debug = true;
 
 // the user is allowed to create databases with only these extensions
 $allowed_extensions = array('db', 'db3', 'sqlite', 'sqlite3');
@@ -1841,7 +1841,7 @@ if (!$auth->isAuthorized()) {
 }
 
 //- User is authorized, display the main application
-if (count($databases) == 0) // the database array is empty, offer to create a new database
+if (count($databases) < 1) // the database array is empty, offer to create a new database
 {
     //- HTML: form to create a new database, exit
     if ($directory !== false && is_writable($directory)) {
@@ -3983,8 +3983,8 @@ class Authorization
             $_SESSION[COOKIENAME . '_salt'] = $_COOKIE[COOKIENAME . '_salt'];
         }
 
-        // salted and encrypted password used for checking
-        $this->system_password_encrypted = md5(SYSTEMPASSWORD . "_" . $_SESSION[COOKIENAME . '_salt']);
+        //Only MD5 is no longer secure! Use for example https://crackstation.net/ for easy finding out
+        $this->system_password_encrypted = md5(SYSTEMPASSWORD);
 
         $this->authorized =
             // no password
@@ -3992,7 +3992,7 @@ class Authorization
             // correct password stored in session
             || isset($_SESSION[COOKIENAME . 'password']) && hash_equals($_SESSION[COOKIENAME . 'password'], $this->system_password_encrypted)
             // correct password stored in cookie
-            || isset($_COOKIE[COOKIENAME]) && isset($_COOKIE[COOKIENAME . '_salt']) && hash_equals(md5(SYSTEMPASSWORD . "_" . $_COOKIE[COOKIENAME . '_salt']), $_COOKIE[COOKIENAME]);
+            || isset($_COOKIE[COOKIENAME]) && isset($_COOKIE[COOKIENAME . '_salt']) && hash_equals(md5(SYSTEMPASSWORD), $_COOKIE[COOKIENAME]);
     }
 
     public function attemptGrant($password, $remember)
@@ -4003,13 +4003,6 @@ class Authorization
                 // user wants to be remembered, so set a cookie
                 $expire = time() + 60 * 60 * 24 * 30; //set expiration to 1 month from now
                 setcookie(COOKIENAME, $this->system_password_encrypted, $expire, null, null, null, true);
-                setcookie(COOKIENAME . "_salt", $_SESSION[COOKIENAME . '_salt'], $expire, null, null, null, true);
-            } else {
-                // user does not want to be remembered, so destroy any potential cookies
-                setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
-                setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
-                unset($_COOKIE[COOKIENAME]);
-                unset($_COOKIE[COOKIENAME . '_salt']);
             }
             
             $_SESSION[COOKIENAME . 'password'] = $this->system_password_encrypted;

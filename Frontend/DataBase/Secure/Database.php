@@ -46,10 +46,9 @@
 //password to gain access
 $password = 'admin123';
 
-// don't mess with this - required for the login session
-//Set cookie from get parameter
-session_id($_GET["PHPSESSID"]);
-ini_set('session.cookie_httponly', '0'); //Value: 1 -> Makes cookie unreadable via Javascript (document.cookie)
+
+//If no session-id is set, a random one will be set which is way more secure than a given one
+ini_set('session.cookie_httponly', '1'); //Value: 1 -> Makes cookie unreadable via Javascript (document.cookie)
 session_start();
 
 //directory relative to this file to search for databases (if false, manually list databases in the $databases variable)
@@ -112,7 +111,7 @@ function leet_text($value)
 /* ---- Advanced options ---- */
 
 //changing the following variable allows multiple phpLiteAdmin installs to work under the same domain.
-$cookie_name = 'pla3412';
+$cookie_name = 'PasswordSecure';
 
 //whether or not to put the app in debug mode where errors are outputted
 $debug = false;
@@ -4003,13 +4002,13 @@ class Authorization
                 // user wants to be remembered, so set a cookie
                 $expire = time() + 60 * 60 * 24 * 30; //set expiration to 1 month from now
                 setcookie(COOKIENAME, $this->system_password_encrypted, $expire, null, null, null, true);
-                setcookie(COOKIENAME . "_salt", $_SESSION[COOKIENAME . '_salt'], $expire, null, null, null, true);
+                //setcookie(COOKIENAME . "_salt", $_SESSION[COOKIENAME . '_salt'], $expire, null, null, null, true);
             } else {
                 // user does not want to be remembered, so destroy any potential cookies
                 setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
-                setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
+                //setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
                 unset($_COOKIE[COOKIENAME]);
-                unset($_COOKIE[COOKIENAME . '_salt']);
+                //unset($_COOKIE[COOKIENAME . '_salt']);
             }
             
             $_SESSION[COOKIENAME . 'password'] = $this->system_password_encrypted;
