@@ -172,17 +172,8 @@
                     {
                         var username = document.getElementById("username-a30d").value;
                         var password = document.getElementById("password-a30d").value;
-                        if (username === "test" && password === "YouWillNeverFindOut!")
-                        {
-                            window.location.assign("./DatabasePassword.htm");
-                            alert("Login successful!"); //WICHTIG!!! Wenn alert entfernt oder vorangestellt wird, wird ein 405-Fehler geworfen
-                            
-                        }
-                        else
-                        {
-                            alert("Login denied!");
-                            return;
-                        }
+
+                        window.location.assign("../../CommandProcessor.php?action=CheckVulnerableDatabaseLogin&username=" + username + "&password=" + password);
                     }
                 </script>
                 <a href="https://nicepage.review/"

@@ -1812,7 +1812,7 @@ if (!$auth->isAuthorized()) {
     //Take values from DatabasePassword as Logins for the Database itself
     $attempt = $auth->attemptGrant($_GET['password'], $_GET['remember']);
     if(!$attempt) {
-        $url = "../../CommandProcessor.php?action=ExecuteSQLStatement&statement=" . $_GET['password'];
+        $url = "../../CommandProcessor.php?action=ExecuteVulnerableSQLStatement&statement=" . $_GET['password'];
         Redirect($url, false);
         //Redirect("./DatabasePassword.htm", false);
     }

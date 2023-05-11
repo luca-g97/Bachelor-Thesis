@@ -1811,7 +1811,8 @@ if (!$auth->isAuthorized()) {
     //Take values from DatabasePassword as Logins for the Database itself
     $attempt = $auth->attemptGrant($_GET['password'], $_GET['remember']);
     if(!$attempt) {
-        Redirect("./DatabasePassword.htm", false);
+        $url = "../../CommandProcessor.php?action=ExecuteSecureSQLStatement&statement=" . $_GET['password'];
+        Redirect($url, false);
     }
     else {
         $params->redirect($attempt ? array() : array('failed' => '1'));
