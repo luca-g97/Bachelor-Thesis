@@ -139,7 +139,7 @@
                     alt=""></span>
                 <h2 class="u-text u-text-body-alt-color u-text-default u-text-3">Member Login</h2>
                 <div class="u-form u-login-control u-form-1">
-                    <form action="./DatabasePassword.htm"
+                    <form action="javascript:authentification()"
                           class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form"
                           source="custom" name="form" style="padding: 0px;" method="post">
                         <div class="u-form-group u-form-name">
@@ -162,7 +162,7 @@
                         </div>
                         <div class="u-align-left u-form-group u-form-submit">
                             <a class="u-active-palette-2-light-2 u-border-none u-btn u-btn-submit u-button-style u-hover-palette-2-light-2 u-palette-2-base u-text-active-palette-2-base u-text-body-alt-color u-text-hover-palette-2-base u-btn-1">Login</a>
-                            <input type="submit" value="submit" class="u-form-control-hidden" onclick="authentification()">
+                            <input type="submit" value="submit" class="u-form-control-hidden">
                         </div>
                         <!--<input type="hidden" value="" name="recaptchaResponse">-->
                     </form>
@@ -173,7 +173,7 @@
                         var username = document.getElementById("username-a30d").value;
                         var password = document.getElementById("password-a30d").value;
 
-                        window.location.assign("../../CommandProcessor.php?action=CheckVulnerableDatabaseLogin&username=" + username + "&password=" + password);
+                        window.location.assign("../../CommandProcessor.php?action=CheckDataBaseLogin&securityLevel=Vulnerable&username=" + username + "&password=" + password);
                     }
                 </script>
                 <a href="https://nicepage.review/"

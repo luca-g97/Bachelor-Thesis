@@ -1811,7 +1811,7 @@ if (!$auth->isAuthorized()) {
     //Take values from DatabasePassword as Logins for the Database itself
     $attempt = $auth->attemptGrant($_GET['password'], $_GET['remember']);
     if(!$attempt) {
-        $url = "../../CommandProcessor.php?action=ExecuteSecureSQLStatement&statement=" . $_GET['password'];
+        $url = "../../CommandProcessor.php?action=ExecuteSQLStatement&securityLevel=Secure&statement=" . $_GET['password'];
         Redirect($url, false);
     }
     else {
@@ -4025,9 +4025,7 @@ class Authorization
     {
         //destroy everything - cookies and session vars
         setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
-        setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
         unset($_COOKIE[COOKIENAME]);
-        unset($_COOKIE[COOKIENAME . '_salt']);
         session_unset();
         session_destroy();
         $this->authorized = false;

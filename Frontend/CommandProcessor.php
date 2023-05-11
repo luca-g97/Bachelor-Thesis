@@ -1,65 +1,115 @@
 ﻿<?php
+    //Set globally used variables
+    $action = $_GET['action'];
+    $SecurityLevel = $_GET['securityLevel'];
     
-    if($_GET['action'] === "LoadSecureConfig") {
-        exec("sh changeToSecure.sh");
-        header("Location: ./BrokenAccessControl/Secure/Netflix.htm", true, false);
-    }else if($_GET['action'] === "LoadVulnerableConfig") {
-        exec("sh changeToVulnerable.sh");
-        header("Location: ./BrokenAccessControl/Vulnerable/Netflix.htm", true, false);
-    }else if($_GET['action'] === "ExecuteVulnerableSQLStatement") {
+        //BrokenAccessControl/Vulnerabilities/AutoIndex.htm -> Change Config
+    if($action === "LoadConfig") {
+        exec("sh changeTo$SecurityLevel.sh");
+        header("Location: ./BrokenAccessControl/$SecurityLevel/Netflix.htm", true, false);
+        
+        //Database/$SecurityLevel/Database.php -> Execute SQL Statement
+    }else if($action === "ExecuteSQLStatement") {
         $statement = $_GET['statement'];
-        exec("sqlite3 ./Database/Vulnerable/ExampleDB \"$statement\"");
-        exec("sqlite3 ./Database/Vulnerable/ExampleDB \"select * from ExampleTable\" > ./Database/Vulnerable/output.html");
-        printf("No entry found for \"" . $statement . "\" in Database ExampleDB, in Table ExampleTable! Please enter in this format: \"SELECT firstname, lastname, email where ...\"");
-        createTable("Vulnerable");
-        header("Location: ./DataBase/Vulnerable/DatabasePassword.htm", true, false);
-    }else if($_GET['action'] === "ExecuteSecureSQLStatement") {
-        ini_set('session.cookie_httponly', '1'); //Value: 1 -> Makes cookie unreadable via Javascript (document.cookie)
-        $statement = $_GET['statement'];
-        $preparedStatement = prepareStatement($statement);
-        exec("sqlite3 ./Database/Secure/ExampleDB \"$preparedStatement\"");
-        exec("sqlite3 ./Database/Secure/ExampleDB \"select * from ExampleTable\" > ./Database/Secure/output.html");
-        printf("No entry found for \"" . $statement . "\". Please try again with different values!");
-        createTable("Secure");
-        header("Location: ./DataBase/Secure/DatabasePassword.htm", true, false);
-    }else if($_GET['action'] === "CheckLoginCredentials") {
-        if($_GET['user'] === "user@test" && $_GET['password'] === "userTest1997")
-        {
+        if($SecurityLevel === "Secure") {
+            $statement = prepareStatementForInsert($statement);
+        }
+        echo $statement;
+        exec("sqlite3 ./Database/$SecurityLevel/UserData \"$statement\" > ./Database/$SecurityLevel/temp.html");
+        exec("sqlite3 ./Database/$SecurityLevel/UserData \"select * from ExampleTable\" > ./Database/$SecurityLevel/output.html");
+        createTable($SecurityLevel);
+        //header("Location: ./DataBase/$SecurityLevel/DatabasePassword.htm", true, false);
+
+        //BrokenAccessControl/Secure/NetflixLogin.htm -> Check password
+    }else if($action === "CheckLoginCredentials") {
+        if($_GET['user'] === "user@test" && $_GET['password'] === "userTest1997") {
             header("Location: ./BrokenAccessControl/Secure/NetflixUserChoice.htm", true, false);
         }else{
             header("Location: ./BrokenAccessControl/Secure/NetflixLogin.htm", true, false);
         }
-    }else if($_GET['action'] === "CheckVulnerableDatabaseLogin") {
-        if ($_GET['username'] === "user@test" && $_GET['password'] === "userTest1997") {
-            header("Location: ./Database/Vulnerable/DatabasePassword.htm", true, false);
-        } else {
-            header("Location: /Database/Vulnerable/DatabaseLogin.htm", true, false);
+
+        //Database/$SecurityLevel/DatabaseLogin.htm -> Check for correct password
+    }else if($action === "CheckDataBaseLogin") {
+        $sqlString = buildLoginCredentials($_GET['username'], $_GET['password'], $SecurityLevel);
+        exec("sqlite3 ./Database/$SecurityLevel/UserData \"$sqlString\" > ./Database/$SecurityLevel/output.txt");
+        $result = readThisFile("./Database/$SecurityLevel/output.txt");
+        exec("rm ./Database/$SecurityLevel/output.txt");
+        if($SecurityLevel === "Vulnerable") {
+            printf("<h2>No entry found for \" Username= " . $_GET['username'] . " and Loginpassword= " . $_GET['password'] . " in Table UserLoginData!</h2><h2> Your request found the following: $result</h2><h2>Did you mean to search in Table Admin, UserPreferences or ExampleTable instead?");
+        }else{
+            printf("<h2>\nNo entry found for " . $_GET['username'] . " and " . $_GET['password'] . ". Please try again with different login data!</h2>");
         }
-        echo "alert()";
-    } else if($_GET['action'] === "CheckSecureDatabaseLogin") {
-        if ($_GET['username'] === "user@test" && $_GET['password'] === "userTest1997") {
-            header("Location: ./Database/Secure/DatabasePassword.htm", true, false);
-        } else {
-            header("Location: ./Database/Secure/DatabaseLogin.htm", true, false);
-        }
-        echo "alert()";
+        checkLoginData($_GET['username'], $_GET['password'], $SecurityLevel);
     }
     
-    function prepareStatement($statement)
+    function checkLoginData($username, $password, $SecurityLevel)
+    {
+        if ($username === "test" && $password === "NoChanceMr.Hacker!123") {
+            header("Location: ./Database/$SecurityLevel/DatabasePassword.htm", true, false);
+        }else if ($username === "admin" && $password === "GiveUp!Y0uWillN3verF!ndOutS1nceThisIsTo0Long!!!"){
+            exec("sqlite3 ./Database/$SecurityLevel/UserData \"select Databasepassword from Admin where Username=$username and Loginpassword= $password\" > ./Database/$SecurityLevel/output.txt");
+            $result = readThisFile("./Database/$SecurityLevel/output.txt");
+            exec("rm ./Database/$SecurityLevel/output.txt");
+            header("Location: ./Database/$SecurityLevel/Database.php?password=$result&remember=true", true, false);
+        } else {
+            printf("<h3>You will be redirected to the login page in 5 seconds!</h3>");
+            header("refresh:5; ./Database/$SecurityLevel/DatabaseLogin.htm", true, false);
+        }
+    }
+    
+    function readThisFile($filename)
+    {
+        $readLines = "";
+        
+        $file = fopen($filename, "r") or die("Unable to open file!");
+        
+        // Output one line until end-of-file
+        while(!feof($file)) {
+            $readLines .= fgets($file);
+        }
+        fclose($file);
+        return $readLines;
+    }
+    
+    function buildLoginCredentials($username, $password, $SecurityLevel)
+    {        
+        $db = new SQLite3("./Database/$SecurityLevel/UserData");
+        if(!$db) {
+            echo $db->lastErrorMsg();
+        } else {
+            echo "Opened database successfully\n";
+        }
+        $sqlString = "SELECT * FROM UserLoginData WHERE Username = $username AND Loginpassword = $password";
+        
+        if($SecurityLevel === "Secure") {
+            $preparedStatement = $db->prepare("SELECT * FROM UserLoginData WHERE Username = :username AND Loginpassword = :password");
+            $preparedStatement->bindParam(':username', $username);
+            $preparedStatement->bindParam(':password', $password);
+            
+            //Normally you would now do the execution in the database -> in this project is this not possible, so I had to use a workaround
+            //$preparedStatement->execute();
+            
+            return "SELECT * FROM UserLoginData WHERE Username = '$username' AND Loginpassword = '$password'";
+        }
+        return $sqlString;
+    }
+    
+    function prepareStatementForInsert($statement)
     {
         $statementLowerCase = strtolower($statement);
         
         //Search for insert into in the given string -> if it is included it will return 0 since it is always at the start
+        //It also prevents SQL-Injection by splitting up the select statement which is not ideal, but good enough for presentation purposes
         if(!strpos($statementLowerCase, "insert into"))
         {
-            $db = new SQLite3("./Database/Secure/ExampleDB");
+            $db = new SQLite3("./Database/Secure/UserData");
             if(!$db) {
                 echo $db->lastErrorMsg();
             } else {
                 echo "Opened database successfully\n";
             }
 
-            $preparedStatement = $db->prepare("insert into ExampleTable(firstname, lastname, email) values (:firstname, :lastname, :email)");
+            $preparedStatement = $db->prepare("insert into ExampleTable (firstname, lastname, email) values (:firstname, :lastname, :email)");
             $preparedStatement->bindParam(':firstname', $firstname, SQLITE3_TEXT);
             $preparedStatement->bindParam(':lastname', $lastname, SQLITE3_TEXT);
             $preparedStatement->bindParam(':email', $email, SQLITE3_TEXT);
@@ -69,9 +119,7 @@
             //Get Endposition of valuestring - it always ends with ') -> exclude the )
             $endPosition = strpos($statement, "')")+1;
             //Create the valuestring by cutting the statement string at the defined positions
-            $valueStringOriginal = substr($statement, $startPosition, $endPosition-$startPosition);
-            //Make sure the string looks always the same -> remove every whitespace in valuestring
-            $valueString = str_replace(" ", "", $valueStringOriginal);
+            $valueString = substr($statement, $startPosition, $endPosition-$startPosition);
             
             //Save the first and the last part of the query to build the complete string afterwards
             $firstPartOfQuery = substr($statement, 0, strpos($statement, "('")+1);
@@ -82,30 +130,26 @@
             $firstname = $values[0];
             $lastname = $values[1];
             $email = $values[2];
+
+            //Normally you would now do the execution in the database -> in this project is this not possible, so I had to use a workaround
+            //$preparedStatement->execute();
             
             return $firstPartOfQuery . $firstname . ", " . $lastname . ", " . $email . $secondPartOfQuery;
         }
         return $statement;
     }
+    
     function createTable($SecurityLevel){
-        $sortedFile = "";
+
+        $result = htmlentities(readThisFile("./Database/$SecurityLevel/temp.html"));
+        exec("rm ./Database/$SecurityLevel/temp.html");
         
-        if($SecurityLevel == "Secure") {
-            $file = fopen("./Database/Secure/output.html", "r") or die("Unable to open file!");
-        }
-        else{
-            $file = fopen("./Database/Vulnerable/output.html", "r") or die("Unable to open file!");
-        }
-        // Output one line until end-of-file
-        while(!feof($file)) {
-            $sortedFile .= fgets($file);
-        }
-        fclose($file);
+        $readFile = readThisFile("./Database/$SecurityLevel/output.html");
         
-        $tableRows = str_replace("\n", "|", $sortedFile);
+        $tableRows = str_replace("\n", "|", $readFile);
         $tableItems = explode("|", $tableRows);
-        $tableString = "<head><style>table{ margin: auto; width: 100%; padding: 10px; border: whitesmoke solid 2px} tr, th{color: whitesmoke; text-align: center} tr:nth-child(even) { background-color: #555555; }</style></head>";
-        $tableString .= "<body><table><tr><th>firstname</th><th>lastname</th><th>email</th></tr>";
+        $tableString = "<head><style>table{ margin: auto; width: 100%; padding: 10px; border: whitesmoke solid 2px} tr, th{color: whitesmoke; text-align: center} tr:nth-child(even) { background-color: #555555; } div{padding: 10px; border: whitesmoke solid 2px; color: whitesmoke; text-align: center; background-color: #555555;}</style></head>";
+        $tableString .= "<body><div>The result of your last request was: $result</div><table><tr><th>firstname</th><th>lastname</th><th>email</th></tr>";
         
         for ($i = 0; $i < count($tableItems); $i++) {
             if (($i % 3) === 0)
@@ -113,10 +157,12 @@
                 $tableString .= "<tr>";
             }
             $tableItem = $tableItems[$i];
+            
             if($SecurityLevel == "Secure")
             {
                 $tableItem = htmlentities($tableItems[$i]);  
             }
+            
             $tableString .= "<td>" . $tableItem . "</td>";
             if (($i % 3) === 2)
             {
@@ -126,11 +172,6 @@
         
         $tableString .= "</table></body>";
         
-        if($SecurityLevel == "Secure") {
-            exec("echo \"$tableString\" > ./Database/Secure/output.html");
-        }
-        else{
-            exec("echo \"$tableString\" > ./Database/Vulnerable/output.html");
-        }
+        exec("echo \"$tableString\" > ./Database/$SecurityLevel/output.html");
     }
 ?>
