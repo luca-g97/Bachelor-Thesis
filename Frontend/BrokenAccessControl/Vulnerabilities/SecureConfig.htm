@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta name="viewport" content="width=device-width"><title>http://localhost:8080/BrokenAccessControl/Vulnerabilities/secure%20[MConverter.eu](1).html</title><link rel="stylesheet" type="text/css" href="resource://content-accessible/viewsource.css"></head><body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span># Default server definition
+<span id="line2"></span>server {
+<span id="line3"></span>listen [::]:8080 default_server;
+<span id="line4"></span>listen 8080 default_server;
+<span id="line5"></span>server_name secure;
+<span id="line6"></span>
+<span id="line7"></span>sendfile off;
+<span id="line8"></span>tcp_nodelay on;
+<span id="line9"></span>absolute_redirect off;
+<span id="line10"></span>    
+<span id="line11"></span><b># This is to avoid showing folder structure even after entering a /</b> 
+<span id="line12"></span><span style="color: green; font-weight: bold">autoindex off;</span>
+<span id="line13"></span>
+<span id="line14"></span>root /var/www/html;
+<span id="line15"></span>index index.htm index.php index.html;
+<span id="line16"></span>
+<span id="line17"></span>location / {
+<span id="line18"></span># First attempt to serve request as file, then
+<span id="line19"></span># as directory, then fall back to index.php
+<span id="line20"></span>try_files $uri $uri/ /index.php?q=$uri<span class="entity"><span>&amp;</span>amp;</span>$args;
+<span id="line21"></span>}
+<span id="line22"></span>
+<span id="line23"></span>location /admin {
+<span id="line24"></span>deny all;
+<span id="line25"></span>#this should work for simple authentication, but it doesn´t!
+<span id="line26"></span>auth_basic           "closed site";
+<span id="line27"></span>auth_basic_user_file conf/htpasswd;
+<span id="line28"></span>}
+<span id="line29"></span>
+<span id="line30"></span># Redirect server error pages to the static page /50x.html
+<span id="line31"></span>error_page 500 502 503 504 /50x.html;
+<span id="line32"></span>location = /50x.html {
+<span id="line33"></span>root /var/lib/nginx/html;
+<span id="line34"></span>}
+<span id="line35"></span>
+<span id="line36"></span># Pass the PHP scripts to PHP-FPM listening on php-fpm.sock
+<span id="line37"></span>location ~ \.php$ {
+<span id="line38"></span>try_files $uri =404;
+<span id="line39"></span>fastcgi_split_path_info ^(.+\.php)(/.+)$;
+<span id="line40"></span>fastcgi_pass unix:/run/php-fpm.sock;
+<span id="line41"></span>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+<span id="line42"></span>fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+<span id="line43"></span>fastcgi_index index.php;
+<span id="line44"></span>include fastcgi_params;
+<span id="line45"></span>}
+<span id="line46"></span>
+<span id="line47"></span># Set the cache-control headers on assets to cache for 5 days
+<span id="line48"></span>location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
+<span id="line49"></span>expires 5d;
+<span id="line50"></span>}
+<span id="line51"></span>
+<span id="line52"></span># Deny access to . files, for security
+<span id="line53"></span>location ~ /\. {
+<span id="line54"></span>log_not_found off;
+<span id="line55"></span>deny all;
+<span id="line56"></span>}
+<span id="line57"></span>
+<span id="line58"></span># Allow fpm ping and status from localhost
+<span id="line59"></span>location ~ ^/(fpm-status|fpm-ping)$ {
+<span id="line60"></span>access_log off;
+<span id="line61"></span>allow 127.0.0.1;
+<span id="line62"></span>deny all;
+<span id="line63"></span>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+<span id="line64"></span>include fastcgi_params;
+<span id="line65"></span>fastcgi_pass unix:/run/php-fpm.sock;
+<span id="line66"></span>}
+<span id="line67"></span>}</span></pre></body></html>

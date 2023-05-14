@@ -5,7 +5,8 @@
     
         //BrokenAccessControl/Vulnerabilities/AutoIndex.htm -> Change Config
     if($action === "LoadConfig") {
-        exec("sh changeTo$SecurityLevel.sh");
+        //#Remove all files in directory conf.d - autoprompt answers for filedeletion with yes
+        exec("rm /etc/nginx/conf.d/* && cp /etc/nginx/Config/$SecurityLevel.conf /etc/nginx/conf.d/ && nginx -s reload");
         header("Location: ./BrokenAccessControl/$SecurityLevel/Netflix.htm", true, false);
         
         //Database/$SecurityLevel/Database.php -> Execute SQL Statement
@@ -15,10 +16,10 @@
             $statement = prepareStatementForInsert($statement);
         }
         echo $statement;
-        exec("sqlite3 ./Database/$SecurityLevel/UserData \"$statement\" > ./Database/$SecurityLevel/temp.html");
-        exec("sqlite3 ./Database/$SecurityLevel/UserData \"select * from ExampleTable\" > ./Database/$SecurityLevel/output.html");
+        exec("sqlite3 ./Database/$SecurityLevel/UserData \"$statement\" > ./Database/$SecurityLevel/CommandProcessorOutput/temp.html");
+        exec("sqlite3 ./Database/$SecurityLevel/UserData \"select * from ExampleTable\" > ./Database/$SecurityLevel/CommandProcessorOutput/output.html");
         createTable($SecurityLevel);
-        //header("Location: ./DataBase/$SecurityLevel/DatabasePassword.htm", true, false);
+        header("Location: ./Database/$SecurityLevel/DatabasePassword.htm", true, false);
 
         //BrokenAccessControl/Secure/NetflixLogin.htm -> Check password
     }else if($action === "CheckLoginCredentials") {
@@ -31,9 +32,9 @@
         //Database/$SecurityLevel/DatabaseLogin.htm -> Check for correct password
     }else if($action === "CheckDataBaseLogin") {
         $sqlString = buildLoginCredentials($_GET['username'], $_GET['password'], $SecurityLevel);
-        exec("sqlite3 ./Database/$SecurityLevel/UserData \"$sqlString\" > ./Database/$SecurityLevel/output.txt");
-        $result = readThisFile("./Database/$SecurityLevel/output.txt");
-        exec("rm ./Database/$SecurityLevel/output.txt");
+        exec("sqlite3 ./Database/$SecurityLevel/UserData \"$sqlString\" > ./Database/$SecurityLevel/CommandProcessorOutput/output.txt");
+        $result = readThisFile("./Database/$SecurityLevel/CommandProcessorOutput/output.txt");
+        exec("rm ./Database/$SecurityLevel/CommandProcessorOutput/output.txt");
         if($SecurityLevel === "Vulnerable") {
             printf("<h2>No entry found for \" Username= " . $_GET['username'] . " and Loginpassword= " . $_GET['password'] . " in Table UserLoginData!</h2><h2> Your request found the following: $result</h2><h2>Did you mean to search in Table Admin, UserPreferences or ExampleTable instead?");
         }else{
@@ -141,10 +142,10 @@
     
     function createTable($SecurityLevel){
 
-        $result = htmlentities(readThisFile("./Database/$SecurityLevel/temp.html"));
-        exec("rm ./Database/$SecurityLevel/temp.html");
+        $result = htmlentities(readThisFile("./Database/$SecurityLevel/CommandProcessorOutput/temp.html"));
+        exec("rm ./Database/$SecurityLevel/CommandProcessorOutput/temp.html");
         
-        $readFile = readThisFile("./Database/$SecurityLevel/output.html");
+        $readFile = readThisFile("./Database/$SecurityLevel/CommandProcessorOutput/output.html");
         
         $tableRows = str_replace("\n", "|", $readFile);
         $tableItems = explode("|", $tableRows);
@@ -172,6 +173,6 @@
         
         $tableString .= "</table></body>";
         
-        exec("echo \"$tableString\" > ./Database/$SecurityLevel/output.html");
+        exec("echo \"$tableString\" > ./Database/$SecurityLevel/CommandProcessorOutput/output.html");
     }
 ?>

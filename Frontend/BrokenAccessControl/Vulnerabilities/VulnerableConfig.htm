@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta name="viewport" content="width=device-width"><title>http://localhost:8080/BrokenAccessControl/Vulnerabilities/vulnerable%20[MConverter.eu](1).html</title><link rel="stylesheet" type="text/css" href="resource://content-accessible/viewsource.css"></head><body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span># Default server definition
+<span id="line2"></span>server {
+<span id="line3"></span>listen [::]:8080 default_server;
+<span id="line4"></span>listen 8080 default_server;
+<span id="line5"></span>server_name vulnerable;
+<span id="line6"></span>
+<span id="line7"></span>sendfile off;
+<span id="line8"></span>tcp_nodelay on;
+<span id="line9"></span>absolute_redirect off;
+<span id="line10"></span>    
+<span id="line11"></span><b># This is critical, since folders will be shown now when you enter a / after a directory name!</b>
+<span id="line12"></span><span style="color: red; font-weight: bold">autoindex on;</span> 
+<span id="line13"></span>
+<span id="line14"></span>root /var/www/html;
+<span id="line15"></span>index index.htm index.php index.html;
+<span id="line16"></span>
+<span id="line17"></span>location / {
+<span id="line18"></span># First attempt to serve request as file, then
+<span id="line19"></span># as directory, then fall back to index.php
+<span id="line20"></span>try_files $uri $uri/ /index.php?q=$uri<span class="entity"><span>&amp;</span>amp;</span>$args;
+<span id="line21"></span>}
+<span id="line22"></span>
+<span id="line23"></span># Redirect server error pages to the static page /50x.html
+<span id="line24"></span>error_page 500 502 503 504 /50x.html;
+<span id="line25"></span>location = /50x.html {
+<span id="line26"></span>root /var/lib/nginx/html;
+<span id="line27"></span>}
+<span id="line28"></span>
+<span id="line29"></span># Pass the PHP scripts to PHP-FPM listening on php-fpm.sock
+<span id="line30"></span>location ~ \.php$ {
+<span id="line31"></span>try_files $uri =404;
+<span id="line32"></span>fastcgi_split_path_info ^(.+\.php)(/.+)$;
+<span id="line33"></span>fastcgi_pass unix:/run/php-fpm.sock;
+<span id="line34"></span>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+<span id="line35"></span>fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+<span id="line36"></span>fastcgi_index index.php;
+<span id="line37"></span>include fastcgi_params;
+<span id="line38"></span>}
+<span id="line39"></span>
+<span id="line40"></span># Set the cache-control headers on assets to cache for 5 days
+<span id="line41"></span>location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
+<span id="line42"></span>expires 5d;
+<span id="line43"></span>}
+<span id="line44"></span>
+<span id="line45"></span># Deny access to . files, for security
+<span id="line46"></span>location ~ /\. {
+<span id="line47"></span>log_not_found off;
+<span id="line48"></span>deny all;
+<span id="line49"></span>}
+<span id="line50"></span>
+<span id="line51"></span># Allow fpm ping and status from localhost
+<span id="line52"></span>location ~ ^/(fpm-status|fpm-ping)$ {
+<span id="line53"></span>access_log off;
+<span id="line54"></span>allow 127.0.0.1;
+<span id="line55"></span>deny all;
+<span id="line56"></span>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+<span id="line57"></span>include fastcgi_params;
+<span id="line58"></span>fastcgi_pass unix:/run/php-fpm.sock;
+<span id="line59"></span>}
+<span id="line60"></span>}</span></pre></body></html>
