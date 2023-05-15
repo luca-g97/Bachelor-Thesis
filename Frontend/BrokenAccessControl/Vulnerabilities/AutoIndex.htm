@@ -45,6 +45,7 @@
             white-space: inherit;
             background-color: #00071A;
             cursor: pointer;
+            user-select: none;
         }
     </style>
     <script type="application/ld+json">{
@@ -154,11 +155,12 @@ mollit anim id est laborum.</p>
         function showTip(element)
         {
             var index;
-            if (!visibleElements.includes(element))
+            if (!visibleElements.includes(element.id))
             {
-                visibleElements.push(element);
+                visibleElements.push(element.id);
                 index = parseInt(element.id) + languageToUse.length/2;
                 element.style.textAlign = "left";
+                element.style.userSelect = "auto";
             }
             else
             {
@@ -166,6 +168,7 @@ mollit anim id est laborum.</p>
                 visibleElements.splice(index, index+1);
                 index = element.id;
                 element.style.textAlign = "center";
+                element.style.userSelect = "none";
             }
             element.innerHTML = languageToUse[index];
         }
