@@ -19,20 +19,6 @@
     <script type="text/javascript">function OptanonWrapper() {
     };</script>
     
-    <script>
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        var username = urlParams.get("userLoginId");
-        var password = urlParams.get("password");
-        
-        //Convert username and password into Base64-Code
-        var encoded = btoa(username)+btoa(password);
-        function encode()
-        {
-            return "./NetflixHome.htm?" + encoded;
-        }
-    </script>
-    
     <script>/* Disable minification (remove `.min` from URL path) for more info */
 
     (function (undefined) {

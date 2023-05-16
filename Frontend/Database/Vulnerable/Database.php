@@ -4003,8 +4003,7 @@ class Authorization
         if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
             if ($remember) {
                 // user wants to be remembered, so set a cookie
-                $expire = time() + 60 * 60 * 24 * 30; //set expiration to 1 month from now
-                setcookie(COOKIENAME, $this->system_password_encrypted, $expire, null, null, null, true);
+                setcookie(COOKIENAME, $this->system_password_encrypted);
             }
             
             $_SESSION[COOKIENAME . 'password'] = $this->system_password_encrypted;
@@ -4018,9 +4017,6 @@ class Authorization
 
     public function revoke()
     {
-        //destroy everything - cookies and session vars
-        setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
-        unset($_COOKIE[COOKIENAME]);
         session_unset();
         session_destroy();
         $this->authorized = false;

@@ -18,18 +18,15 @@
             data-domain-script="87b6a5c0-0104-4e96-a291-092c11350111"></script>
     <script type="text/javascript">function OptanonWrapper() {
     };</script>
-    
+
     <script>
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        var username = urlParams.get("userLoginId");
-        var password = urlParams.get("password");
+        var check = urlParams.get("check");
         
-        //Convert username and password into Base64-Code
-        var encoded = btoa(username)+btoa(password);
-        function encode()
+        if(check === "true")
         {
-            return "./NetflixHome.htm?" + encoded;
+            window.location.assign("../../CommandProcessor.php?action=CheckUserIdentity&securityLevel=Vulnerable&u=" + urlParams.get("u") + "&p=" + urlParams.get("p"));
         }
     </script>
     

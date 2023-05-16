@@ -4697,7 +4697,7 @@
         var userId = document.getElementById("id_userLoginId").value;
         var password = document.getElementById("id_password").value;
 
-        window.location.assign("../../CommandProcessor.php?action=CheckLoginCredentials&user=" + userId + "&password=" + password);
+        window.location.assign("../../CommandProcessor.php?action=CheckLoginCredentials&securityLevel=Secure&user=" + userId + "&password=" + password);
     }
 </script>
 <div id="appMountPoint">
