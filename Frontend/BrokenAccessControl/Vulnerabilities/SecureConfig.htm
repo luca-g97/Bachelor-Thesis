@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html><head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta name="viewport" content="width=device-width"><title>http://localhost:8080/BrokenAccessControl/Vulnerabilities/secure%20[MConverter.eu](1).html</title><link rel="stylesheet" type="text/css" href="resource://content-accessible/viewsource.css"></head><body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span># Default server definition
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta name="viewport" content="width=device-width"><title>http://localhost:8080/BrokenAccessControl/Vulnerabilities/secure%20[MConverter.eu](1).html</title><link rel="stylesheet" type="text/css" href="resource://content-accessible/viewsource.css"></head>
+<body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span style="color: whitesmoke; background-color: transparent"># Default server definition
 <span id="line2"></span>server {
 <span id="line3"></span>listen [::]:8080 default_server;
 <span id="line4"></span>listen 8080 default_server;
@@ -10,7 +11,7 @@
 <span id="line8"></span>tcp_nodelay on;
 <span id="line9"></span>absolute_redirect off;
 <span id="line10"></span>    
-<span id="line11"></span><b># This is to avoid showing folder structure even after entering a /</b> 
+<span id="line11"></span><span style="color: orangered"><b># This is to avoid showing folder structure</b></span> 
 <span id="line12"></span><span style="color: green; font-weight: bold">autoindex off;</span>
 <span id="line13"></span>
 <span id="line14"></span>root /var/www/html;
@@ -24,7 +25,7 @@
 <span id="line22"></span>
 <span id="line23"></span>location /admin {
 <span id="line24"></span>deny all;
-<span id="line25"></span>#this should work for simple authentication, but it doesnÂ´t!
+<span id="line25"></span>#this should work for simple authentication, but it doesn´t!
 <span id="line26"></span>auth_basic           "closed site";
 <span id="line27"></span>auth_basic_user_file conf/htpasswd;
 <span id="line28"></span>}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html><head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta name="viewport" content="width=device-width"><title>http://localhost:8080/BrokenAccessControl/Vulnerabilities/vulnerable%20[MConverter.eu](1).html</title><link rel="stylesheet" type="text/css" href="resource://content-accessible/viewsource.css"></head><body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span># Default server definition
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta name="viewport" content="width=device-width"><title>VulnerableConfig.htm</title><link rel="stylesheet" type="text/css"></head>
+<body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span style="color: whitesmoke; background-color: transparent"># Default server definition
 <span id="line2"></span>server {
 <span id="line3"></span>listen [::]:8080 default_server;
 <span id="line4"></span>listen 8080 default_server;
@@ -10,7 +11,7 @@
 <span id="line8"></span>tcp_nodelay on;
 <span id="line9"></span>absolute_redirect off;
 <span id="line10"></span>    
-<span id="line11"></span><b># This is critical, since folders will be shown now when you enter a / after a directory name!</b>
+<span id="line11"></span><span style="color: orangered"><b># This is critical, since folders will be shown now</b></span>
 <span id="line12"></span><span style="color: red; font-weight: bold">autoindex on;</span> 
 <span id="line13"></span>
 <span id="line14"></span>root /var/www/html;

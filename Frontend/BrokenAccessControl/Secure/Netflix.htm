@@ -10764,16 +10764,180 @@
     }</style>
     <style data-emotion="default-ltr-cache" data-s=""></style>
 </head>
-<body>
+<!-- Start of my insert -->
+<style>
+    #explanationOpener {
+        width:100px;
+        height:100px;
+        z-index: 100;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    #explanationCloser {
+        background-color: orangered;
+        width: 20px;
+        height: 20px;
+        z-index: 100;
+        right: 0;
+        position: fixed;
+        cursor: pointer;
+        opacity: 0;
+        border: 1px solid black;
+    }
+    #explanation{
+        position: fixed;
+        background-color: black;
+        width: 30%;
+        left: 70%;
+        height: 100%;
+        border: 2px solid black;
+    }
+    .information {
+        color: whitesmoke;
+        background-color: #111111;
+        text-align: center;
+        font-weight: bold;
+        height: 5%;
+    }
+    .informationChoice {
+        color: #999999;
+        border: 1px solid #333333;
+        width: 33%;
+        text-align: center;
+        background-color: black;
+        cursor: pointer;
+    }
+    .flex-container {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: auto;
+    }
+    .flex-item {
+        flex: 0 0 auto;
+        width: 20%;
+        height:20%;
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        border: 1px solid #333333;
+        cursor: pointer;
+    }
+    .picked {
+        background-color: #222222;
+    }
+    td:hover{
+        background-color: #333333;
+    }
+</style>
+<!-- Need to be called before the elements, so the elements know what to do onclick -->
+<script>
+    var currentlyPicked = [];
+
+    function showExplanation(element, topic)
+    {
+        var currentlyClickedVulnerability = element.id;
+        //Remove the class picked from the old picked elements
+        for (var i = 0; i < currentlyPicked.length; i++)
+        {
+            if("" !== topic)
+            {
+                if(!currentlyPicked[i].classList.contains("flex-item"))
+                {
+                    currentlyPicked[i].classList.remove("picked");
+                }
+                else
+                {
+                    currentlyClickedVulnerability = currentlyPicked[i].id;
+                }
+            }
+            else {
+                currentlyPicked[i].classList.remove("picked");
+            }
+        }
+
+        //Add the class picked to the new picked elements
+        if(topic === "") {
+            document.getElementById("2").classList.add("picked");
+            currentlyPicked.push(document.getElementById("2"));
+        }
+        element.classList.add("picked");
+        currentlyPicked.push(element);
+
+
+        //Set the website source to the picked one
+        var newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/" + topic + ".htm";
+        if(topic === "") {
+            newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
+        }
+        document.getElementById("website").setAttribute("src", newSource);
+    }
+</script>
+<img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Problem.png" alt="Click here to open the hacking Explanation">
+<img id="explanationCloser" title="Close explanation" onclick="showExplanations(false)" src="../../close.png"  alt="Click here to close the explanation">
+<div id="explanation" style="opacity: 0">
+    <div><div id="0" class="information"></div>
+        <div class="information"><table style="width: 100%"><tr>
+            <td id="1" class="informationChoice" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
+            <td id="2" class="informationChoice" onclick="showExplanation(this, 'ExploitExplanation')"></td>
+            <td id="3" class="informationChoice" onclick="showExplanation(this, 'PreventionExplanation')"></td>
+        </tr></table></div></div>
+    <embed id="website" src="" width="100%" height="79%" style="background-color: transparent">
+    <div id="vulnerabilities"><div id="4" class="information"></div>
+        <div class="flex-container"><table style="width:100%"><tr>
+            <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
+            <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
+            <td id="Steganography" class="flex-item" title="Steganography" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
+            <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
+            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
+            <td id="InternalLinks" class="flex-item" title="Internal Links" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
+        </tr></table></div></div>
+</div>
+
+<!-- Needs to be called here, because otherwise the elements are not known yet -->
+<script>
+    var german = ["Wechseln Sie zwischen den Themen per Klick", "Sicherheitslücke", "Ausnutzung / Hack", "Verhinderung",
+        "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
+
+    var english = ["Switch between the topics by clicking on the desired", "Vulnerability", "Exploitation / Hack", "Prevention",
+        "Switch between the vulnerabilities by clicking on the desired"];
+
+    var languageToUse = english;
+    if (localStorage.getItem("language") === "German")
+    {
+        languageToUse = german;
+    }
+
+    for (var i = 0; i < languageToUse.length; i++)
+    {
+        document.getElementById(i.toString()).innerText = languageToUse[i];
+    }
+    console.log(document.getElementById("AutoIndex"));
+    showExplanation(document.getElementById("AutoIndex"), "");
+
+    function showExplanations(show) {
+        if (show)
+        {
+            document.getElementById("explanationOpener").style.zIndex = "-100";
+            document.getElementById("explanationCloser").style.opacity = "1";
+            document.getElementById("body").style.width = "70%";
+            document.getElementById("explanation").style.opacity = "1";
+        }
+        else
+        {
+            document.getElementById("explanationOpener").style.zIndex = "100";
+            document.getElementById("explanationCloser").style.opacity = "0";
+            document.getElementById("body").style.width = "100%";
+            document.getElementById("explanation").style.opacity = "0";
+        }
+
+    }
+</script>
+<!-- End of my insert -->
+<body id="body">
 <div style="text-align: center; color: red; font-size: 1.5em; background-color: #00071A">This website is just a clone for presentation purposes, it is NOT the real one!</div>
-<!-- Vulnerability Div -->
-<div style="position:fixed;bottom:0; width:100%; background-color: black; opacity:1; z-index: 100"><table style="width:100%; "><tr>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-</tr></table></div>
+<!-- From here on everything is build by a generator, so changes won´t work!-->
 <div id="appMountPoint">
     <div class="basicLayout">
         <div class="netflix-sans-font-loaded">
