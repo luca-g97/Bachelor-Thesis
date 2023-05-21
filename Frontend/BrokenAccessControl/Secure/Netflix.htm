@@ -10767,8 +10767,9 @@
 <!-- Start of my insert -->
 <style>
     #explanationOpener {
-        width:100px;
-        height:100px;
+        opacity: 0.7;
+        width: 100px;
+        height: 100px;
         z-index: 100;
         position: fixed;
         bottom: 10px;
@@ -10781,9 +10782,8 @@
         height: 2%;
         z-index: 100;
         top: 1%;
-        left: 70.5%;
+        left: 100.5%;
         position: fixed;
-        opacity: 0;
         color: lightgrey;
         cursor: pointer;
         border: 2px solid lightgrey;
@@ -10794,11 +10794,10 @@
         position: fixed;
         background-color: black;
         width: 30%;
-        left: 70%;
+        left: 100%;
         height: 100%;
         border: 2px solid black;
         font-family: 'Open Sans',sans-serif;
-        border-radius: 2%;
     }
     .information {
         color: whitesmoke;
@@ -10833,11 +10832,22 @@
         border: 1px solid #333333;
         cursor: pointer;
     }
+    .disclaimer{
+        padding: 0.7%; 
+        text-align: center; 
+        color: orangered; 
+        font-size: 1.5em; 
+        font-weight: bold;
+        background-color: #111111
+    }
     .picked {
         background-color: #222222;
     }
-    td:hover, #explanationCloser:hover {
+    td:hover, #explanationCloser:hover{
         background-color: #333333;
+    }
+    #explanationOpener:hover{
+        opacity: 1;
     }
 </style>
 <!-- Need to be called before the elements, so the elements know what to do onclick -->
@@ -10881,12 +10891,13 @@
         if(topic === "") {
             newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
         }
+        localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerability);
         document.getElementById("website").setAttribute("src", newSource);
     }
 </script>
-<img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Problem.png" alt="Click here to open the hacking Explanation">
-<i class="feather" data-feather="minimize-2" title="Close explanation" id="explanationCloser" onclick="showExplanations(false)"></i>
-<div id="explanation" style="opacity: 0">
+<img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Logo.png" alt="Click here to open the hacking Explanation">
+<i class="feather" data-feather="minimize-2" title="Close Explanation" id="explanationCloser" onclick="showExplanations(false)"></i>
+<div id="explanation">
     <div><div id="0" class="information"></div>
         <div class="information"><table style="width: 100%"><tr>
             <td id="1" class="informationChoice" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
@@ -10896,12 +10907,12 @@
     <embed id="website" src="" width="100%" height="70%" style="background-color: transparent">
     <div id="vulnerabilities"><div id="4" class="information"></div>
         <div class="flex-container"><table style="width:100%"><tr>
-            <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
-            <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
-            <td id="Steganography" class="flex-item" title="Steganography" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
-            <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
-            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
-            <td id="InternalLinks" class="flex-item" title="Internal Links" onclick="showExplanation(this, '')"><img src="../../Problem.png" style="width:100px; height:100px"></td>
+            <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Steganography" class="flex-item" title="Steganography" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="InternalLinks" class="flex-item" title="Internal Links" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
         </tr></table></div></div>
 </div>
 
@@ -10923,31 +10934,38 @@
     {
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
-    console.log(document.getElementById("AutoIndex"));
-    showExplanation(document.getElementById("AutoIndex"), "");
+    var tabToOpen = "Comments";
+    if(localStorage.getItem("OpenedInBrokenAccessControl") !== null){
+        tabToOpen= localStorage.getItem("OpenedInBrokenAccessControl");
+    }
+    showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();
+    
+    //https://github.com/feathericons/feather/issues/585 -> Showing a title on an feather icon
+    Array.from(document.querySelectorAll('svg.feather[title]')).forEach((element) => {
+        element.insertAdjacentHTML('afterbegin', `<title>${element.attributes.title.value}</title>`);
+    });
 
     function showExplanations(show) {
         if (show)
         {
             document.getElementById("explanationOpener").style.zIndex = "-100";
-            document.getElementById("explanationCloser").style.opacity = "1";
+            document.getElementById("explanationCloser").style.left = "70.5%";
             document.getElementById("body").style.width = "70%";
-            document.getElementById("explanation").style.opacity = "1";
+            document.getElementById("explanation").style.left = "70%";
         }
         else
         {
             document.getElementById("explanationOpener").style.zIndex = "100";
-            document.getElementById("explanationCloser").style.opacity = "0";
+            document.getElementById("explanationCloser").style.left = "100.5";
             document.getElementById("body").style.width = "100%";
-            document.getElementById("explanation").style.opacity = "0";
+            document.getElementById("explanation").style.left = "100%";
         }
-
     }
 </script>
 <!-- End of my insert -->
 <body id="body">
-<div style="padding: 0.7%; text-align: center; color: red; font-size: 1.5em; background-color: #111111">This website is just a clone for presentation purposes, it is NOT the real one!</div>
+<div class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one!</div>
 <!-- From here on everything is build by a generator, so changes won´t work!-->
 <div id="appMountPoint">
     <div class="basicLayout">

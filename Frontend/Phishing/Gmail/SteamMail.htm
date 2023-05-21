@@ -102572,20 +102572,213 @@
     <script async="" src=".SteamMail/lazy.min.js" nonce=""></script>
     <style nonce=""></style>
 </head>
-<body jscontroller="hS6RLb" jsmodel="utMpr"
+<!-- Start of my insert -->
+<style>
+    #explanationOpener {
+        opacity: 0.7;
+        width: 100px;
+        height: 100px;
+        z-index: 100;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        cursor: pointer;
+        border-radius: 2%;
+    }
+    #explanationCloser {
+        width: 1.3%;
+        height: 2%;
+        z-index: 100;
+        top: 1%;
+        left: 100.5%;
+        position: fixed;
+        color: lightgrey;
+        cursor: pointer;
+        border: 2px solid lightgrey;
+        background-color: black;
+        border-radius: 3px;
+    }
+    #explanation{
+        z-index:50;
+        position: fixed;
+        background-color: black;
+        width: 30%;
+        left: 100%;
+        height: 100%;
+        border: 2px solid black;
+        font-family: 'Open Sans',sans-serif;
+    }
+    .information {
+        color: whitesmoke;
+        background-color: #111111;
+        text-align: center;
+        font-weight: bold;
+        height: 10%;
+        padding: 2%;
+    }
+    .informationChoice {
+        padding: 1.7%;
+        color: white;
+        border: 1px solid #333333;
+        width: 33%;
+        text-align: center;
+        background-color: black;
+        cursor: pointer;
+        border-radius: 2%;
+    }
+    .flex-container {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: auto;
+    }
+    .flex-item {
+        flex: 0 0 auto;
+        width: 20%;
+        height:20%;
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        border: 1px solid #333333;
+        cursor: pointer;
+    }
+    .disclaimer{
+        padding: 0.7%; 
+        text-align: center; 
+        color: orangered; 
+        font-size: 1.5em; 
+        font-weight: bold;
+        background-color: #111111
+    }
+    .picked {
+        background-color: #222222;
+    }
+    .flex-item:hover, .informationChoice:hover, #explanationCloser:hover{
+        background-color: #333333;
+    }
+    #explanationOpener:hover{
+        opacity: 1;
+    }
+</style>
+<!-- Need to be called before the elements, so the elements know what to do onclick -->
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    var currentlyPicked = [];
+
+    function showExplanation(element, topic)
+    {
+        var currentlyClickedVulnerability = element.id;
+        //Remove the class picked from the old picked elements
+        for (var i = 0; i < currentlyPicked.length; i++)
+        {
+            if("" !== topic)
+            {
+                if(!currentlyPicked[i].classList.contains("flex-item"))
+                {
+                    currentlyPicked[i].classList.remove("picked");
+                }
+                else
+                {
+                    currentlyClickedVulnerability = currentlyPicked[i].id;
+                }
+            }
+            else {
+                currentlyPicked[i].classList.remove("picked");
+            }
+        }
+
+        //Add the class picked to the new picked elements
+        if(topic === "") {
+            document.getElementById("2").classList.add("picked");
+            currentlyPicked.push(document.getElementById("2"));
+        }
+        element.classList.add("picked");
+        currentlyPicked.push(element);
+
+
+        //Set the website source to the picked one
+        var newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/" + topic + ".htm";
+        if(topic === "") {
+            newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
+        }
+        localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerability);
+        document.getElementById("website").setAttribute("src", newSource);
+    }
+</script>
+<img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Logo.png" alt="Click here to open the hacking Explanation">
+<i class="feather" data-feather="minimize-2" title="Close Explanation" id="explanationCloser" onclick="showExplanations(false)"></i>
+<div id="explanation">
+    <div><div id="0" class="information"></div>
+        <div class="information"><table style="width: 100%"><tr>
+            <td id="1" class="informationChoice" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
+            <td id="2" class="informationChoice" onclick="showExplanation(this, 'ExploitExplanation')"></td>
+            <td id="3" class="informationChoice" onclick="showExplanation(this, 'PreventionExplanation')"></td>
+        </tr></table></div></div>
+    <embed id="website" src="" width="100%" height="70%" style="background-color: transparent">
+    <div id="vulnerabilities"><div id="4" class="information"></div>
+        <div class="flex-container"><table style="width:100%"><tr>
+            <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Steganography" class="flex-item" title="Steganography" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="InternalLinks" class="flex-item" title="Internal Links" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+        </tr></table></div></div>
+</div>
+
+<!-- Needs to be called here, because otherwise the elements are not known yet -->
+<script>
+    var german = ["  Wechseln Sie zwischen den Themen per Klick", "Sicherheitslücke", "Hack-Ausführung", "Verhinderung",
+        "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
+
+    var english = ["  Switch between the topics by clicking on the desired", "Vulnerability", "Exploit / Hack", "Prevention",
+        "Switch between the vulnerabilities by clicking on the desired"];
+
+    var languageToUse = english;
+    if (localStorage.getItem("language") === "German")
+    {
+        languageToUse = german;
+    }
+
+    for (var i = 0; i < languageToUse.length; i++)
+    {
+        document.getElementById(i.toString()).innerText = languageToUse[i];
+    }
+    var tabToOpen = "Comments";
+    if(localStorage.getItem("OpenedInBrokenAccessControl") !== null){
+        tabToOpen= localStorage.getItem("OpenedInBrokenAccessControl");
+    }
+    showExplanation(document.getElementById(tabToOpen), "");
+    feather.replace();
+    
+    //https://github.com/feathericons/feather/issues/585 -> Showing a title on an feather icon
+    Array.from(document.querySelectorAll('svg.feather[title]')).forEach((element) => {
+        element.insertAdjacentHTML('afterbegin', `<title>${element.attributes.title.value}</title>`);
+    });
+
+    function showExplanations(show) {
+        if (show)
+        {
+            document.getElementById("explanationOpener").style.zIndex = "-100";
+            document.getElementById("explanationCloser").style.left = "70.5%";
+            document.getElementById("body").style.width = "70%";
+            document.getElementById("explanation").style.left = "70%";
+        }
+        else
+        {
+            document.getElementById("explanationOpener").style.zIndex = "100";
+            document.getElementById("explanationCloser").style.left = "100.5%";
+            document.getElementById("body").style.width = "100%";
+            document.getElementById("explanation").style.left = "100%";
+        }
+    }
+</script>
+<!-- End of my insert -->
+<body id="body" jscontroller="hS6RLb" jsmodel="utMpr"
       jsaction="rcuQ6b:rcuQ6b;A59Jsf:aeO1Sd;RW0A4:WBopzd;FwQykc:k0aXUd;kQx1de:QSAxne;LPBdz:LCjO0c;jrvfrd:PB0Csf;FGHbk:Nx2Sl;qNGYPc:LEY81c;Mehhhf:dCAGAe;UMTqxf:rioWAc;jSI5yb:Lzhzdc;JpvSPb:EL4Jr;Aeulrb:nixEK;YweIdb:.CLIENT;iE7Vzc:.CLIENT;v9KJX:.CLIENT;Ly2fm:.CLIENT;ORuuO:.CLIENT;RzaMQe:.CLIENT"
       class="aAU" tabindex="-1"
       jslog="20276; u014N:xr6bB; 1:WyJ0aHJlYWQtZjoxNzYyMzU3MTMwOTUwMTE3NjgyIix0cnVlLG51bGwsbnVsbCxbbnVsbCxbXV0sZmFsc2UsbnVsbCxmYWxzZSxudWxsLG51bGwsbnVsbCxudWxsLG51bGwsW11d"
       data-awr-sg-installed="true">
-<div style="text-align: center; color: red; font-size: 1.5em; background-color: #00071A">This website is just a clone for presentation purposes, it is NOT the real one!</div>
-<!-- Vulnerability Div -->
-<div style="position:fixed;bottom:0; width:100%; background-color: black; opacity:1; z-index: 100"><table style="width:100%; "><tr>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-    <td style="width: 20%; height:20%; text-align: center; vertical-align: middle" onMouseOver="this.style.backgroundColor='#111111'" onMouseOut="this.style.backgroundColor='#000000'"><img src="../../Problem.png" style="width:200px; height:200px"></td>
-</tr></table></div>
+<div class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one!</div>
 <iframe style="position: absolute; width: 9em; height: 9em; top: -99em;" tabindex="-1" aria-hidden="true"></iframe>
 <!--<link data-recorded-src="https://mail.google.com/mail/u/0/data?sw=2&amp;token=%5B%22cftp%22,%223b274a4d3e%22,%22gmail.pinto-server_20230330.06_p0%22,%22ZyMrc6cBAw-rFZnvtXyj5A%5Cu003d%5Cu003d%22,null,3,%22%22%5D&amp;dilte=0&amp;gme=1&amp;sme=1&amp;pt=ji"
       id="embedded_data_iframe">-->
