@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<!-- Start of my insert -->
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        background-color: black;
+    }
+    #explanation{
+        z-index: 50;
+        position: fixed;
+        background-color: black;
+        width: 30%;
+        left: 70%;
+        height: 100%;
+        border: 2px solid black;
+        font-family: 'Open Sans',sans-serif;
+    }
+    .information {
+        color: whitesmoke;
+        background-color: #111111;
+        text-align: center;
+        font-weight: bold;
+        height: 10%;
+        padding: 2%;
+    }
+    .informationChoice {
+        padding: 1.7%;
+        color: white;
+        border: 1px solid #333333;
+        width: 33%;
+        text-align: center;
+        background-color: black;
+        cursor: pointer;
+        border-radius: 2%;
+    }
+    .flex-container {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: auto;
+    }
+    .flex-item {
+        flex: 0 0 auto;
+        width: 20%;
+        height:20%;
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        border: 1px solid #333333;
+        cursor: pointer;
+    }
+    .picked {
+        background-color: #222222;
+    }
+    .flex-item:hover, .informationChoice:hover, #explanationCloser:hover{
+        background-color: #333333;
+    }
+    .pictures{
+        position: absolute;
+        left: 14.55%;
+        top: 27%;
+        width: 55.5%;
+        z-index: 50;
+        height: 32.5%;
+    }
+    .close{
+        z-index: -50;
+        width: 70%;
+        height: 23%;
+        position: absolute;
+    }
+</style>
+<!-- Need to be called before the elements, so the elements know what to do onclick -->
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    var currentlyPicked = [];
+
+    function showExplanation(element, topic)
+    {
+        var currentlyClickedVulnerability = element.id;
+        //Remove the class picked from the old picked elements
+        for (var i = 0; i < currentlyPicked.length; i++)
+        {
+            if("" !== topic)
+            {
+                if(!currentlyPicked[i].classList.contains("flex-item"))
+                {
+                    currentlyPicked[i].classList.remove("picked");
+                }
+                else
+                {
+                    currentlyClickedVulnerability = currentlyPicked[i].id;
+                }
+            }
+            else {
+                currentlyPicked[i].classList.remove("picked");
+            }
+        }
+
+        //Add the class picked to the new picked elements
+        if(topic === "") {
+            document.getElementById("2").classList.add("picked");
+            currentlyPicked.push(document.getElementById("2"));
+        }
+        element.classList.add("picked");
+        currentlyPicked.push(element);
+
+
+        //Set the website source to the picked one
+        var newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/" + topic + ".htm";
+        if(topic === "") {
+            newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
+        }
+        localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerability);
+        document.getElementById("website").setAttribute("src", newSource);
+    }
+</script>
+<div id="explanation">
+    <div><div id="0" class="information"></div>
+        <div class="information"><table style="width: 100%"><tr>
+            <td id="1" class="informationChoice" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
+            <td id="2" class="informationChoice" onclick="showExplanation(this, 'ExploitExplanation')"></td>
+            <td id="3" class="informationChoice" onclick="showExplanation(this, 'PreventionExplanation')"></td>
+        </tr></table></div></div>
+    <embed id="website" src="" width="100%" height="70%" style="background-color: transparent">
+    <div id="vulnerabilities"><div id="4" class="information"></div>
+        <div class="flex-container"><table style="width:100%"><tr>
+            <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Steganography" class="flex-item" title="Steganography" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="InternalLinks" class="flex-item" title="Internal Links" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+        </tr></table></div></div>
+</div>
+
+<!-- Needs to be called here, because otherwise the elements are not known yet -->
+<script>
+    var german = ["  Wechseln Sie zwischen den Themen per Klick", "Sicherheitslücke", "Hack-Ausführung", "Verhinderung",
+        "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
+
+    var english = ["  Switch between the topics by clicking on the desired", "Vulnerability", "Exploit / Hack", "Prevention",
+        "Switch between the vulnerabilities by clicking on the desired"];
+
+    var languageToUse = english;
+    if (localStorage.getItem("language") === "German")
+    {
+        languageToUse = german;
+    }
+
+    for (var i = 0; i < languageToUse.length; i++)
+    {
+        document.getElementById(i.toString()).innerText = languageToUse[i];
+    }
+    var tabToOpen = "Comments";
+    if(localStorage.getItem("OpenedInBrokenAccessControl") !== null){
+        tabToOpen= localStorage.getItem("OpenedInBrokenAccessControl");
+    }
+    showExplanation(document.getElementById(tabToOpen), "");
+    feather.replace();
+    
+    function changeSite(site)
+    {
+        var clickable = "";
+        var unclickable = "";
+        if (site === "Startpage") {
+            clickable = document.getElementsByClassName("pictures");
+            unclickable = document.getElementsByClassName("close");
+        }
+        else {
+            clickable = document.getElementsByClassName("close");
+            unclickable = document.getElementsByClassName("pictures");
+        }
+        setZIndex(clickable, 50);
+        setZIndex(unclickable, -50);
+        document.getElementById("instagram").setAttribute("src", site + ".png")
+    }
+    
+    function setZIndex(clickType, zIndex)
+    {
+        for (var i = 0; i < clickType.length; i++)
+        {
+            clickType[i].style.zIndex = zIndex;
+        }
+    }
+</script>
+<!-- End of my insert -->
+<body>
+<table class="pictures"><tr><td onclick="changeSite('Brunch')"></td><td onclick="changeSite('Birthday')"></td><td onclick="changeSite('Family')"></td></tr></table>
+<div class="close" onclick="changeSite('Startpage')"></div>
+<img id="instagram" src="Startpage.png" width="70%" height="100%" alt="Instagram page">
+<div class="close" style="bottom: 0;" onclick="changeSite('Startpage')"></div>
+</body>
+</html>
