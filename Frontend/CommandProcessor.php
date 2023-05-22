@@ -171,8 +171,8 @@
         $tableItems = explode("|", $tableRows);
         
         //
-        $tableString = "<head><style>table{ margin: auto; width: 100%; padding: 10px; border: whitesmoke solid 2px} tr, th{color: whitesmoke; text-align: center} tr:nth-child(even) { background-color: #555555; } div{padding: 10px; border: whitesmoke solid 2px; color: whitesmoke; text-align: center; background-color: #555555;}</style></head>";
-        $tableString .= "<body><div>The result of your last request was: $result</div><table><tr><th>firstname</th><th>lastname</th><th>email</th></tr>";
+        $tableString = "<head><style>table{ margin: auto; border: 3px solid lightgrey; width: 100%; padding: 3%; font-family: 'Open Sans',sans-serif; border-radius: 5px} tr, th{color: lightgrey; text-align: center} tr:nth-child(even) { background-color: #333333; } div{padding: 10px; border: lightgrey solid 3px; color: lightgrey; text-align: center; background-color: #222222; font-family: 'Open Sans',sans-serif; border-radius: 5px;}</style></head>";
+        $tableString .= "<body><div><b>The result of your last request was: $result</b></div><table><tr><th>firstname</th><th>lastname</th><th>email</th></tr>";
         
         
         for ($i = 0; $i < count($tableItems); $i++) {
