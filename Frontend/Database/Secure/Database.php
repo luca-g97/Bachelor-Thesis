@@ -1815,7 +1815,8 @@ if (!$auth->isAuthorized()) {
         Redirect($url, false);
     }
     else {
-        $params->redirect($attempt ? array() : array('failed' => '1'));
+        Redirect("./Database.htm", false);
+        //$params->redirect($attempt ? array() : array('failed' => '1'));
     }
 
     echo "<div id='loginBox'>";

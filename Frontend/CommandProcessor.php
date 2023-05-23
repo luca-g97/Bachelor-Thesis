@@ -50,7 +50,7 @@
             $result = htmlentities(readThisFile("./Database/$SecurityLevel/CommandProcessorOutput/temp.html"));
             exec("rm ./Database/$SecurityLevel/CommandProcessorOutput/temp.html");
         }
-
+        
         createTable($result, $SecurityLevel);
         header("Location: ./Database/$SecurityLevel/DatabasePassword.htm", true, false);
     }
@@ -58,7 +58,7 @@
     function checkAuthorization($username, $password, $SecurityLevel)
     {
         if ($username === "test" && $password === "NoChanceMr.Hacker!123") {
-            header("Location: ./Database/$SecurityLevel/DatabasePassword.htm", true, false);
+            header("Location: ./Database/$SecurityLevel/Database.htm", true, false);
         }else if ($username === "admin" && $password === "GiveUp!Y0uWillN3verF!ndOutS1nceThisIsTo0Long!!!"){
             exec("sqlite3 ./Database/$SecurityLevel/UserData \"select Databasepassword from Admin where Username=$username and Loginpassword= $password\" > ./Database/$SecurityLevel/output.txt");
             $result = readThisFile("./Database/$SecurityLevel/output.txt");
@@ -173,7 +173,6 @@
         //
         $tableString = "<head><style>table{ margin: auto; border: 3px solid lightgrey; width: 100%; padding: 3%; font-family: 'Open Sans',sans-serif; border-radius: 5px} tr, th{color: lightgrey; text-align: center} tr:nth-child(even) { background-color: #333333; } div{padding: 10px; border: lightgrey solid 3px; color: lightgrey; text-align: center; background-color: #222222; font-family: 'Open Sans',sans-serif; border-radius: 5px;}</style></head>";
         $tableString .= "<body><div><b>The result of your last request was: $result</b></div><table><tr><th>firstname</th><th>lastname</th><th>email</th></tr>";
-        
         
         for ($i = 0; $i < count($tableItems); $i++) {
             if (($i % 3) === 0)

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width"><title>http://localhost:8080/Database/Secure/DatabaseLogin.htm</title><link rel="stylesheet" type="text/css" href="resource://content-accessible/viewsource.css"></head><body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span style="color: whitesmoke; background-color: #1C1B22"><span></span><span class="doctype">&lt;!DOCTYPE html&gt;</span><span>
+<span id="line2"></span></span><span>&lt;<span class="start-tag">html</span> <span class="attribute-name">style</span>="<a class="attribute-value">font-size: 16px;</a>" <span class="attribute-name">class</span>="<a class="attribute-value">u-responsive-xl vxxonsz idc0_346</a>" <span class="attribute-name">lang</span>="<a class="attribute-value">de</a>"&gt;</span><span>
+<span id="line3"></span></span><span>&lt;<span class="start-tag">head</span>&gt;</span><span>
+<span id="line4"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">http-equiv</span>="<a class="attribute-value">content-type</a>" <span class="attribute-name">content</span>="<a class="attribute-value">text/html; charset=UTF-8</a>"&gt;</span><span>
+<span id="line5"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">name</span>="<a class="attribute-value">viewport</a>" <span class="attribute-name">content</span>="<a class="attribute-value">width=device-width, initial-scale=1.0</a>"&gt;</span><span>
+<span id="line6"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">charset</span>="<a class="attribute-value">utf-8</a>"&gt;</span><span>
+<span id="line7"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">name</span>="<a class="attribute-value">keywords</a>" <span class="attribute-name">content</span>="<a class="attribute-value">Our Services</a>"&gt;</span><span>
+<span id="line8"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">name</span>="<a class="attribute-value">description</a>" <span class="attribute-name">content</span>="<a class="attribute-value"></a>"&gt;</span><span>
+<span id="line9"></span> </span><span>&lt;<span class="start-tag">title</span>&gt;</span><span>Login</span><span>&lt;/<span class="end-tag">title</span>&gt;</span><span>
+<span id="line10"></span> </span><span>&lt;<span class="start-tag">link</span> <span class="attribute-name">rel</span>="<a class="attribute-value">stylesheet</a>" <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/.DatabaseLogin/nicepage.css">.DatabaseLogin/nicepage.css</a>" <span class="attribute-name">media</span>="<a class="attribute-value">screen</a>"&gt;</span><span>
+<span id="line11"></span> </span><span>&lt;<span class="start-tag">link</span> <span class="attribute-name">rel</span>="<a class="attribute-value">stylesheet</a>" <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/.DatabaseLogin/nicepage-site.css">.DatabaseLogin/nicepage-site.css</a>" <span class="attribute-name">media</span>="<a class="attribute-value">screen</a>"&gt;</span><span>
+<span id="line12"></span> </span><span>&lt;<span class="start-tag">link</span> <span class="attribute-name">rel</span>="<a class="attribute-value">stylesheet</a>" <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/.DatabaseLogin/Login.css">.DatabaseLogin/Login.css</a>" <span class="attribute-name">media</span>="<a class="attribute-value">screen</a>"&gt;</span><span>
+<span id="line13"></span> </span><span>&lt;<span class="start-tag">script</span> <span class="attribute-name">type</span>="<a class="attribute-value">text/javascript</a>" <span class="attribute-name">async</span>="<a class="attribute-value"></a>" <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/.DatabaseLogin/recaptcha__de.js">.DatabaseLogin/recaptcha__de.js</a>" <span class="attribute-name">crossorigin</span>="<a class="attribute-value">anonymous</a>"
+<span id="line14"></span> <span class="attribute-name">integrity</span>="<a class="attribute-value">sha384-dMy6XdIZqDbfrn9ELdZgEK4pJLT6FwgqFdQddS/Y5lw26AsNwjX7OOQDNHX1Bpwu</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line15"></span> </span><span>&lt;<span class="start-tag">script</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-script</a>" <span class="attribute-name">type</span>="<a class="attribute-value">text/javascript</a>" <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/.DatabaseLogin/jquery-3.5.1.min.js">.DatabaseLogin/jquery-3.5.1.min.js</a>" <span class="attribute-name">defer</span>="<a class="attribute-value">defer</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line16"></span> </span><span>&lt;<span class="start-tag">script</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-script</a>" <span class="attribute-name">type</span>="<a class="attribute-value">text/javascript</a>" <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/.DatabaseLogin/nicepage.js">.DatabaseLogin/nicepage.js</a>" <span class="attribute-name">defer</span>="<a class="attribute-value">defer</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line17"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">name</span>="<a class="attribute-value">generator</a>" <span class="attribute-name">content</span>="<a class="attribute-value">Nicepage 5.8.2, nicepage.com</a>"&gt;</span><span>
+<span id="line18"></span> </span><span>&lt;<span class="start-tag">link</span> <span class="attribute-name">id</span>="<a class="attribute-value">u-theme-google-font</a>" <span class="attribute-name">rel</span>="<a class="attribute-value">stylesheet</a>" <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/.DatabaseLogin/css.css">.DatabaseLogin/css.css</a>"&gt;</span><span>
+<span id="line19"></span> </span><span>&lt;<span class="start-tag">link</span> <span class="attribute-name">id</span>="<a class="attribute-value">u-page-google-font</a>" <span class="attribute-name">rel</span>="<a class="attribute-value">stylesheet</a>" <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/.DatabaseLogin/css_002.css">.DatabaseLogin/css_002.css</a>"&gt;</span><span>
+<span id="line20"></span>
+<span id="line21"></span>
+<span id="line22"></span> </span><span>&lt;<span class="start-tag">script</span> <span class="attribute-name">type</span>="<a class="attribute-value">application/ld+json</a>"&gt;</span><span>{
+<span id="line23"></span> "@context": "http://schema.org",
+<span id="line24"></span> "@type": "Organization",
+<span id="line25"></span> "name": "Bachelorarbeit"
+<span id="line26"></span> }</span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line27"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">name</span>="<a class="attribute-value">theme-color</a>" <span class="attribute-name">content</span>="<a class="attribute-value">#478ac9</a>"&gt;</span><span>
+<span id="line28"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">property</span>="<a class="attribute-value">og:title</a>" <span class="attribute-name">content</span>="<a class="attribute-value">Login</a>"&gt;</span><span>
+<span id="line29"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">property</span>="<a class="attribute-value">og:description</a>" <span class="attribute-name">content</span>="<a class="attribute-value"></a>"&gt;</span><span>
+<span id="line30"></span> </span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">property</span>="<a class="attribute-value">og:type</a>" <span class="attribute-name">content</span>="<a class="attribute-value">website</a>"&gt;</span><span>
+<span id="line31"></span> </span><span class="comment">&lt;!--&lt;script&gt;
+<span id="line32"></span> function gdprConfirmed() {
+<span id="line33"></span> return true;
+<span id="line34"></span> }
+<span id="line35"></span> 
+<span id="line36"></span> function dynamicLoadScript(src) {
+<span id="line37"></span> var script = document.createElement('script');
+<span id="line38"></span> script.src = src &amp;&amp; typeof src === 'string' ? src : 'https://www.google.com/recaptcha/api.js';
+<span id="line39"></span> script.async = true;
+<span id="line40"></span> document.body.appendChild(script);
+<span id="line41"></span> script.onload = function () {
+<span id="line42"></span> let event = new CustomEvent("recaptchaLoaded");
+<span id="line43"></span> document.dispatchEvent(event);
+<span id="line44"></span> };*/
+<span id="line45"></span> }
+<span id="line46"></span>
+<span id="line47"></span> /*document.addEventListener('DOMContentLoaded', function () {
+<span id="line48"></span> var confirmButton = document.querySelector('.u-cookies-consent .u-button-confirm');
+<span id="line49"></span> if (confirmButton) {
+<span id="line50"></span> confirmButton.onclick = dynamicLoadScript;
+<span id="line51"></span> }
+<span id="line52"></span> });
+<span id="line53"></span> &lt;/script&gt;
+<span id="line54"></span> &lt;script&gt;
+<span id="line55"></span> document.addEventListener("DOMContentLoaded", function () {
+<span id="line56"></span> if (!gdprConfirmed()) {
+<span id="line57"></span> return;
+<span id="line58"></span> }
+<span id="line59"></span> // dynamicLoadScript();
+<span id="line60"></span> });
+<span id="line61"></span> &lt;/script&gt;
+<span id="line62"></span> &lt;script&gt;
+<span id="line63"></span> document.addEventListener("recaptchaLoaded", function () {
+<span id="line64"></span> if (!gdprConfirmed()) {
+<span id="line65"></span> return;
+<span id="line66"></span> }
+<span id="line67"></span> (function (grecaptcha, sitekey, actions) {
+<span id="line68"></span> var recaptcha = {
+<span id="line69"></span> execute: function (action, submitFormCb) {
+<span id="line70"></span> try {
+<span id="line71"></span> grecaptcha.execute(
+<span id="line72"></span> sitekey,
+<span id="line73"></span> {action: action}
+<span id="line74"></span> ).then(function (token) {
+<span id="line75"></span> var forms = document.getElementsByTagName('form');
+<span id="line76"></span>
+<span id="line77"></span> for (var i = 0; i &lt; forms.length; i++) {
+<span id="line78"></span> var fields = forms[i].getElementsByTagName('input');
+<span id="line79"></span>
+<span id="line80"></span> for (var j = 0; j &lt; fields.length; j++) {
+<span id="line81"></span> var field = fields[j];
+<span id="line82"></span>
+<span id="line83"></span> if ('recaptchaResponse' === field.getAttribute('name')) {
+<span id="line84"></span> field.setAttribute('value', token);
+<span id="line85"></span> //break;
+<span id="line86"></span> }
+<span id="line87"></span> }
+<span id="line88"></span> }
+<span id="line89"></span> submitFormCb();
+<span id="line90"></span> });
+<span id="line91"></span> } catch (e) {
+<span id="line92"></span> var formError = document.querySelector('.u-form-send-error');
+<span id="line93"></span>
+<span id="line94"></span> if (formError) {
+<span id="line95"></span> formError.innerText = 'Website-Eigentümer Fehler: ' + e.message.replace(/:[\s\S]*/, '');
+<span id="line96"></span> formError.style.display = 'block';
+<span id="line97"></span> }
+<span id="line98"></span> }
+<span id="line99"></span> },
+<span id="line100"></span>
+<span id="line101"></span> executeContact: function (submitFormCb) {
+<span id="line102"></span> recaptcha.execute(actions['contact'], submitFormCb);
+<span id="line103"></span> }
+<span id="line104"></span> };
+<span id="line105"></span>
+<span id="line106"></span> window.recaptchaObject = recaptcha;
+<span id="line107"></span> })(
+<span id="line108"></span> grecaptcha,
+<span id="line109"></span>
+<span id="line110"></span> '6LetPRgiAAAAAGX121nVdkYGTN-RfCXh4wAlbDFh',
+<span id="line111"></span> {'contact': 'contact'}
+<span id="line112"></span> );
+<span id="line113"></span> });
+<span id="line114"></span> &lt;/script&gt;--&gt;</span><span>
+<span id="line115"></span></span><span>&lt;/<span class="end-tag">head</span>&gt;</span><span>
+<span id="line116"></span></span><span class="comment">&lt;!-- Start of my insert --&gt;</span><span>
+<span id="line117"></span></span><span class="error" title="“style”-Element zwischen “head” und “body”.">&lt;<span class="start-tag">style</span>&gt;</span><span>
+<span id="line118"></span> #explanationOpener {
+<span id="line119"></span> opacity: 0.7;
+<span id="line120"></span> width: 100px;
+<span id="line121"></span> height: 100px;
+<span id="line122"></span> z-index: 100;
+<span id="line123"></span> position: fixed;
+<span id="line124"></span> bottom: 10px;
+<span id="line125"></span> right: 10px;
+<span id="line126"></span> cursor: pointer;
+<span id="line127"></span> border-radius: 2%;
+<span id="line128"></span> }
+<span id="line129"></span> #explanationCloser {
+<span id="line130"></span> width: 1.3%;
+<span id="line131"></span> height: 2%;
+<span id="line132"></span> z-index: 100;
+<span id="line133"></span> top: 1%;
+<span id="line134"></span> left: 100.5%;
+<span id="line135"></span> position: fixed;
+<span id="line136"></span> color: lightgrey;
+<span id="line137"></span> cursor: pointer;
+<span id="line138"></span> border: 2px solid lightgrey;
+<span id="line139"></span> background-color: black;
+<span id="line140"></span> border-radius: 3px;
+<span id="line141"></span> }
+<span id="line142"></span> #explanation{
+<span id="line143"></span> font-size: 0.95em;
+<span id="line144"></span> position: fixed;
+<span id="line145"></span> background-color: black;
+<span id="line146"></span> width: 30%;
+<span id="line147"></span> left: 100%;
+<span id="line148"></span> height: 100%;
+<span id="line149"></span> border: 2px solid black;
+<span id="line150"></span> font-family: 'Open Sans',sans-serif;
+<span id="line151"></span> }
+<span id="line152"></span> .information {
+<span id="line153"></span> color: whitesmoke;
+<span id="line154"></span> background-color: #111111;
+<span id="line155"></span> text-align: center;
+<span id="line156"></span> font-weight: bold;
+<span id="line157"></span> height: 10%;
+<span id="line158"></span> padding: 2%;
+<span id="line159"></span> }
+<span id="line160"></span> .informationChoice {
+<span id="line161"></span> padding: 1.7%;
+<span id="line162"></span> color: white;
+<span id="line163"></span> border: 1px solid #333333;
+<span id="line164"></span> width: 33%;
+<span id="line165"></span> text-align: center;
+<span id="line166"></span> background-color: black;
+<span id="line167"></span> cursor: pointer;
+<span id="line168"></span> border-radius: 2%;
+<span id="line169"></span> }
+<span id="line170"></span> .flex-container {
+<span id="line171"></span> display: flex;
+<span id="line172"></span> flex-wrap: nowrap;
+<span id="line173"></span> overflow: auto;
+<span id="line174"></span> }
+<span id="line175"></span> .flex-item {
+<span id="line176"></span> flex: 0 0 auto;
+<span id="line177"></span> width: 20%;
+<span id="line178"></span> height:20%;
+<span id="line179"></span> text-align: center;
+<span id="line180"></span> vertical-align: middle;
+<span id="line181"></span> background-color: black;
+<span id="line182"></span> border: 1px solid #333333;
+<span id="line183"></span> cursor: pointer;
+<span id="line184"></span> }
+<span id="line185"></span> .picked {
+<span id="line186"></span> background-color: #222222;
+<span id="line187"></span> }
+<span id="line188"></span> td:hover, #explanationCloser:hover{
+<span id="line189"></span> background-color: #333333;
+<span id="line190"></span> }
+<span id="line191"></span> #explanationOpener:hover{
+<span id="line192"></span> opacity: 1;
+<span id="line193"></span> }
+<span id="line194"></span></span><span>&lt;/<span class="end-tag">style</span>&gt;</span><span>
+<span id="line195"></span></span><span class="comment">&lt;!-- Need to be called before the elements, so the elements know what to do onclick --&gt;</span><span>
+<span id="line196"></span></span><span class="error" title="“script”-Element zwischen “head” und “body”.">&lt;<span class="start-tag">script</span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:https://unpkg.com/feather-icons">https://unpkg.com/feather-icons</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line197"></span></span><span class="error" title="“script”-Element zwischen “head” und “body”.">&lt;<span class="start-tag">script</span>&gt;</span><span>
+<span id="line198"></span> var currentlyPicked = [];
+<span id="line199"></span>
+<span id="line200"></span> function showExplanation(element, topic)
+<span id="line201"></span> {
+<span id="line202"></span> var currentlyClickedVulnerability = element.id;
+<span id="line203"></span> //Remove the class picked from the old picked elements
+<span id="line204"></span> for (var i = 0; i </span><span>&lt; </span><span>currentlyPicked.length; i++)
+<span id="line205"></span> {
+<span id="line206"></span> if("" !== topic)
+<span id="line207"></span> {
+<span id="line208"></span> if(!currentlyPicked[i].classList.contains("flex-item"))
+<span id="line209"></span> {
+<span id="line210"></span> currentlyPicked[i].classList.remove("picked");
+<span id="line211"></span> }
+<span id="line212"></span> else
+<span id="line213"></span> {
+<span id="line214"></span> currentlyClickedVulnerability = currentlyPicked[i].id;
+<span id="line215"></span> }
+<span id="line216"></span> }
+<span id="line217"></span> else {
+<span id="line218"></span> currentlyPicked[i].classList.remove("picked");
+<span id="line219"></span> }
+<span id="line220"></span> }
+<span id="line221"></span>
+<span id="line222"></span> //Add the class picked to the new picked elements
+<span id="line223"></span> if(topic === "") {
+<span id="line224"></span> document.getElementById("2").classList.add("picked");
+<span id="line225"></span> currentlyPicked.push(document.getElementById("2"));
+<span id="line226"></span> }
+<span id="line227"></span> element.classList.add("picked");
+<span id="line228"></span> currentlyPicked.push(element);
+<span id="line229"></span>
+<span id="line230"></span>
+<span id="line231"></span> //Set the website source to the picked one
+<span id="line232"></span> var newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/" + topic + ".htm";
+<span id="line233"></span> if(topic === "") {
+<span id="line234"></span> newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
+<span id="line235"></span> }
+<span id="line236"></span> localStorage.setItem("OpenedInDatabase", currentlyClickedVulnerability);
+<span id="line237"></span> document.getElementById("website").setAttribute("src", newSource);
+<span id="line238"></span> }
+<span id="line239"></span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line240"></span></span><span>&lt;<span class="start-tag">img</span> <span class="attribute-name">id</span>="<a class="attribute-value">explanationOpener</a>" <span class="attribute-name">title</span>="<a class="attribute-value">Click here to open<span class="error entity" title="Zeichenreferenz wurde nicht mit Strichpunkt abgeschlossen."><span>&amp;</span>#013 </span>the explanations</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanations(true)</a>" <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Logo.png">../../Logo.png</a>" <span class="attribute-name">alt</span>="<a class="attribute-value">Click here to open the hacking Explanation</a>"&gt;</span><span>
+<span id="line241"></span></span><span>&lt;<span class="start-tag">i</span> <span class="attribute-name">class</span>="<a class="attribute-value">feather</a>" <span class="attribute-name">data-feather</span>="<a class="attribute-value">minimize-2</a>" <span class="attribute-name">title</span>="<a class="attribute-value">Close Explanation</a>" <span class="attribute-name">id</span>="<a class="attribute-value">explanationCloser</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanations(false)</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">i</span>&gt;</span><span>
+<span id="line242"></span></span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">id</span>="<a class="attribute-value">explanation</a>"&gt;</span><span>
+<span id="line243"></span> </span><span>&lt;<span class="start-tag">div</span>&gt;</span><span></span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">id</span>="<a class="attribute-value">0</a>" <span class="attribute-name">class</span>="<a class="attribute-value">information</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line244"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">information</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">table</span> <span class="attribute-name">style</span>="<a class="attribute-value">width: 100%</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">tr</span>&gt;</span><span>
+<span id="line245"></span> </span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">id</span>="<a class="attribute-value">1</a>" <span class="attribute-name">class</span>="<a class="attribute-value">informationChoice</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanation(this, 'VulnerabilityExplanation')</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line246"></span> </span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">id</span>="<a class="attribute-value">2</a>" <span class="attribute-name">class</span>="<a class="attribute-value">informationChoice</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanation(this, 'ExploitExplanation')</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line247"></span> </span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">id</span>="<a class="attribute-value">3</a>" <span class="attribute-name">class</span>="<a class="attribute-value">informationChoice</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanation(this, 'PreventionExplanation')</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line248"></span> </span><span>&lt;/<span class="end-tag">tr</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">table</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line249"></span> </span><span>&lt;<span class="start-tag">embed</span> <span class="attribute-name">id</span>="<a class="attribute-value">website</a>" <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Database/Secure/DatabaseLogin.htm"></a>" <span class="attribute-name">width</span>="<a class="attribute-value">100%</a>" <span class="attribute-name">height</span>="<a class="attribute-value">70%</a>" <span class="attribute-name">style</span>="<a class="attribute-value">background-color: transparent</a>"&gt;</span><span>
+<span id="line250"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">id</span>="<a class="attribute-value">vulnerabilities</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">id</span>="<a class="attribute-value">4</a>" <span class="attribute-name">class</span>="<a class="attribute-value">information</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line251"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">flex-container</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">table</span> <span class="attribute-name">style</span>="<a class="attribute-value">width:100%</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">tr</span>&gt;</span><span>
+<span id="line252"></span> </span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">id</span>="<a class="attribute-value">PasswordStrength</a>" <span class="attribute-name">class</span>="<a class="attribute-value">flex-item</a>" <span class="attribute-name">title</span>="<a class="attribute-value">Password Strength</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanation(this, '')</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">img</span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Logo.png">../../Logo.png</a>" <span class="attribute-name">style</span>="<a class="attribute-value">width:100px; height:100px</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line253"></span> </span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">id</span>="<a class="attribute-value">ErrorMessages</a>" <span class="attribute-name">class</span>="<a class="attribute-value">flex-item</a>" <span class="attribute-name">title</span>="<a class="attribute-value">Error Messages</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanation(this, '')</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">img</span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Logo.png">../../Logo.png</a>" <span class="attribute-name">style</span>="<a class="attribute-value">width:100px; height:100px</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line254"></span> </span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">id</span>="<a class="attribute-value">JavascriptInjection</a>" <span class="attribute-name">class</span>="<a class="attribute-value">flex-item</a>" <span class="attribute-name">title</span>="<a class="attribute-value">Javascript Injection</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanation(this, '')</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">img</span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Logo.png">../../Logo.png</a>" <span class="attribute-name">style</span>="<a class="attribute-value">width:100px; height:100px</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line255"></span> </span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">id</span>="<a class="attribute-value">SQLInjection</a>" <span class="attribute-name">class</span>="<a class="attribute-value">flex-item</a>" <span class="attribute-name">title</span>="<a class="attribute-value">SQL Injection</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanation(this, '')</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">img</span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Logo.png">../../Logo.png</a>" <span class="attribute-name">style</span>="<a class="attribute-value">width:100px; height:100px</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line256"></span> </span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">id</span>="<a class="attribute-value">CookieTheft</a>" <span class="attribute-name">class</span>="<a class="attribute-value">flex-item</a>" <span class="attribute-name">title</span>="<a class="attribute-value">CookieTheft</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">showExplanation(this, '')</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">img</span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:http://localhost:8080/Logo.png">../../Logo.png</a>" <span class="attribute-name">style</span>="<a class="attribute-value">width:100px; height:100px</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line257"></span> </span><span>&lt;/<span class="end-tag">tr</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">table</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line258"></span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line259"></span>
+<span id="line260"></span></span><span class="comment">&lt;!-- Needs to be called here, because otherwise the elements are not known yet --&gt;</span><span>
+<span id="line261"></span></span><span>&lt;<span class="start-tag">script</span>&gt;</span><span>
+<span id="line262"></span> var german = [" Wechseln Sie zwischen den Themen per Klick", "Sicherheitslücke", "Hack-Ausführung", "Verhinderung",
+<span id="line263"></span> "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
+<span id="line264"></span>
+<span id="line265"></span> var english = [" Switch between the topics by clicking on the desired", "Vulnerability", "Exploit / Hack", "Prevention",
+<span id="line266"></span> "Switch between the vulnerabilities by clicking on the desired"];
+<span id="line267"></span>
+<span id="line268"></span> var languageToUse = english;
+<span id="line269"></span> if (localStorage.getItem("language") === "German")
+<span id="line270"></span> {
+<span id="line271"></span> languageToUse = german;
+<span id="line272"></span> }
+<span id="line273"></span>
+<span id="line274"></span> for (var i = 0; i </span><span>&lt; </span><span>languageToUse.length; i++)
+<span id="line275"></span> {
+<span id="line276"></span> document.getElementById(i.toString()).innerText = languageToUse[i];
+<span id="line277"></span> }
+<span id="line278"></span> var tabToOpen = "PasswordStrength";
+<span id="line279"></span> if(localStorage.getItem("OpenedInDatabase") !== null){
+<span id="line280"></span> tabToOpen= localStorage.getItem("OpenedInDatabase");
+<span id="line281"></span> }
+<span id="line282"></span> showExplanation(document.getElementById(tabToOpen), "");
+<span id="line283"></span> feather.replace();
+<span id="line284"></span>
+<span id="line285"></span> //https://github.com/feathericons/feather/issues/585 -&gt; Showing a title on an feather icon
+<span id="line286"></span> Array.from(document.querySelectorAll('svg.feather[title]')).forEach((element) =&gt; {
+<span id="line287"></span> element.insertAdjacentHTML('afterbegin', `</span><span>&lt;t</span><span>itle&gt;${element.attributes.title.value}</span><span>&lt;/<span></span>t</span><span>itle&gt;`);
+<span id="line288"></span> });
+<span id="line289"></span>
+<span id="line290"></span> function showExplanations(show) {
+<span id="line291"></span> if (show)
+<span id="line292"></span> {
+<span id="line293"></span> document.getElementById("explanationOpener").style.zIndex = "-100";
+<span id="line294"></span> document.getElementById("explanationCloser").style.left = "70.5%";
+<span id="line295"></span> document.getElementById("body").style.width = "70%";
+<span id="line296"></span> document.getElementById("explanation").style.left = "70%";
+<span id="line297"></span> }
+<span id="line298"></span> else
+<span id="line299"></span> {
+<span id="line300"></span> document.getElementById("explanationOpener").style.zIndex = "100";
+<span id="line301"></span> document.getElementById("explanationCloser").style.left = "100.5%";
+<span id="line302"></span> document.getElementById("body").style.width = "100%";
+<span id="line303"></span> document.getElementById("explanation").style.left = "100%";
+<span id="line304"></span> }
+<span id="line305"></span> }
+<span id="line306"></span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line307"></span></span><span class="comment">&lt;!-- End of my insert --&gt;</span><span>
+<span id="line308"></span></span><span class="error" title="Start-Tag “body” wurde erkannt, aber ein Element des gleichen Typs war bereits offen.">&lt;<span class="start-tag">body</span> <span class="attribute-name">id</span>="<a class="attribute-value">body</a>" <span class="attribute-name">class</span>="<a class="attribute-value">u-body u-xl-mode</a>" <span class="attribute-name">data-lang</span>="<a class="attribute-value">de</a>"&gt;</span><span>
+<span id="line309"></span></span><span>&lt;<span class="start-tag">section</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-align-center u-clearfix u-gradient u-section-1</a>" <span class="attribute-name">id</span>="<a class="attribute-value">sec-271f</a>"&gt;</span><span>
+<span id="line310"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-clearfix u-sheet u-sheet-1</a>"&gt;</span><span>
+<span id="line311"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-align-center u-container-style u-group u-shape-rectangle u-group-1</a>"&gt;</span><span>
+<span id="line312"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-container-layout u-valign-middle u-container-layout-1</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">span</span>
+<span id="line313"></span> <span class="attribute-name">class</span>="<a class="attribute-value">u-file-icon u-icon u-text-white u-icon-1</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">img</span>
+<span id="line314"></span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:data:image/png;base64,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">data:image/png;base64,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</a>"
+<span id="line315"></span> <span class="attribute-name">alt</span>="<a class="attribute-value"></a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">span</span>&gt;</span><span>
+<span id="line316"></span> </span><span>&lt;<span class="start-tag">h2</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-text u-text-body-alt-color u-text-default u-text-3</a>"&gt;</span><span>Member Login</span><span>&lt;/<span class="end-tag">h2</span>&gt;</span><span>
+<span id="line317"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-form u-login-control u-form-1</a>"&gt;</span><span>
+<span id="line318"></span> </span><span>&lt;<span class="start-tag">form</span> <span class="attribute-name">action</span>="<a class="attribute-value">javascript:authentication()</a>"
+<span id="line319"></span> <span class="attribute-name">class</span>="<a class="attribute-value">u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form</a>"
+<span id="line320"></span> <span class="attribute-name">source</span>="<a class="attribute-value">custom</a>" <span class="attribute-name">name</span>="<a class="attribute-value">form</a>" <span class="attribute-name">style</span>="<a class="attribute-value">padding: 0px;</a>" <span class="attribute-name">method</span>="<a class="attribute-value">post</a>"&gt;</span><span>
+<span id="line321"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-form-group u-form-name</a>"&gt;</span><span>
+<span id="line322"></span> </span><span>&lt;<span class="start-tag">label</span> <span class="attribute-name">for</span>="<a class="attribute-value">username-a30d</a>" <span class="attribute-name">class</span>="<a class="attribute-value">u-label u-text-grey-5 u-label-1</a>"&gt;</span><span>Username *</span><span>&lt;/<span class="end-tag">label</span>&gt;</span><span>
+<span id="line323"></span> </span><span>&lt;<span class="start-tag">input</span> <span class="attribute-name">type</span>="<a class="attribute-value">text</a>" <span class="attribute-name">placeholder</span>="<a class="attribute-value">Enter your Username</a>" <span class="attribute-name">id</span>="<a class="attribute-value">username-a30d</a>" <span class="attribute-name">name</span>="<a class="attribute-value">username</a>"
+<span id="line324"></span> <span class="attribute-name">class</span>="<a class="attribute-value">u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-input-1</a>"
+<span id="line325"></span> <span class="attribute-name">required</span>="<a class="attribute-value"></a>"&gt;</span><span>
+<span id="line326"></span> </span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line327"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-form-group u-form-password</a>"&gt;</span><span>
+<span id="line328"></span> </span><span>&lt;<span class="start-tag">label</span> <span class="attribute-name">for</span>="<a class="attribute-value">password-a30d</a>" <span class="attribute-name">class</span>="<a class="attribute-value">u-label u-text-grey-5 u-label-2</a>"&gt;</span><span>Password *</span><span>&lt;/<span class="end-tag">label</span>&gt;</span><span>
+<span id="line329"></span> </span><span>&lt;<span class="start-tag">input</span> <span class="attribute-name">type</span>="<a class="attribute-value">password</a>" <span class="attribute-name">placeholder</span>="<a class="attribute-value">Enter your Password</a>" <span class="attribute-name">id</span>="<a class="attribute-value">password-a30d</a>" <span class="attribute-name">name</span>="<a class="attribute-value">password</a>"
+<span id="line330"></span> <span class="attribute-name">class</span>="<a class="attribute-value">u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-input-2</a>"
+<span id="line331"></span> <span class="attribute-name">required</span>="<a class="attribute-value"></a>"&gt;</span><span>
+<span id="line332"></span> </span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line333"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-form-checkbox u-form-group</a>"&gt;</span><span>
+<span id="line334"></span> </span><span>&lt;<span class="start-tag">input</span> <span class="attribute-name">type</span>="<a class="attribute-value">checkbox</a>" <span class="attribute-name">id</span>="<a class="attribute-value">checkbox-a30d</a>" <span class="attribute-name">name</span>="<a class="attribute-value">remember</a>" <span class="attribute-name">value</span>="<a class="attribute-value">On</a>" <span class="attribute-name">class</span>="<a class="attribute-value">u-field-input</a>"&gt;</span><span>
+<span id="line335"></span> </span><span>&lt;<span class="start-tag">label</span> <span class="attribute-name">for</span>="<a class="attribute-value">checkbox-a30d</a>" <span class="attribute-name">class</span>="<a class="attribute-value">u-field-label u-text-grey-5</a>"
+<span id="line336"></span> <span class="attribute-name">style</span>="<a class="attribute-value">font-size: 1rem; letter-spacing: 0px; text-transform: none</a>"&gt;</span><span>Remember
+<span id="line337"></span> me</span><span>&lt;/<span class="end-tag">label</span>&gt;</span><span>
+<span id="line338"></span> </span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line339"></span> </span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-align-left u-form-group u-form-submit</a>"&gt;</span><span>
+<span id="line340"></span> </span><span>&lt;<span class="start-tag">a</span> <span class="attribute-name">class</span>="<a class="attribute-value">u-active-palette-2-light-2 u-border-none u-btn u-btn-submit u-button-style u-hover-palette-2-light-2 u-palette-2-base u-text-active-palette-2-base u-text-body-alt-color u-text-hover-palette-2-base u-btn-1</a>"&gt;</span><span>Login</span><span>&lt;/<span class="end-tag">a</span>&gt;</span><span>
+<span id="line341"></span> </span><span>&lt;<span class="start-tag">input</span> <span class="attribute-name">type</span>="<a class="attribute-value">submit</a>" <span class="attribute-name">value</span>="<a class="attribute-value">submit</a>" <span class="attribute-name">class</span>="<a class="attribute-value">u-form-control-hidden</a>"&gt;</span><span>
+<span id="line342"></span> </span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line343"></span> </span><span class="comment">&lt;!--&lt;input type="hidden" value="" name="recaptchaResponse"&gt;--&gt;</span><span>
+<span id="line344"></span> </span><span>&lt;/<span class="end-tag">form</span>&gt;</span><span>
+<span id="line345"></span> </span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line346"></span> </span><span>&lt;<span class="start-tag">script</span>&gt;</span><span>
+<span id="line347"></span> function authentication()
+<span id="line348"></span> {
+<span id="line349"></span> var username = document.getElementById("username-a30d").value;
+<span id="line350"></span> var password = document.getElementById("password-a30d").value;
+<span id="line351"></span>
+<span id="line352"></span> window.location.assign("../../CommandProcessor.php?action=CheckDataBaseLogin&amp;securityLevel=Secure&amp;username=" + username + "&amp;password=" + password);
+<span id="line353"></span> }
+<span id="line354"></span> </span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line355"></span> </span><span>&lt;<span class="start-tag">a</span> <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:https://nicepage.review/">https://nicepage.review/</a>"
+<span id="line356"></span> <span class="attribute-name">class</span>="<a class="attribute-value">u-border-1 u-border-active-grey-10 u-border-hover-grey-10 u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-login-control u-login-create-account u-none u-text-body-alt-color u-btn-2</a>"
+<span id="line357"></span> <span class="attribute-name">data-animation-name</span>="<a class="attribute-value"></a>" <span class="attribute-name">data-animation-duration</span>="<a class="attribute-value">0</a>" <span class="attribute-name">data-animation-delay</span>="<a class="attribute-value">0</a>"
+<span id="line358"></span> <span class="attribute-name">data-animation-direction</span>="<a class="attribute-value"></a>"&gt;</span><span>Forgot password?</span><span>&lt;/<span class="end-tag">a</span>&gt;</span><span>
+<span id="line359"></span> </span><span>&lt;<span class="start-tag">a</span> <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:https://nicepage.com/website-builder">https://nicepage.com/website-builder</a>"
+<span id="line360"></span> <span class="attribute-name">class</span>="<a class="attribute-value">u-border-1 u-border-active-grey-10 u-border-hover-grey-10 u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-login-control u-login-create-account u-none u-text-body-alt-color u-btn-3</a>"&gt;</span><span>Don't
+<span id="line361"></span> have an account?</span><span>&lt;/<span class="end-tag">a</span>&gt;</span><span>
+<span id="line362"></span> </span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line363"></span> </span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line364"></span> </span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line365"></span></span><span>&lt;/<span class="end-tag">section</span>&gt;</span><span>
+<span id="line366"></span></span><span>&lt;/<span class="end-tag">body</span>&gt;</span><span>
+<span id="line367"></span></span><span>&lt;/<span class="end-tag">html</span>&gt;</span><span></span></span></pre></body></html>

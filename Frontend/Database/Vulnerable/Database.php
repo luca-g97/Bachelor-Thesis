@@ -1814,10 +1814,10 @@ if (!$auth->isAuthorized()) {
     if(!$attempt) {
         $url = "../../CommandProcessor.php?action=ExecuteSQLStatement&securityLevel=Vulnerable&statement=" . $_GET['password'];
         Redirect($url, false);
-        //Redirect("./DatabasePassword.htm", false);
     }
     else {
-        $params->redirect($attempt ? array() : array('failed' => '1'));
+        Redirect("./Database.htm", false);
+        //$params->redirect($attempt ? array() : array('failed' => '1'));
     }
 
     echo "<div id='loginBox'>";

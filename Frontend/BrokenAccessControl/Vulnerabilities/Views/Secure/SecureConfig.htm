@@ -11,8 +11,8 @@
 <span id="line8"></span>tcp_nodelay on;
 <span id="line9"></span>absolute_redirect off;
 <span id="line10"></span>    
-<span id="line11"></span><span style="color: orangered"><b># This is to avoid showing folder structure</b></span> 
-<span id="line12"></span><span style="color: green; font-weight: bold">autoindex off;</span>
+<span id="line11"></span><span><b># This is to avoid showing folder structure</b></span> 
+<span id="line12"></span><span style="color: lawngreen; font-weight: bold">autoindex off;</span>
 <span id="line13"></span>
 <span id="line14"></span>root /var/www/html;
 <span id="line15"></span>index index.htm index.php index.html;
@@ -23,12 +23,12 @@
 <span id="line20"></span>try_files $uri $uri/ /index.php?q=$uri<span class="entity"><span>&amp;</span>amp;</span>$args;
 <span id="line21"></span>}
 <span id="line22"></span>
-<span id="line23"></span>location /admin {
-<span id="line24"></span>deny all;
-<span id="line25"></span>#this should work for simple authentication, but it doesn´t!
-<span id="line26"></span>auth_basic           "closed site";
-<span id="line27"></span>auth_basic_user_file conf/htpasswd;
-<span id="line28"></span>}
+<span id="line23"></span><span style="font-weight: bold">location /root {</span>
+<span id="line24"></span><span style="font-weight: bold">auth_basic    "Root Area";</span>
+<span id="line25"></span><span style="color: lawngreen; font-weight: bold">auth_basic_user_file /etc/nginx/SecureHtpasswd;</span>
+<span id="line26"></span>
+<span id="line27"></span><span style="font-weight: bold">autoindex on;</span>
+<span id="line28"></span><span style="font-weight: bold">}</span>
 <span id="line29"></span>
 <span id="line30"></span># Redirect server error pages to the static page /50x.html
 <span id="line31"></span>error_page 500 502 503 504 /50x.html;

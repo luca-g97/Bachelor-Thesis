@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><meta name="viewport" content="width=device-width"><title>VulnerableConfig.htm</title><link rel="stylesheet" type="text/css" href="resource://content-accessible/viewsource.css"></head>
+<body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span style="color: whitesmoke; background-color: #1C1B22"># Default server definition
+<span id="line2"></span>server {
+<span id="line3"></span>listen [::]:8080 default_server;
+<span id="line4"></span>listen 8080 default_server;
+<span id="line5"></span>server_name vulnerable;
+<span id="line6"></span>
+<span id="line7"></span>sendfile off;
+<span id="line8"></span>tcp_nodelay on;
+<span id="line9"></span>absolute_redirect off;
+<span id="line10"></span>    
+<span id="line11"></span><span><b># This is critical, since folders will be shown now</b></span>
+<span id="line12"></span><span style="color: yellow; font-weight: bold">autoindex on;</span> 
+<span id="line13"></span>
+<span id="line14"></span>root /var/www/html;
+<span id="line15"></span>index index.htm index.php index.html;
+<span id="line16"></span>
+<span id="line17"></span>location / {
+<span id="line18"></span># First attempt to serve request as file, then
+<span id="line19"></span># as directory, then fall back to index.php
+<span id="line20"></span>try_files $uri $uri/ /index.php?q=$uri<span class="entity"><span>&amp;</span>amp;</span>$args;
+<span id="line21"></span>}
+<span id="line22"></span>
+<span id="line23"></span><span style="font-weight: bold">location /root {</span>
+<span id="line24"></span><span style="font-weight: bold">auth_basic "Root Area";</span>
+<span id="line25"></span><span style="color: yellow; font-weight: bold">auth_basic_user_file /etc/nginx/VulnerableHtpasswd;</span>
+<span id="line26"></span><span style="font-weight: bold">}</span>
+<span id="line27"></span>    
+<span id="line28"></span># Redirect server error pages to the static page /50x.html
+<span id="line29"></span>error_page 500 502 503 504 /50x.html;
+<span id="line30"></span>location = /50x.html {
+<span id="line31"></span>root /var/lib/nginx/html;
+<span id="line32"></span>}
+<span id="line33"></span>
+<span id="line34"></span># Pass the PHP scripts to PHP-FPM listening on php-fpm.sock
+<span id="line35"></span>location ~ \.php$ {
+<span id="line36"></span>try_files $uri =404;
+<span id="line37"></span>fastcgi_split_path_info ^(.+\.php)(/.+)$;
+<span id="line38"></span>fastcgi_pass unix:/run/php-fpm.sock;
+<span id="line39"></span>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+<span id="line40"></span>fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+<span id="line41"></span>fastcgi_index index.php;
+<span id="line42"></span>include fastcgi_params;
+<span id="line43"></span>}
+<span id="line44"></span>
+<span id="line45"></span># Set the cache-control headers on assets to cache for 5 days
+<span id="line46"></span>location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
+<span id="line47"></span>expires 5d;
+<span id="line48"></span>}
+<span id="line49"></span>
+<span id="line50"></span># Deny access to . files, for security
+<span id="line51"></span>location ~ /\. {
+<span id="line52"></span>log_not_found off;
+<span id="line53"></span>internal;
+<span id="line54"></span>}
+<span id="line55"></span>
+<span id="line56"></span># Allow fpm ping and status from localhost
+<span id="line57"></span>location ~ ^/(fpm-status|fpm-ping)$ {
+<span id="line58"></span>access_log off;
+<span id="line59"></span>allow 127.0.0.1;
+<span id="line60"></span>deny all;
+<span id="line61"></span>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+<span id="line62"></span>include fastcgi_params;
+<span id="line63"></span>fastcgi_pass unix:/run/php-fpm.sock;
+<span id="line64"></span>}
+<span id="line65"></span>}</span></pre></body></html>
