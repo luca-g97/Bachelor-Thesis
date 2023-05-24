@@ -66,8 +66,8 @@
 <span id="line64"></span>$password = 'admin123';
 <span id="line65"></span>
 <span id="line66"></span>
-<span id="line67"></span>//If no session-id is set, a random one will be set which is way more secure than a given one
-<span id="line68"></span>ini_set('session.cookie_httponly', '1'); //Value: 1 -<span class="entity"><span>&amp;</span>gt;</span> Makes cookie unreadable via Javascript (document.cookie)
+<span id="line67"></span><span style="font-weight: bold">//If no session-id is set, a random one will be set which is way more secure than a given one</span>
+<span id="line68"></span><span style="color: lawngreen; font-weight: bold">ini_set('session.cookie_httponly', '1');</span>
 <span id="line69"></span>session_start();
 <span id="line70"></span>
 <span id="line71"></span>//directory relative to this file to search for databases (if false, manually list databases in the $databases variable)
@@ -4003,8 +4003,8 @@
 <span id="line4001"></span> $_SESSION[COOKIENAME . '_salt'] = $_COOKIE[COOKIENAME . '_salt'];
 <span id="line4002"></span> }
 <span id="line4003"></span>
-<span id="line4004"></span> // salted and encrypted password used for checking
-<span id="line4005"></span> $this-<span class="entity"><span>&amp;</span>gt;</span>system_password_encrypted = md5(SYSTEMPASSWORD . <span class="entity"><span>&amp;</span>quot;</span>_<span class="entity"><span>&amp;</span>quot;</span> . $_SESSION[COOKIENAME . '_salt']);
+<span id="line4004"></span><span style="font-weight: bold"> // salted and encrypted password used for checking</span>
+<span id="line4005"></span><span style="color: lawngreen; font-weight: bold"> $this->system_password_encrypted = md5(SYSTEMPASSWORD . "_" . $_SESSION[COOKIENAME . '_salt']);</span>
 <span id="line4006"></span>
 <span id="line4007"></span> $this-<span class="entity"><span>&amp;</span>gt;</span>authorized =
 <span id="line4008"></span> // no password
@@ -4019,18 +4019,18 @@
 <span id="line4017"></span> {
 <span id="line4018"></span> $hashed_password = crypt(SYSTEMPASSWORD, '$2a$07$' . self::generateSalt(22) . '$');
 <span id="line4019"></span> if (hash_equals($hashed_password, crypt($password, $hashed_password))) {
-<span id="line4020"></span> if ($remember) {
-<span id="line4021"></span> // user wants to be remembered, so set a cookie
-<span id="line4022"></span> $expire = time() + 60 * 60 * 24 * 30; //set expiration to 1 month from now
-<span id="line4023"></span> setcookie(COOKIENAME, $this-<span class="entity"><span>&amp;</span>gt;</span>system_password_encrypted, $expire, null, null, null, true);
-<span id="line4024"></span> //setcookie(COOKIENAME . <span class="entity"><span>&amp;</span>quot;</span>_salt<span class="entity"><span>&amp;</span>quot;</span>, $_SESSION[COOKIENAME . '_salt'], $expire, null, null, null, true);
-<span id="line4025"></span> } else {
-<span id="line4026"></span> // user does not want to be remembered, so destroy any potential cookies
-<span id="line4027"></span> setcookie(COOKIENAME, <span class="entity"><span>&amp;</span>quot;</span><span class="entity"><span>&amp;</span>quot;</span>, time() - 86400, null, null, null, true);
-<span id="line4028"></span> //setcookie(COOKIENAME . <span class="entity"><span>&amp;</span>quot;</span>_salt<span class="entity"><span>&amp;</span>quot;</span>, <span class="entity"><span>&amp;</span>quot;</span><span class="entity"><span>&amp;</span>quot;</span>, time() - 86400, null, null, null, true);
-<span id="line4029"></span> unset($_COOKIE[COOKIENAME]);
+<span id="line4020"></span><span style="font-weight: bold"> if ($remember) {</span>
+<span id="line4021"></span><span style="font-weight: bold"> // user wants to be remembered, so set a cookie</span>
+<span id="line4022"></span><span style="color: lawngreen; font-weight: bold"> $expire = time() + 60 * 60 * 24 * 30; //set expiration to 1 month from now</span>
+<span id="line4023"></span><span style="color: lawngreen; font-weight: bold"> setcookie(COOKIENAME, $this->system_password_encrypted, $expire, null, null, null, true);</span>
+<span id="line4024"></span> //setcookie(COOKIENAME . "_salt", $_SESSION[COOKIENAME . '_salt'], $expire, null, null, null, true);</span>
+<span id="line4025"></span><span style="font-weight: bold"> } else {</span>
+<span id="line4026"></span><span style="font-weight: bold"> // user does not want to be remembered, so destroy any potential cookies</span>
+<span id="line4027"></span><span style="color: lawngreen; font-weight: bold">setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);</span>
+<span id="line4028"></span> //setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
+<span id="line4029"></span><span style="color: lawngreen; font-weight: bold"> unset($_COOKIE[COOKIENAME]);</span>
 <span id="line4030"></span> //unset($_COOKIE[COOKIENAME . '_salt']);
-<span id="line4031"></span> }
+<span id="line4031"></span><span style="font-weight: bold"> }</span>
 <span id="line4032"></span> 
 <span id="line4033"></span> $_SESSION[COOKIENAME . 'password'] = $this-<span class="entity"><span>&amp;</span>gt;</span>system_password_encrypted;
 <span id="line4034"></span> $this-<span class="entity"><span>&amp;</span>gt;</span>authorized = true;
@@ -4041,18 +4041,18 @@
 <span id="line4039"></span> return false;
 <span id="line4040"></span> }
 <span id="line4041"></span>
-<span id="line4042"></span> public function revoke()
-<span id="line4043"></span> {
-<span id="line4044"></span> //destroy everything - cookies and session vars
-<span id="line4045"></span> setcookie(COOKIENAME, <span class="entity"><span>&amp;</span>quot;</span><span class="entity"><span>&amp;</span>quot;</span>, time() - 86400, null, null, null, true);
-<span id="line4046"></span> unset($_COOKIE[COOKIENAME]);
-<span id="line4047"></span> session_unset();
-<span id="line4048"></span> session_destroy();
-<span id="line4049"></span> $this-<span class="entity"><span>&amp;</span>gt;</span>authorized = false;
-<span id="line4050"></span> // start a new session and generate a new CSRF token for the login form
-<span id="line4051"></span> session_start();
-<span id="line4052"></span> $this-<span class="entity"><span>&amp;</span>gt;</span>generateToken();
-<span id="line4053"></span> }
+<span id="line4042"></span><span style="font-weight: bold"> public function revoke()</span>
+<span id="line4043"></span><span style="font-weight: bold"> {</span>
+<span id="line4044"></span><span style="font-weight: bold"> //destroy everything - cookies and session vars</span>
+<span id="line4045"></span><span style="color: lawngreen; font-weight: bold"> setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);</span>
+<span id="line4046"></span><span style="color: lawngreen; font-weight: bold"> unset($_COOKIE[COOKIENAME]);</span>
+<span id="line4047"></span><span style="font-weight: bold"> session_unset();</span>
+<span id="line4048"></span><span style="font-weight: bold"> session_destroy();</span>
+<span id="line4049"></span><span style="font-weight: bold"> $this->authorized = false;</span>
+<span id="line4050"></span><span style="font-weight: bold"> // start a new session and generate a new CSRF token for the login form</span>
+<span id="line4051"></span><span style="font-weight: bold"> session_start();</span>
+<span id="line4052"></span><span style="font-weight: bold"> $this->generateToken();</span>
+<span id="line4053"></span><span style="font-weight: bold"> }</span>
 <span id="line4054"></span>
 <span id="line4055"></span> public function isAuthorized()
 <span id="line4056"></span> {
