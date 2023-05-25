@@ -103,81 +103,81 @@
 <span id="line101"></span> return $readLines;
 <span id="line102"></span> }
 <span id="line103"></span> 
-<span id="line104"></span>function checkLoginCredentials($username, $password, $SecurityLevel)
-<span id="line105"></span> {
-<span id="line106"></span> $db = new SQLite3("./Database/$SecurityLevel/UserData");
+<span id="line104"></span><span style="font-weight: bold">function checkLoginCredentials($username, $password, $SecurityLevel)</span>
+<span id="line105"></span><span style="font-weight: bold">{</span>
+<span id="line106"></span><span style="font-weight: bold"> $db = new SQLite3("./Database/$SecurityLevel/UserData");</span>
 <span id="line107"></span> 
-<span id="line108"></span> if($SecurityLevel === "Vulnerable")
-<span id="line109"></span> {
-<span id="line110"></span> $sqlString = "SELECT * FROM UserLoginData WHERE Username = '$username' AND Loginpassword = '$password'";
-<span id="line111"></span> exec("sqlite3 ./Database/$SecurityLevel/UserData \"$sqlString\" > ./Database/$SecurityLevel/CommandProcessorOutput/output.txt");
-<span id="line112"></span> $result = readThisFile("./Database/$SecurityLevel/CommandProcessorOutput/output.txt");
-<span id="line113"></span> exec("rm ./Database/$SecurityLevel/CommandProcessorOutput/output.txt");
+<span id="line108"></span><span style="font-weight: bold"> if($SecurityLevel === "Vulnerable")</span>
+<span id="line109"></span><span style="font-weight: bold"> {</span>
+<span id="line110"></span><span style="color: yellow; font-weight: bold"> $sqlString = "SELECT * FROM UserLoginData WHERE Username = '$username' AND Loginpassword = '$password'";</span>
+<span id="line111"></span><span style="color: yellow; font-weight: bold"> exec("sqlite3 ./Database/$SecurityLevel/UserData \"$sqlString\" > ./Database/$SecurityLevel/CommandProcessorOutput/output.txt");</span>
+<span id="line112"></span><span style="font-weight: bold"> $result = readThisFile("./Database/$SecurityLevel/CommandProcessorOutput/output.txt");</span>
+<span id="line113"></span><span style="font-weight: bold"> exec("rm ./Database/$SecurityLevel/CommandProcessorOutput/output.txt");</span>
 <span id="line114"></span> 
-<span id="line115"></span> }else{ //$SecurityLevel = "Secure"
-<span id="line116"></span> $preparedStatement = $db->prepare("SELECT * FROM UserLoginData WHERE Username = :username AND Loginpassword = :password");
-<span id="line117"></span> $preparedStatement->bindParam(':username', $username);
-<span id="line118"></span> $preparedStatement->bindParam(':password', $password);
+<span id="line115"></span><span style="font-weight: bold"> }else{ //$SecurityLevel = "Secure"</span>
+<span id="line116"></span><span style="color: lawngreen; font-weight: bold"> $preparedStatement = $db->prepare("SELECT * FROM UserLoginData WHERE Username = :username AND Loginpassword = :password");</span>
+<span id="line117"></span><span style="color: lawngreen; font-weight: bold"> $preparedStatement->bindParam(':username', $username);</span>
+<span id="line118"></span><span style="color: lawngreen; font-weight: bold"> $preparedStatement->bindParam(':password', $password);</span>
 <span id="line119"></span>
-<span id="line120"></span> $result = executePreparedStatement($preparedStatement);
-<span id="line121"></span> }
+<span id="line120"></span><span style="color: lawngreen; font-weight: bold"> $result = executePreparedStatement($preparedStatement);</span>
+<span id="line121"></span><span style="font-weight: bold"> }</span>
 <span id="line122"></span> 
-<span id="line123"></span> return $result;
-<span id="line124"></span> }
+<span id="line123"></span><span style="font-weight: bold"> return $result;</span>
+<span id="line124"></span><span style="font-weight: bold"> }</span>
 <span id="line125"></span> 
-<span id="line126"></span> function getPreparedStatementResult($statement): string
-<span id="line127"></span> {
-<span id="line128"></span> $statementLowerCase = strtolower($statement);
+<span id="line126"></span><span style="font-weight: bold"> function getPreparedStatementResult($statement): string</span>
+<span id="line127"></span><span style="font-weight: bold"> {</span>
+<span id="line128"></span><span style="font-weight: bold"> $statementLowerCase = strtolower($statement);</span>
 <span id="line129"></span> 
-<span id="line130"></span> //Search for "insert" in the given string -> if it is not included it would return 0 (bool: false), as well as "insert" is included since it is at the start of string
-<span id="line131"></span> //Therefore "ert" is used to be sure it really means insert and not just "not found"
-<span id="line132"></span> if(strpos($statementLowerCase, "ert") === 3)
-<span id="line133"></span> {
-<span id="line134"></span> $db = new SQLite3("./Database/Secure/UserData");
+<span id="line130"></span><span style="font-weight: bold"> //Search for "insert" in the given string -> if it is not included it would return 0 (bool: false), as well as "insert" is included since it is at the start of string</span>
+<span id="line131"></span><span style="font-weight: bold"> //Therefore "ert" is used to be sure it really means insert and not just "not found"</span>
+<span id="line132"></span><span style="font-weight: bold"> if(strpos($statementLowerCase, "ert") === 3)</span>
+<span id="line133"></span><span style="font-weight: bold"> {</span>
+<span id="line134"></span><span style="color: lawngreen; font-weight: bold"> $db = new SQLite3("./Database/Secure/UserData");</span>
 <span id="line135"></span>
-<span id="line136"></span> $preparedStatement = $db->prepare("insert into ExampleTable (firstname, lastname, email) values (:firstname, :lastname, :email)");
-<span id="line137"></span> $preparedStatement->bindParam(':firstname', $firstname);
-<span id="line138"></span> $preparedStatement->bindParam(':lastname', $lastname);
-<span id="line139"></span> $preparedStatement->bindParam(':email', $email);
+<span id="line136"></span><span style="color: lawngreen; font-weight: bold"> $preparedStatement = $db->prepare("insert into ExampleTable (firstname, lastname, email) values (:firstname, :lastname, :email)");</span>
+<span id="line137"></span><span style="color: lawngreen; font-weight: bold"> $preparedStatement->bindParam(':firstname', $firstname);</span>
+<span id="line138"></span><span style="color: lawngreen; font-weight: bold"> $preparedStatement->bindParam(':lastname', $lastname);</span>
+<span id="line139"></span><span style="color: lawngreen; font-weight: bold"> $preparedStatement->bindParam(':email', $email);</span>
 <span id="line140"></span> 
-<span id="line141"></span> //Get Startposition of valuestring - only this begins with (' -> exclude the (
-<span id="line142"></span> $startPosition = strpos($statement, "('")+1;
-<span id="line143"></span> //Get Endposition of valuestring - it always ends with ') -> exclude the )
-<span id="line144"></span> $endPosition = strpos($statement, "')")+1;
-<span id="line145"></span> //Create the valuestring by cutting the statement string at the defined positions
-<span id="line146"></span> $valueString = substr($statement, $startPosition, $endPosition-$startPosition);
+<span id="line141"></span><span style="font-weight: bold"> //Get Startposition of valuestring - only this begins with (' -> exclude the (</span>
+<span id="line142"></span><span style="font-weight: bold"> $startPosition = strpos($statement, "('")+1;</span>
+<span id="line143"></span><span style="font-weight: bold"> //Get Endposition of valuestring - it always ends with ') -> exclude the )</span>
+<span id="line144"></span><span style="font-weight: bold"> $endPosition = strpos($statement, "')")+1;</span>
+<span id="line145"></span><span style="font-weight: bold"> //Create the valuestring by cutting the statement string at the defined positions</span>
+<span id="line146"></span><span style="font-weight: bold"> $valueString = substr($statement, $startPosition, $endPosition-$startPosition);</span>
 <span id="line147"></span> 
-<span id="line148"></span> //Save the first and the last part of the query to build the complete string afterwards
-<span id="line149"></span> //$firstPartOfQuery = substr($statement, 0, strpos($statement, "('")+1);
-<span id="line150"></span> //$secondPartOfQuery = substr($statement, strpos($statement, "')")+1);
+<span id="line148"></span> <span style="font-weight: bold">//Save the first and the last part of the query to build the complete string afterwards</span>
+<span id="line149"></span><span style="font-weight: bold"> //$firstPartOfQuery = substr($statement, 0, strpos($statement, "('")+1);</span>
+<span id="line150"></span><span style="font-weight: bold"> //$secondPartOfQuery = substr($statement, strpos($statement, "')")+1);</span>
 <span id="line151"></span> 
-<span id="line152"></span> //Create an array of values by cutting the valuestring in 3 parts -> 3 parameters
-<span id="line153"></span> $values = explode(",", $valueString);
-<span id="line154"></span> $firstname = $values[0];
-<span id="line155"></span> $lastname = $values[1];
-<span id="line156"></span> $email = $values[2];
+<span id="line152"></span><span style="font-weight: bold"> //Create an array of values by cutting the valuestring in 3 parts -> 3 parameters</span>
+<span id="line153"></span><span style="font-weight: bold"> $values = explode(",", $valueString);</span>
+<span id="line154"></span><span style="color: lawngreen; font-weight: bold"> $firstname = $values[0];</span>
+<span id="line155"></span><span style="color: lawngreen; font-weight: bold"> $lastname = $values[1];</span>
+<span id="line156"></span><span style="color: lawngreen; font-weight: bold"> $email = $values[2];</span>
 <span id="line157"></span> 
-<span id="line158"></span> return executePreparedStatement($preparedStatement);
+<span id="line158"></span><span style="color: lawngreen; font-weight: bold"> return executePreparedStatement($preparedStatement);</span>
 <span id="line159"></span> }
 <span id="line160"></span> return "";
 <span id="line161"></span> }
 <span id="line162"></span> 
-<span id="line163"></span> function executePreparedStatement($preparedStatement): string
-<span id="line164"></span> {
-<span id="line165"></span> $result = "";
-<span id="line166"></span> $preparedResult = $preparedStatement->execute();
-<span id="line167"></span> while($row=$preparedResult->fetchArray()){
-<span id="line168"></span> for($i = 0; $i < count($row); $i++)
-<span id="line169"></span> {
-<span id="line170"></span> if($row[$i] != null) {
-<span id="line171"></span> $result .= htmlentities($row[$i]) . "|";
-<span id="line172"></span> }
-<span id="line173"></span> }
-<span id="line174"></span> }
+<span id="line163"></span> <span style="font-weight: bold">function executePreparedStatement($preparedStatement): string</span>
+<span id="line164"></span> <span style="font-weight: bold">{</span>
+<span id="line165"></span> <span style="font-weight: bold">$result = "";</span>
+<span id="line166"></span><span style="color: lawngreen; font-weight: bold"> $preparedResult = $preparedStatement->execute();</span>
+<span id="line167"></span> <span style="font-weight: bold">while($row=$preparedResult->fetchArray()){</span>
+<span id="line168"></span> <span style="font-weight: bold">for($i = 0; $i < count($row); $i++)</span>
+<span id="line169"></span> <span style="font-weight: bold">{</span>
+<span id="line170"></span> <span style="font-weight: bold">if($row[$i] != null) {</span>
+<span id="line171"></span><span style="color: lawngreen; font-weight: bold"> $result .= htmlentities($row[$i]) . "|";</span>
+<span id="line172"></span> <span style="font-weight: bold">}</span>
+<span id="line173"></span> <span style="font-weight: bold">}</span>
+<span id="line174"></span><span style="font-weight: bold"> }</span>
 <span id="line175"></span> 
-<span id="line176"></span> //Return the created string without the last "|", to get everything into the same format
-<span id="line177"></span> return rtrim($result);
-<span id="line178"></span> }
+<span id="line176"></span> //Return the created string without the last "|", to get everything into the same format</span>
+<span id="line177"></span> <span style="font-weight: bold">return rtrim($result);</span>
+<span id="line178"></span> <span style="font-weight: bold">}</span>
 <span id="line179"></span> 
 <span id="line180"></span> function createTable($result, $SecurityLevel){
 <span id="line181"></span> 
@@ -217,6 +217,6 @@
 <span id="line215"></span> 
 <span id="line216"></span> exec("echo \"$tableString\" > ./Database/$SecurityLevel/CommandProcessorOutput/output.html");
 <span id="line217"></span> }
-<span id="line218"></span>?></span><span>&lt;/<span class="end-tag">pre</span>&gt;</span><span>
+<span id="line218"></span>?><span>&lt;/<span class="end-tag">pre</span>&gt;</span><span>
 <span id="line219"></span></span><span>&lt;/<span class="end-tag">body</span>&gt;</span><span>
 <span id="line220"></span></span><span>&lt;/<span class="end-tag">html</span>&gt;</span><span></span></span></pre></body></html>

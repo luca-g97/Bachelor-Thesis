@@ -4577,6 +4577,8 @@
         border-radius: 3px;
     }
     #explanation{
+        font-size: 1.3em;
+        z-Index: 50;
         position: fixed;
         background-color: black;
         width: 30%;
@@ -4617,14 +4619,6 @@
         background-color: black;
         border: 1px solid #333333;
         cursor: pointer;
-    }
-    .disclaimer{
-        padding: 0.7%;
-        text-align: center;
-        color: orangered;
-        font-size: 1.5em;
-        font-weight: bold;
-        background-color: #111111
     }
     .picked {
         background-color: #222222;
@@ -4694,10 +4688,10 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
     <div id="vulnerabilities"><div id="4" class="information"></div>
         <div class="flex-container"><table style="width:100%"><tr>
             <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="Steganography" class="flex-item" title="Steganography" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="InternalLinks" class="flex-item" title="Internal Links" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
         </tr></table></div></div>
 </div>
@@ -4751,7 +4745,6 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
 </script>
 <!-- End of my insert -->
 <body id="body">
-<div class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one!</div>
 <!-- From here on everything is build by a generator, so changes won´t work!-->
 <div id="appMountPoint">
     <div class="netflix-sans-font-loaded">
