@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Database</title>
 </head>
 <!-- Start of my insert -->
@@ -151,11 +152,11 @@
     <embed id="website" src="" width="100%" height="70%" style="background-color: transparent">
     <div id="vulnerabilities"><div id="4" class="information"></div>
         <div class="flex-container"><table style="width:100%"><tr>
-            <td id="PasswordStrength" class="flex-item" title="Password Strength" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="ErrorMessages" class="flex-item" title="Error Messages" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="JavascriptInjection" class="flex-item" title="Javascript Injection" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="SQLInjection" class="flex-item" title="SQL Injection" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="CookieTheft" class="flex-item" title="CookieTheft" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="PasswordStorage" class="flex-item" title="Password Storage" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
         </tr></table></div></div>
 </div>
 
@@ -177,7 +178,7 @@
     {
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
-    var tabToOpen = "PasswordStrength";
+    var tabToOpen = "ErrorMessages";
     if(localStorage.getItem("OpenedInDatabase") !== null){
         tabToOpen= localStorage.getItem("OpenedInDatabase");
     }
