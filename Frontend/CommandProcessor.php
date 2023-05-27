@@ -9,7 +9,7 @@
     
         //BrokenAccessControl/Vulnerabilities/AutoIndex.htm -> Change Config
     if($action === "LoadConfig") {
-        header("Location: ./BrokenAccessControl/$SecurityLevel/Netflix.htm", true, false);
+        header("Location: ./BrokenAccessControl/", true, false);
         
         //BrokenAccessControl/Secure/NetflixLogin.htm -> Check password
     }else if($action === "CheckLoginCredentials") {
@@ -53,6 +53,12 @@
         
         createTable($result, $SecurityLevel);
         header("Location: ./Database/$SecurityLevel/DatabasePassword.htm", true, false);
+    }
+    else if($action === "ChangeWebsite")
+    {
+        $website = $_GET['website'];
+        exec("rm /etc/nginx/conf.d/* && cp /etc/nginx/Config/Vulnerable.conf /etc/nginx/conf.d/ && nginx -s reload");
+        header("Location: ./$website", true, false);
     }
     
     function checkAuthorization($username, $password, $SecurityLevel)
