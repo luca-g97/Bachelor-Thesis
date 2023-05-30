@@ -116,8 +116,7 @@
         border-radius: 3px;
     }
     #explanation{
-        font-size: 1.3em;
-        z-index:50;
+        z-index: 50;
         position: fixed;
         background-color: black;
         width: 30%;
@@ -180,45 +179,22 @@
 <!-- Need to be called before the elements, so the elements know what to do onclick -->
 <script src="https://unpkg.com/feather-icons"></script>
 <script>
-    var currentlyPicked = [];
+    var currentlyPicked = null;
 
-    function showExplanation(element, topic)
+    function showExplanation(element)
     {
         var currentlyClickedVulnerability = element.id;
-        //Remove the class picked from the old picked elements
-        for (var i = 0; i < currentlyPicked.length; i++)
+
+        if(currentlyPicked != null)
         {
-            if("" !== topic)
-            {
-                if(!currentlyPicked[i].classList.contains("flex-item"))
-                {
-                    currentlyPicked[i].classList.remove("picked");
-                }
-                else
-                {
-                    currentlyClickedVulnerability = currentlyPicked[i].id;
-                }
-            }
-            else {
-                currentlyPicked[i].classList.remove("picked");
-            }
+            currentlyPicked.classList.remove("picked");
         }
 
-        //Add the class picked to the new picked elements
-        if(topic === "") {
-            document.getElementById("2").classList.add("picked");
-            currentlyPicked.push(document.getElementById("2"));
-        }
         element.classList.add("picked");
-        currentlyPicked.push(element);
+        currentlyPicked = element;
 
-
-        //Set the website source to the picked one
-        var newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/" + topic + ".htm";
-        if(topic === "") {
-            newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
-        }
-        localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerability);
+        newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/Explanation.htm";
+        localStorage.setItem("OpenedInPhishing", currentlyClickedVulnerability);
         document.getElementById("website").setAttribute("src", newSource);
     }
 </script>
@@ -227,29 +203,24 @@
 <div id="explanation">
     <div><div id="0" class="information"></div>
         <div class="information"><table style="width: 100%"><tr>
-            <td id="1" class="informationChoice" style="color: yellow" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
-            <td id="2" class="informationChoice" onclick="showExplanation(this, 'ExploitExplanation')"></td>
-            <td id="3" class="informationChoice" style="color: lawngreen" onclick="showExplanation(this, 'PreventionExplanation')"></td>
+            <td id="1" class="informationChoice" onclick="showExplanation(this)"></td>
         </tr></table></div></div>
     <embed id="website" src="" width="100%" height="70%" style="background-color: transparent">
-    <div id="vulnerabilities"><div id="4" class="information"></div>
+    <div id="vulnerabilities"><div id="2" class="information"></div>
         <div class="flex-container"><table style="width:100%"><tr>
-            <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="Steganography" class="flex-item" title="Steganography" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="InternalLinks" class="flex-item" title="Internal Links" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="MalwarePhishing" class="flex-item" title="Malware Phishing" onclick="showExplanation(this)"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="AccountPhishing" class="flex-item" title="Account Phishing" onclick="showExplanation(this)"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="SocialEngineering" class="flex-item" title="Social Engineering" onclick="showExplanation(this)"><img src="../../Logo.png" style="width:100px; height:100px"></td>
         </tr></table></div></div>
 </div>
 
 <!-- Needs to be called here, because otherwise the elements are not known yet -->
 <script>
-    var german = ["  Wechseln Sie zwischen den Themen per Klick", "Sicherheitslücke", "Hack-Ausführung", "Verhinderung",
-        "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
+    var german = ["  ", "Erklärung und Hilfe",
+        "Wechseln Sie zwischen den Erklärungen per Klick"];
 
-    var english = ["  Switch between the topics by clicking on the desired", "Vulnerability", "Exploit / Hack", "Prevention",
-        "Switch between the vulnerabilities by clicking on the desired"];
+    var english = ["  ", "Explanation and Help",
+        "Switch between the explanations by clicking on the desired"];
 
     var languageToUse = english;
     if (localStorage.getItem("language") === "German")
@@ -261,9 +232,9 @@
     {
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
-    var tabToOpen = "Comments";
-    if(localStorage.getItem("OpenedInBrokenAccessControl") !== null){
-        tabToOpen= localStorage.getItem("OpenedInBrokenAccessControl");
+    var tabToOpen = "MalwarePhishing";
+    if(localStorage.getItem("OpenedInPhishing") !== null){
+        tabToOpen = localStorage.getItem("OpenedInPhishing");
     }
     showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();

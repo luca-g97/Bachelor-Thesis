@@ -102662,45 +102662,22 @@
 <!-- Need to be called before the elements, so the elements know what to do onclick -->
 <script src="https://unpkg.com/feather-icons"></script>
 <script>
-    var currentlyPicked = [];
+    var currentlyPicked = null;
 
-    function showExplanation(element, topic)
+    function showExplanation(element)
     {
         var currentlyClickedVulnerability = element.id;
-        //Remove the class picked from the old picked elements
-        for (var i = 0; i < currentlyPicked.length; i++)
+        
+        if(currentlyPicked != null)
         {
-            if("" !== topic)
-            {
-                if(!currentlyPicked[i].classList.contains("flex-item"))
-                {
-                    currentlyPicked[i].classList.remove("picked");
-                }
-                else
-                {
-                    currentlyClickedVulnerability = currentlyPicked[i].id;
-                }
-            }
-            else {
-                currentlyPicked[i].classList.remove("picked");
-            }
+            currentlyPicked.classList.remove("picked");
         }
 
-        //Add the class picked to the new picked elements
-        if(topic === "") {
-            document.getElementById("2").classList.add("picked");
-            currentlyPicked.push(document.getElementById("2"));
-        }
         element.classList.add("picked");
-        currentlyPicked.push(element);
+        currentlyPicked = element;
 
-
-        //Set the website source to the picked one
-        var newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/" + topic + ".htm";
-        if(topic === "") {
-            newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
-        }
-        localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerability);
+        newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/Explanation.htm";
+        localStorage.setItem("OpenedInPhishing", currentlyClickedVulnerability);
         document.getElementById("website").setAttribute("src", newSource);
     }
 </script>
@@ -102709,29 +102686,24 @@
 <div id="explanation">
     <div><div id="0" class="information"></div>
         <div class="information"><table style="width: 100%"><tr>
-            <td id="1" class="informationChoice" style="color: yellow" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
-            <td id="2" class="informationChoice" onclick="showExplanation(this, 'ExploitExplanation')"></td>
-            <td id="3" class="informationChoice" style="color: lawngreen" onclick="showExplanation(this, 'PreventionExplanation')"></td>
+            <td id="1" class="informationChoice" onclick="showExplanation(this)"></td>
         </tr></table></div></div>
     <embed id="website" src="" width="100%" height="70%" style="background-color: transparent">
-    <div id="vulnerabilities"><div id="4" class="information"></div>
+    <div id="vulnerabilities"><div id="2" class="information"></div>
         <div class="flex-container"><table style="width:100%"><tr>
-            <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="Steganography" class="flex-item" title="Steganography" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="InternalLinks" class="flex-item" title="Internal Links" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="MalwarePhishing" class="flex-item" title="Malware Phishing" onclick="showExplanation(this)"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="AccountPhishing" class="flex-item" title="Account Phishing" onclick="showExplanation(this)"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="SocialEngineering" class="flex-item" title="Social Engineering" onclick="showExplanation(this)"><img src="../../Logo.png" style="width:100px; height:100px"></td>
         </tr></table></div></div>
 </div>
 
 <!-- Needs to be called here, because otherwise the elements are not known yet -->
 <script>
-    var german = ["  Wechseln Sie zwischen den Themen per Klick", "Sicherheitslücke", "Hack-Ausführung", "Verhinderung",
-        "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
+    var german = ["  ", "Erklärung und Hilfe",
+        "Wechseln Sie zwischen den Erklärungen per Klick"];
 
-    var english = ["  Switch between the topics by clicking on the desired", "Vulnerability", "Exploit / Hack", "Prevention",
-        "Switch between the vulnerabilities by clicking on the desired"];
+    var english = ["  ", "Explanation and Help",
+        "Switch between the explanations by clicking on the desired"];
 
     var languageToUse = english;
     if (localStorage.getItem("language") === "German")
@@ -102743,9 +102715,9 @@
     {
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
-    var tabToOpen = "Comments";
-    if(localStorage.getItem("OpenedInBrokenAccessControl") !== null){
-        tabToOpen= localStorage.getItem("OpenedInBrokenAccessControl");
+    var tabToOpen = "MalwarePhishing";
+    if(localStorage.getItem("OpenedInPhishing") !== null){
+        tabToOpen = localStorage.getItem("OpenedInPhishing");
     }
     showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();
@@ -106910,7 +106882,7 @@
                                                                                     <span class="bq3">18:30</span>,
                                                                                     www.immowelt.de Bestätigung Ihrer
                                                                                     Kontaktanfrage Sehr geehrter Herr
-                                                                                    User Test, Sie haben am 13.04.2023
+                                                                                    Honest, Sie haben am 13.04.2023
                                                                                     18:29:45 eine Anfrage zu folgendem
                                                                                     Immobilienangebot gestellt. 3 Zimmer
                                                                                     Dachwohnung 530 Euro ca..
@@ -106937,7 +106909,7 @@
                                                                                         </div>
                                                                                         <span id=":28" class="y2"><span
                                                                                                 class="Zt">&nbsp;-&nbsp;</span>www.immowelt.de
- Bestätigung Ihrer Kontaktanfrage Sehr geehrter Herr User Test, Sie 
+ Bestätigung Ihrer Kontaktanfrage Sehr geehrter Herr Goodguy, Sie 
 haben am 13.04.2023 18:29:45 eine Anfrage zu folgendem Immobilienangebot
  gestellt. 3 Zimmer Dachwohnung 530 Euro ca.</span></div>
                                                                                 </div>
@@ -107011,7 +106983,7 @@ haben am 13.04.2023 18:29:45 eine Anfrage zu folgendem Immobilienangebot
                                                                                           data-legacy-last-message-id="1875267925a88932"
                                                                                           data-legacy-last-non-draft-message-id="1875267925a88932">Wir haben Ihre Rückerstattungsanfrage erhalten</span>,
                                                                                     <span class="bq3">5. Apr.</span>,
-                                                                                    Steam Hallo UserTest, Wir haben Ihre
+                                                                                    Steam Hallo Herr Honest Goodguy, Wir haben Ihre
                                                                                     Rückerstattungsanfrage erhalten!
                                                                                     Wir werden Ihre
                                                                                     Rückerstattungsanfrage
@@ -107727,8 +107699,8 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                     Sehr
                                                                                                                                                                                     geehrter
                                                                                                                                                                                     Herr
-                                                                                                                                                                                    User
-                                                                                                                                                                                    Test,
+                                                                                                                                                                                    Honest
+                                                                                                                                                                                    Goodguy,
                                                                                                                                                                                 </div>
                                                                                                                                                                                 <div style="font-family:arial;font-size:12px;color:#000000">
                                                                                                                                                                                     Sie
@@ -107775,13 +107747,11 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                     <tbody>
                                                                                                                                                                                     <tr>
                                                                                                                                                                                         <td colspan="3">
-                                                                                                                                                                                            <a href="http://www.immowelt.de/expose/2HRTN4U" onclick="alert('You would be now on a site with an automated download of a virus! Doublecheck links before clicking on them!')"
+                                                                                                                                                                                            <a href="../../CommandProcessor.php?action=ChangeWebsite&website=http://www.immowelt.de/expose/2HRTN4U"
                                                                                                                                                                                                style="text-decoration:none;font-family:arial;font-size:14px;color:#000000;font-weight:bold"
                                                                                                                                                                                                target="_blank"
                                                                                                                                                                                                <!--data-saferedirecturl="https://www.google.com/url?q=http://www.immowelt.de/expose/2HRTN4U&amp;source=gmail&amp;ust=1680854540230000&amp;usg=AOvVaw0gQ6EgP8CbLr92E31djuxo"-->
-                                                                                                                                                                                                3
-                                                                                                                                                                                                Zimmer
-                                                                                                                                                                                                Dachwohnung </a>
+                                                                                                                                                                                                5 Zimmer Wohnung mit Balkon, Tiere willkommen </a>
                                                                                                                                                                                         </td>
                                                                                                                                                                                     </tr>
                                                                                                                                                                                     <tr>
@@ -107797,20 +107767,20 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                         </td>
                                                                                                                                                                                         <td width="250"
                                                                                                                                                                                             valign="top">
-                                                                                                                                                                                            <strong>530
+                                                                                                                                                                                            <strong>990
                                                                                                                                                                                                 Euro</strong><br>
                                                                                                                                                                                             ca.
-                                                                                                                                                                                            75,00
+                                                                                                                                                                                            100,00
                                                                                                                                                                                             m²
                                                                                                                                                                                             <br>
-                                                                                                                                                                                            3
+                                                                                                                                                                                            5
                                                                                                                                                                                             Zimmer<br>
                                                                                                                                                                                         </td>
                                                                                                                                                                                         <td rowspan="2"
                                                                                                                                                                                             width="200"
                                                                                                                                                                                             valign="top">
-                                                                                                                                                                                            90537
-                                                                                                                                                                                            Feucht
+                                                                                                                                                                                            12345
+                                                                                                                                                                                            Musterstadt
                                                                                                                                                                                             <br>
                                                                                                                                                                                         </td>
                                                                                                                                                                                     </tr>
@@ -107836,7 +107806,7 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                             Objekt:
                                                                                                                                                                                         </td>
                                                                                                                                                                                         <td colspan="2">
-                                                                                                                                                                                            <a href="http://www.immowelt.de/expose/2HRTN4U" onclick="alert('You would be now on a site with an automated download of a virus! Doublecheck links before clicking on them!')"
+                                                                                                                                                                                            <a href="../../CommandProcessor.php?action=ChangeWebsite&website=http://www.immowelt.de/expose/2HRTN4U"
                                                                                                                                                                                                style="font-family:arial;font-size:12px;color:#000000;font-weight:normal;text-decoration:underline"
                                                                                                                                                                                                target="_blank"
                                                                                                                                                                                                <!--data-saferedirecturl="https://www.google.com/url?q=http://www.immowelt.de/expose/2HRTN4U&amp;source=gmail&amp;ust=1680854540230000&amp;usg=AOvVaw0gQ6EgP8CbLr92E31djuxo"-->
@@ -107867,15 +107837,15 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                             Immobilie
                                                                                                                                                                                         </td>
                                                                                                                                                                                         <td style="text-align:right">
-                                                                                                                                                                                            <a href="http://www.immowelt.de/expose/2HRTN4U?syscid=erneute_anfrage" onclick="alert('You would be now on a site with an automated download of a virus! Doublecheck links before clicking on them!')"
+                                                                                                                                                                                            <a href="../../CommandProcessor.php?action=ChangeWebsite&website=http://www.immowelt.de/expose/2HRTN4U"
                                                                                                                                                                                                style="font-family:arial;font-size:12px;color:#000000;font-weight:normal;text-decoration:underline"
                                                                                                                                                                                                target="_blank"
                                                                                                                                                                                                <!--data-saferedirecturl="https://www.google.com/url?q=http://www.immowelt.de/expose/2HRTN4U?syscid%3Derneute_anfrage&amp;source=gmail&amp;ust=1680854540230000&amp;usg=AOvVaw2XGvURwIwx0f-vZv-9da4A"-->
                                                                                                                                                                                                 <img src="https://ci3.googleusercontent.com/proxy/11s5DUsSpckz_vDb_CyHo0ELn0kSHkKlGt9nSD_F3gk9bQj749aXOFvdP-pzUUN5x8AZy2JnPJu5iAvZewmtpBouEmpMWRiffzC5AHINujXjtIGgWfyki9qy=s0-d-e1-ft#https://www.immowelt.de/app_themes/mid_0/images/emailtemplate/pfeil.gif" class="CToWUd" data-bit="iit">
                                                                                                                                                                                             </a>
-                                                                                                                                                                                            <a href="http://www.immowelt.de/expose/2HRTN4U?syscid=erneute_anfrage" onclick="alert('You would be now on a site with an automated download of a virus! Doublecheck links before clicking on them!')"
+                                                                                                                                                                                            <a href="../../CommandProcessor.php?action=ChangeWebsite&website=http://www.immowelt.de/expose/2HRTN4U"
                                                                                                                                                                                                style="text-decoration:none"
-                                                                                                                                                                                               target="_blank"
+                                                                                                                                                                                               target="_blank">
                                                                                                                                                                                                <!--data-saferedirecturl="https://www.google.com/url?q=http://www.immowelt.de/expose/2HRTN4U?syscid%3Derneute_anfrage&amp;source=gmail&amp;ust=1680854540230000&amp;usg=AOvVaw2XGvURwIwx0f-vZv-9da4A"-->
                                                                                                                                                                                                 erneut
                                                                                                                                                                                                 Kontakt
@@ -107923,8 +107893,8 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                             PLZ/Ort:
                                                                                                                                                                                         </td>
                                                                                                                                                                                         <td>
-                                                                                                                                                                                            90402
-                                                                                                                                                                                            Feucht&nbsp;
+                                                                                                                                                                                            12345
+                                                                                                                                                                                            Musterstadt&nbsp;
                                                                                                                                                                                         </td>
                                                                                                                                                                                     </tr>
                                                                                                                                                                                     <tr>
@@ -107932,7 +107902,7 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                             Telefon:
                                                                                                                                                                                         </td>
                                                                                                                                                                                         <td>
-                                                                                                                                                                                            09128-123456&nbsp;
+                                                                                                                                                                                            01234-56789100&nbsp;
                                                                                                                                                                                         </td>
                                                                                                                                                                                     </tr>
                                                                                                                                                                                     <tr>
@@ -107940,7 +107910,7 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                             Telefax:
                                                                                                                                                                                         </td>
                                                                                                                                                                                         <td>
-                                                                                                                                                                                            09128-234567&nbsp;
+                                                                                                                                                                                            01234-56789101&nbsp;
                                                                                                                                                                                         </td>
                                                                                                                                                                                     </tr>
                                                                                                                                                                                     <tr>
@@ -107948,7 +107918,7 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                             Mobil:
                                                                                                                                                                                         </td>
                                                                                                                                                                                         <td>
-                                                                                                                                                                                            0049-123456789&nbsp;
+                                                                                                                                                                                            0123-123456789&nbsp;
                                                                                                                                                                                         </td>
                                                                                                                                                                                     </tr>
                                                                                                                                                                                     <tr>
@@ -107975,7 +107945,7 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                                                             wir würden uns sehr für die Wohnung interessieren.
                                                                                                                                                                                             Über einen Besichtigungstermin ab 17:30 Uhr würden wir uns sehr freuen
                                                                                                                                                                                             und verbleiben mit freundlichen Grüßen,
-                                                                                                                                                                                            Familie Test
+                                                                                                                                                                                            Familie Goodguy
                                                                                                                                                                                             <br>
                                                                                                                                                                                             <br>
                                                                                                                                                                                         </td>
@@ -108262,11 +108232,12 @@ Nicepage Edition. Design websites in minutes with</span></div>
                                                                                                                                                         </table>
                                                                                                                                                     </td>
                                                                                                                                                 </tr>
-                                                                                                                                                </tbody>
+                                                                                                                                                </tbody>                                                                                                                                    
                                                                                                                                             </table>
                                                                                                                                             <div class="yj6qo"></div>
                                                                                                                                             <div class="adL">
                                                                                                                                             </div>
+                                                                                                                                            <a href="../Vulnerabilities/Views/ImmoMail.html">Klicken Sie hier um die Originalnachricht anzuzeigen</a>
                                                                                                                                         </div>
                                                                                                                                         <div class="adL">
                                                                                                                                         </div>

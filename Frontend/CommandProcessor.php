@@ -58,7 +58,11 @@
     {
         $website = $_GET['website'];
         exec("rm /etc/nginx/conf.d/* && cp /etc/nginx/Config/Vulnerable.conf /etc/nginx/conf.d/ && nginx -s reload");
-        header("Location: ./$website", true, false);
+        if($website === "http://www.immowelt.de/expose/2HRTN4U")
+        {
+            exec("cd ./Phishing/ && wget 'https://www.designtagebuch.de/wp-content/uploads/mediathek//2023/04/th-nuernberg-logo-1100x825.jpg' && cp th-nuernberg-logo-1100x825.jpg ThisCouldHaveBeenAVirus && rm th-nuernberg-logo-1100x825.jpg");
+        }
+        header("Location: $website", true, false);
     }
     
     function checkAuthorization($username, $password, $SecurityLevel)
