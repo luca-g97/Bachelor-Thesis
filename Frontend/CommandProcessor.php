@@ -9,7 +9,7 @@
     
         //BrokenAccessControl/Vulnerabilities/AutoIndex.htm -> Change Config
     if($action === "LoadConfig") {
-        header("Location: ./BrokenAccessControl/", true, false);
+        header("Location: ./BrokenAccessControl/Netflix.htm", true, false);
         
         //BrokenAccessControl/Secure/NetflixLogin.htm -> Check password
     }else if($action === "CheckLoginCredentials") {

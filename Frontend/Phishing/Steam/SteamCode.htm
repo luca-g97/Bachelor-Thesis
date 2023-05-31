@@ -623,6 +623,9 @@
                                                     <input name="code" id="code4" type="text" maxlength="1" autocomplete="none" oninput="checkCodeCompleted(this)">
                                                 </div>                
                                             </div>
+                                            <!-- Include the library of sweetalert to display the language picker -->
+                                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+                                            <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
                                             <script>
                                                 var code = ["","","","",""];
                                                 
@@ -654,8 +657,28 @@
                                                         const urlParams = new URLSearchParams(queryString);
                                                         var username = urlParams.get("username");
                                                         var password = urlParams.get("password");
-                                                        alert("Your login data the hacker received is the following: \n Username: " + username +"\n Password: " + password + "\n 2FA-Code: " + code);
-                                                        window.location.assign("./Steam.htm");
+
+                                                        var text = "<table style=\"width:100%\"><tr><td><b>The login data the hacker received is the following:</b></td></tr><tr><td> Username: " + username + "</td></tr><tr><td> Password: " + password + "</td></tr><tr><td> 2FA-Code: " + code + "</td></tr></table>";
+                                                        var title = "<b>Fake-Website-Login</b>"
+                                                        if (localStorage.getItem("language") === "German")
+                                                        {
+                                                            text = "<table style=\"width:100%\"><tr><td><b>Die Login-Daten die der Hacker erhalten hat lauten wie folgt:</b></td></tr><tr><td> Benutzername: " + username + "</td></tr><tr><td> Passwort: " + password + "</td></tr><tr><td> 2FA-Code: " + code + "</td></tr></table>";
+                                                            title = "<b>Fake-Website-Anmeldung</b>"
+                                                        }
+                                                        
+                                                        swal({
+                                                            title: title,
+                                                            html: text,
+                                                            type: 'warning',
+                                                            showCancelButton: true,
+                                                            focusCancel: false,
+                                                            confirmButtonText: 'OK',
+                                                            confirmButtonColor: '#1A1A1A',
+                                                            cancelButtonColor: '#323232',
+                                                            cancelButtonText: 'CANCEL',
+                                                        }).then(result => {
+                                                            window.location.assign("./Steam.htm");
+                                                        })
                                                     }
                                                 }
                                             function checkCode(id)
