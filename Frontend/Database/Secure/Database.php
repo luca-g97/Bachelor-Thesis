@@ -100,13 +100,13 @@ $custom_functions = array(
 );
 
 // define your custom functions here
-/*
-function leet_text($value)
-{
-  return strtr($value, 'eaAsSOl', '344zZ01');
-}
-*/
 
+function argon2($password)
+{
+    $options = ["memory_cost" => 128000, "time_cost" => 20, "threads" => 8];
+    $hashedPassword = password_hash($password, PASSWORD_ARGON2ID, $options);
+    return $hashedPassword;
+}
 
 /* ---- Advanced options ---- */
 
@@ -4004,10 +4004,12 @@ class Authorization
                 // user wants to be remembered, so set a cookie
                 $expire = time() + 60 * 60 * 24 * 30; //set expiration to 1 month from now
                 setcookie(COOKIENAME, $this->system_password_encrypted, $expire, null, null, null, true);
+                setcookie("UltraSecure-Argon2", argon2($password), $expire, null, null, null, true);
                 //setcookie(COOKIENAME . "_salt", $_SESSION[COOKIENAME . '_salt'], $expire, null, null, null, true);
             } else {
                 // user does not want to be remembered, so destroy any potential cookies
                 setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);
+                setcookie("UltraSecure-Argon2", "", time() - 86400, null, null, null, true);
                 //setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
                 unset($_COOKIE[COOKIENAME]);
                 //unset($_COOKIE[COOKIENAME . '_salt']);

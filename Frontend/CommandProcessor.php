@@ -5,11 +5,13 @@
 
     //Change config to the right one according to the securityLevel before executing any task!
     //Remove all files in directory conf.d, copy the config file with the wanted security level into the folder and restart nginx using this config
-    exec("rm /etc/nginx/conf.d/* && cp /etc/nginx/Config/$SecurityLevel.conf /etc/nginx/conf.d/ && nginx -s reload");
+    if($SecurityLevel != null) {
+        exec("rm /etc/nginx/conf.d/* && cp /etc/nginx/Config/$SecurityLevel.conf /etc/nginx/conf.d/ && nginx -s reload");
+    }
     
         //BrokenAccessControl/Vulnerabilities/AutoIndex.htm -> Change Config
     if($action === "LoadConfig") {
-        header("Location: ./BrokenAccessControl/Netflix.htm", true, false);
+        header("Location: ./BrokenAccessControl/$SecurityLevel/Netflix.htm", true, false);
         
         //BrokenAccessControl/Secure/NetflixLogin.htm -> Check password
     }else if($action === "CheckLoginCredentials") {

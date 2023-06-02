@@ -119,13 +119,13 @@
 <span id="line117"></span>);
 <span id="line118"></span>
 <span id="line119"></span>// define your custom functions here
-<span id="line120"></span>/*
-<span id="line121"></span>function leet_text($value)
-<span id="line122"></span>{
-<span id="line123"></span> return strtr($value, 'eaAsSOl', '344zZ01');
-<span id="line124"></span>}
-<span id="line125"></span>*/
-<span id="line126"></span>
+<span id="line120"></span>
+<span id="line121"></span><span style="color: deepskyblue; font-weight: bold">function argon2($password)</span>
+<span id="line122"></span><span style="color: deepskyblue; font-weight: bold">{</span>
+<span id="line123"></span><span style="color: deepskyblue; font-weight: bold"> $options = ["memory_cost" => 128000, "time_cost" => 20, "threads" => 8];</span>
+<span id="line124"></span><span style="color: deepskyblue; font-weight: bold"> $hashedPassword = password_hash($password, PASSWORD_ARGON2ID, $options);</span>
+<span id="line125"></span><span style="color: deepskyblue; font-weight: bold"> return $hashedPassword; </span>
+<span id="line126"></span><span style="color: deepskyblue; font-weight: bold">}</span>
 <span id="line127"></span>
 <span id="line128"></span>/* ---- Advanced options ---- */
 <span id="line129"></span>
@@ -4023,13 +4023,13 @@
 <span id="line4021"></span><span style="font-weight: bold"> // user wants to be remembered, so set a cookie</span>
 <span id="line4022"></span><span style="color: lawngreen; font-weight: bold"> $expire = time() + 60 * 60 * 24 * 30; //set expiration to 1 month from now</span>
 <span id="line4023"></span><span style="color: lawngreen; font-weight: bold"> setcookie(COOKIENAME, $this->system_password_encrypted, $expire, null, null, null, true);</span>
-<span id="line4024"></span> //setcookie(COOKIENAME . "_salt", $_SESSION[COOKIENAME . '_salt'], $expire, null, null, null, true);</span>
+<span id="line4024"></span><span style="color: deepskyblue; font-weight: bold">setcookie("Ideal-Argon2", argon2($password), $expire, null, null, null, true);</span>
 <span id="line4025"></span><span style="font-weight: bold"> } else {</span>
 <span id="line4026"></span><span style="font-weight: bold"> // user does not want to be remembered, so destroy any potential cookies</span>
 <span id="line4027"></span><span style="color: lawngreen; font-weight: bold">setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);</span>
-<span id="line4028"></span> //setcookie(COOKIENAME . "_salt", "", time() - 86400, null, null, null, true);
+<span id="line4028"></span><span style="color: deepskyblue; font-weight: bold">setcookie("Ideal-Argon2", "", time() - 86400, null, null, null, true);</span>
 <span id="line4029"></span><span style="color: lawngreen; font-weight: bold"> unset($_COOKIE[COOKIENAME]);</span>
-<span id="line4030"></span> //unset($_COOKIE[COOKIENAME . '_salt']);
+<span id="line4030"></span><span style="color: deepskyblue; font-weight: bold"> unset($_COOKIE["Ideal-Argon2"]);</span>
 <span id="line4031"></span><span style="font-weight: bold"> }</span>
 <span id="line4032"></span> 
 <span id="line4033"></span> $_SESSION[COOKIENAME . 'password'] = $this-<span class="entity"><span>&amp;</span>gt;</span>system_password_encrypted;
