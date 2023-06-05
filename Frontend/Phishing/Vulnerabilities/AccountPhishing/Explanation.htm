@@ -52,8 +52,9 @@
             margin: 2%;
             border-radius: 10px; 
         }
-              .hackExplanation{
+.hackExplanation{
             word-wrap: break-word;
+            letter-spacing: .04em;
             align-content: center;
             font-size: 0.9em;
             color: lightgrey;
@@ -118,7 +119,7 @@
             "<i class='feather' data-feather=\'info\'></i> &nbsp Schritt 2.4<i class='feather-right' data-feather=\'chevron-down\'></i>",
             "<i class='feather' data-feather=\'info\'></i> &nbsp Schritt 2.5<i class='feather-right' data-feather=\'chevron-down\'></i>",
             "<i class='feather' data-feather=\'info\'></i> &nbsp Schritt 3<i class='feather-right' data-feather=\'chevron-down\'></i>",
-            "<b>Schritt 1.1:</b><br><br>Falls Sie sich nicht auf der SteamMail.htm-Seite befinden, gehen Sie dorthin, indem Sie das Folgende in die URL-Suchleiste kopieren: <span style='color: orangered'><b>" + window.location.host + "/&shy;Phishing/Gmail/SteamMail.htm</b></span> und im Anschluss <b>Enter</b> drücken",
+            "<b>Schritt 1.1:</b><br><br>Falls Sie sich nicht auf der SteamMail.htm-Seite befinden, gehen Sie dorthin, indem Sie das Folgende in die URL-Suchleiste kopieren: <span style='color: orangered'><b>" + window.location.host + "/Phishing/Gmail/SteamMail.htm</b></span> und im Anschluss <b>Enter</b> drücken",
             "<b>Schritt 1.2:</b><br><br>Überprüfen Sie zunächst die Email wie sie es in der Erklärung zu Malware Phishing gelernt haben. Um nun zu testen wie ein Accountverlust abläuft, klicken Sie auf den Link <b>help.steampowered.com</b>. Öffnen Sie außerdem die echte Website durch einen Klick auf diesen Link: <a href=\"https://store.steampowered.com/login/\">Steam-Login</a>",
             "<b>Schritt 2.1 - Überprüfen Sie die Domain</b><br><br>Zunächst ist es wichtig zu verstehen was eine Domain ist. Die Domain bei der echten Seite ist <b>steampowered.com</b>, nicht wie man vielleicht vermuten würde <b>store.steampowered.com</b>. Betrüger versuchen gerne ähnliche Domains zu wählen wie beispielsweise <b>steampovvered.com</b> oder <b>steampowered.store.com</b> (Domain: store.com!!). Diese Domains sind allesamt falsch und können relativ leicht von einem geschulten Auge erkannt werden. Da Domains einzigartig sind, muss zwingend ein Rechtschreibfehler oder ein Zusatz in der gefälschten Domain vorhanden sein. Die Domain ist dabei immer nur der Anteil der URL, der direkt vor dem ersten <b>/</b> steht<br><br>Hier ist die Fälschung der Website direkt an der Domain ersichtlich, was auch bewusst so gewählt ist",
             "<b>Schritt 2.2 - Schauen Sie nach einem Schlosssymbol</b><br><br>Ein weiteres Indiz für eine gefälschte Website ist, dass kein Schlosssymbol links neben dem URL-Feld vorhanden ist. Dies muss nicht zwingend der Fall sein, allerdings besitzt jede große Firma ein gültiges Zertifikat. Dieses Zertifikat kann man sich auch ansehen indem man auf das Schloss klickt und anschließend auf <b>Verbindung sicher</b> klickt. Dies enthält sowohl den Firmennamen für den das Zertifikat ausgestellt ist und den Aussteller selbst, wobei man z.B. bei <b>Digi Cert.Inc</b> sicher sein kann, dass die Website sicher ist. Ebenso empfiehlt es sich nur Seiten zu öffnen die über verschlüsselten Datentransfer verfügen (http<b>s</b>://...)<br><br>Wie Sie sehen ist bei der gefälschten Website kein Schlosssymbol zu sehen. Dies ist hier jedoch kein Grund zur Besorgnis, da die Applikation lokal (also nur auf Ihrem Rechner) läuft. Dies wird Ihnen übrigens auch angezeigt wenn sie auf das Dateisymbol links der URL-Suchleiste klicken. Hier ist keine Verschlüsselung sichergestellt, da es sich um eine <b>http://...</b>-Adresse handelt",
@@ -168,9 +169,10 @@
             {
                 visibleElements.push(element.id);
                 index = parseInt(element.id) + 9;
-                element.style.textAlign = "justify";
+                element.style.textAlign = "left";
 element.style.hyphens = "auto";
                 element.style.userSelect = "auto";
+                element.style.cursor = "text";
             }
             else
             {
@@ -179,6 +181,7 @@ element.style.hyphens = "auto";
                 index = element.id;
                 element.style.textAlign = "center";
                 element.style.userSelect = "none";
+                element.style.cursor = "pointer";
             }
             element.innerHTML = languageToUse[index];
             feather.replace();

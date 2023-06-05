@@ -4889,7 +4889,7 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
         var userId = document.getElementById("id_userLoginId").value;
         var password = document.getElementById("id_password").value;
 
-        if ((userId === "user@test") && (password === "userTest1997")) {
+        if ((userId === "test@bac") && (password === "test")) {
             window.location.assign("./NetflixUserChoice.htm?check=true&u=" + encode(userId) + "&p=" + encode(password));
         }
     }

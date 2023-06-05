@@ -47,7 +47,7 @@ COPY Frontend /var/www/html/
 COPY Config /etc/nginx/Config/
 
 #Create all user passwords and save them in a file
-RUN htpasswd -c -b /etc/nginx/VulnerableHtpasswd root root && htpasswd -b /etc/nginx/VulnerableHtpasswd user@test userTest1997
+RUN htpasswd -c -b /etc/nginx/VulnerableHtpasswd root root && htpasswd -b /etc/nginx/VulnerableHtpasswd test@bac test
 RUN htpasswd -c -b /etc/nginx/SecureHtpasswd root root
 
 #EDITED Create softlinks for demonstration purposes

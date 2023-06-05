@@ -52,8 +52,9 @@
             margin: 2%;
             border-radius: 10px; 
         }
-              .hackExplanation{
+.hackExplanation{
             word-wrap: break-word;
+            letter-spacing: .04em;
             align-content: center;
             font-size: 0.9em;
             color: lightgrey;
@@ -110,7 +111,7 @@
             "<i class='feather' data-feather=\'info\'></i> &nbsp Bild rechts (Familienfoto) <i class='feather-right' data-feather=\'chevron-down\'></i>",
             "<i class='feather' data-feather=\'info\'></i> &nbsp Bild mittig (Geburtstagsfeier) <i class='feather-right' data-feather=\'chevron-down\'></i>",
             "<i class='feather' data-feather=\'info\'></i> &nbsp Bild links (Wohnzimmertisch) <i class='feather-right' data-feather=\'chevron-down\'></i>",
-            "<b>Schritt 1:</b><br><br>Falls Sie sich nicht auf der Instagram.htm-Seite befinden, gehen Sie dorthin, indem Sie das Folgende in die URL-Suchleiste kopieren: <span style='color: orangered'><b>" + window.location.host + "/&shy;Phishing/Instagram/Instagram.htm</b></span> und im Anschluss <b>Enter</b> drücken",
+            "<b>Schritt 1:</b><br><br>Falls Sie sich nicht auf der Instagram.htm-Seite befinden, gehen Sie dorthin, indem Sie das Folgende in die URL-Suchleiste kopieren: <span style='color: orangered'><b>" + window.location.host + "/Phishing/Instagram/Instagram.htm</b></span> und im Anschluss <b>Enter</b> drücken",
             "<b>Bild rechts (Familienfoto):</b><br><br>Die Beschreibung enhält zu viele Informationen. Als Hacker haben Sie die folgenden Informationen erhalten nur durch dieses eine Bild: <br><br>Die Familie befindet sich in Musterstadt nahe eines Waldrands. Damit ist die Wahrscheinlichkeit hoch dass sie dort in der Nähe lebt. <br><br>Man kann außerdem davon ausgehen, dass @marvellous-woman die Lebensgefährtin von Admin ist, da Sie von <b>unserer Wohnung</b> spricht. <br><br>Diese Wohnung soll mindestens 3 Zimmer und einen Balkon haben, sowie tierfreundlich sein, da die Familie einen Hund namens Snoopy hat <br><br>Diese Informationen wurden verwendet um die Immowelt-Anfrage-Mail zu schreiben",
             "<b>Bild mittig (Geburtstagsfeier):</b><br><br>Die Beschreibung ist ideal für Hacker geeignet um ein Personenportfolio, aufgrund der verlinkten Personen zu erstellen, die offensichtlich zum näheren Umfeld des 25 Jahre alten Admins gehören - damit steht auch der Geburtstag fest, nämlich ziemlich sicher der Tag an dem das Bild hochgeladen wurde <br><br> Außerdem sind damit die nächsten Ziele klar und sollte man eines der Konten knacken, kann man relativ sicher sein, dass der Admin bei einer Nachricht von einem Freund weniger Verdacht schöpft als bei einem fremden Absender <br><br> Außerdem erfährt man das Lieblingsspiel des Admins (Human Fall Flat) und weiß, dass er bislang noch nicht zum Spielen gekommen ist. Da bei Steam Spiele mit weniger als 2 Stunden Spielzeit zurückgegeben werden können, ist die Wahrscheinlichkeit sehr hoch, dass er auf die Steam-Phishing-Mail anspringen wird",
             "<b>Bild links (Wohnzimmertisch):</b><br><br>Hier sind sowohl das Bild als auch die Beschreibung problematisch <br><br>Zunächst nur zu den Gefahren im Internet. Arbeitsrelevante Themen auf Social Media zu teilen ist denkbar ungünstig, da viele Hacker ihre potentiellen Opfer abonniert haben und nur darauf warten weiteres zu erfahren. Eine wie hier beschriebene einfache Lücke deutet auf weitere Lücken hin, die etwas komplexer auszunutzen sind. <br><br> Insbesondere jedoch im echten Leben droht Gefahr durch so eine genaue Beschreibung: Potenzielle Einbrecher wissen anhand des Fotos, dass sich die Wohnung im Erdgeschoss befindet und einen Garten besitzt. Außerdem ist die größte Gefahr (der Hund Snoopy) bei den Nachbarn, sodass er den Einbruch nicht verhindern wird. Da für 2 Wochen die Wohnung leersteht, haben die Verbrecher genügend Zeit den besten Augenblick abzuwarten und können im Vorhinein Fluchtrouten und Co. für den Ernstfall vorbereiten"]
@@ -148,9 +149,10 @@
             {
                 visibleElements.push(element.id);
                 index = parseInt(element.id) + 4;
-                element.style.textAlign = "justify";
-element.style.hyphens = "auto";
+                element.style.textAlign = "left";
+                element.style.hyphens = "auto";
                 element.style.userSelect = "auto";
+                element.style.cursor = "text";
             }
             else
             {
@@ -159,6 +161,7 @@ element.style.hyphens = "auto";
                 index = element.id;
                 element.style.textAlign = "center";
                 element.style.userSelect = "none";
+                element.style.cursor = "pointer";
             }
             element.innerHTML = languageToUse[index];
             feather.replace();

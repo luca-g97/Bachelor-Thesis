@@ -15,7 +15,7 @@
         
         //BrokenAccessControl/Secure/NetflixLogin.htm -> Check password
     }else if($action === "CheckLoginCredentials") {
-        if ($_GET['user'] === "user@test" && $_GET['password'] === "userTest1997") {
+        if ($_GET['user'] === "test@bac" && $_GET['password'] === "test") {
             header("Location: ./BrokenAccessControl/Secure/NetflixUserChoice.htm", true, false);
         }else if($_GET['user'] === "admin" && $_GET['password'] === "admin") {
             header("Location: /root");
