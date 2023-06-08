@@ -62,7 +62,16 @@
         exec("rm /etc/nginx/conf.d/* && cp /etc/nginx/Config/Vulnerable.conf /etc/nginx/conf.d/ && nginx -s reload");
         if($website === "http://www.immowelt.de/expose/2HRTN4U")
         {
-            exec("cd ./Phishing/ && wget 'https://www.designtagebuch.de/wp-content/uploads/mediathek//2023/04/th-nuernberg-logo-1100x825.jpg' && cp th-nuernberg-logo-1100x825.jpg ThisCouldHaveBeenAVirus && rm th-nuernberg-logo-1100x825.jpg");
+            $memeNumber = random_int(0, 3);
+            if($memeNumber === 0) { //Can´t fall for Phishing if you don´t check your emails
+                exec("cd ./Phishing/ && wget 'https://www.intercity.technology/hubfs/Imported_Blog_Media/2_fbf6b1d00535f63c7652ae47d36e53d9_800-1.jpeg' && cp 2_fbf6b1d00535f63c7652ae47d36e53d9_800-1.jpeg ThisCouldHaveBeenAVirus && rm 2_fbf6b1d00535f63c7652ae47d36e53d9_800-1.jpeg");
+            } else if($memeNumber === 1) { //You clicked the link, didn´t you?
+                exec("cd ./Phishing/ && wget 'https://www.wgtwo.com/assets/images/mr-bean-phishing-meme-a6e86ee3cba84bc1daa770c6acde2376.jpeg' && cp mr-bean-phishing-meme-a6e86ee3cba84bc1daa770c6acde2376.jpeg ThisCouldHaveBeenAVirus && rm mr-bean-phishing-meme-a6e86ee3cba84bc1daa770c6acde2376.jpeg");
+            } else if($memeNumber === 2) { //Have mercy with our souls - Your it-team
+                exec("cd ./Phishing/ && wget 'https://www.wizer-training.com/hs-fs/hubfs/Security%20Awareness%20Have%20Mercy-png.png' && cp Security%20Awareness%20Have%20Mercy-png.png ThisCouldHaveBeenAVirus && rm Security%20Awareness%20Have%20Mercy-png.png");
+            } else { //Changed password to incorrect
+                exec("cd ./Phishing/ && wget 'https://pbs.twimg.com/media/DDG7VWvXsAA_izM.jpg' && cp DDG7VWvXsAA_izM.jpg ThisCouldHaveBeenAVirus && rm DDG7VWvXsAA_izM.jpg");
+            }
         }
         header("Location: $website", true, false);
     }
