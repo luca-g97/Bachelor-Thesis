@@ -31,6 +31,19 @@
             color: whitesmoke;
             padding: 1%;
         }
+        .information{
+            position: relative;
+            left: 5%;
+            width: 90%;
+            text-align: left;
+            hyphens: auto;
+            word-wrap: break-word;
+            letter-spacing: .04em;
+        }
+        .informationLink{
+            color: lightsteelblue;
+            font-weight: bold;
+        }
         .websiteName{
             background-color: black;
             padding: 2%;
@@ -63,20 +76,20 @@
 <body class="body">
 <div>
     <h2 id="0" class="title"><br></h2>
-    <p id="1"></p>
+    <p id="1" class="information"></p>
     <div class="explanationContainer">
         <p id="2" class="explanationInformation"></p>
         <div class="websiteName">Secure.conf # line25<embed src="../Views/Secure/SecureConfig.htm#line20" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div>
         <div class="websiteName">SecureHtpasswd # line2<embed src="../Views/Secure/SecureHtpasswd.htm" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div>
         <button id="4" class="switchSite" onclick="window.open('../../../CommandProcessor.php?action=ChangeWebsite&website=BrokenAccessControl/Secure/NetflixLogin.htm')"></button>
     </div>
-    <p id="3"></p>
+    <p id="3" class="information"></p>
 </div>
 <script>
-    var german = ["Nutzer-Fehlkonfiguration", "TEXT", "<b>Wie kann man diese Lücke bereits vorab verhindern?</b>", "TEXT",
+    var german = ["Nutzer-Fehlkonfiguration", "", "<b>Wie kann man diese Lücke bereits vorab verhindern?</b>", "<i class='feather' data-feather='compass' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Weiterführende Informationen:</b><br><br>Ich konnte nicht eine einzige Namenskonvention oder Nutzung mehrerer htpasswd Dateien finden, was sehr überraschend ist. Diese Abfrage scheint nicht häufig benutzt zu werden, daher liegt die Vermutung nahe, dass die hier gezeigte Option nicht die Beste ist. Interne links benötigen normalerweise keine Authentifikation, daher macht es Sinn, diese gar nicht erst für den Zugang zu anderen Bereichen zu nutzen.",
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp ÖFFNE SICHERE WEBSITE"];
 
-    var english = ["User Misconfiguration", "TEXT", "<b>How can it be avoided beforehand?</b>", "TEXT",
+    var english = ["User Misconfiguration", "", "<b>How can it be avoided beforehand?</b>", "<i class='feather' data-feather='compass' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Further Information:</b><br><br>I didn´t find a single name convention for multiple htpasswd files or usage throughout the web, which is quite surprising. Those checks seem to be not used very often, so the guess can be made, that the option provided here is not the best as well. Internal links normally don´t use any authentication, so it makes sense to not use them at all to provide access to another area.",
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE"];
 
     var languageToUse = english;

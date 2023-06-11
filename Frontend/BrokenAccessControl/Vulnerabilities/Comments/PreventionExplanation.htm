@@ -31,6 +31,19 @@
             color: whitesmoke;
             padding: 1%;
         }
+        .information{
+            position: relative;
+            left: 5%;
+            width: 90%;
+            text-align: left;
+            hyphens: auto;
+            word-wrap: break-word;
+            letter-spacing: .04em;
+        }
+        .informationLink{
+            color: lightsteelblue;
+            font-weight: bold;
+        }
         .websiteName{
             background-color: black;
             padding: 2%;
@@ -63,20 +76,20 @@
 <body class="body">
 <div>
     <h2 id="0" class="title"><br></h2>
-    <p id="1"></p>
+    <p id="1" class="information"></p>
     <div class="explanationContainer">
         <p id="2" class="explanationInformation"></p>
         <div class="websiteName">Netflix.htm # line10970<embed src="../Views/Secure/Netflix.htm#line10969" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div>
         <div class="websiteName">NetflixUserChoice.htm<embed src="../Views/Secure/NetflixUserChoice.htm#line9004" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div>
         <button id="4" class="switchSite" onclick="window.open('../../../CommandProcessor.php?action=ChangeWebsite&website=BrokenAccessControl/Secure/Netflix.htm')"></button>
     </div>
-    <p id="3"></p>
+    <p id="3" class="information"></p>
 </div>
 <script>
-    var german = ["(Vergessene) Kommentare", "TEXT", "<b>Wie kann man diese Lücke bereits vorab verhindern?</b>", "TEXT",
+    var german = ["(Vergessene) Kommentare", "", "<b>Wie kann man diese Lücke bereits vorab verhindern?</b>", "<i class='feather' data-feather='compass' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Weiterführende Informationen:</b><br><br>Es gibt außerdem Methoden wie Webpack die solche Kommentare automatisch entfernen und zudem noch einmal den Code effizienter nutzbar machen. Das gewährleistet hohe Anpassbarkeit, da die Zusammenführung komplett innerhalb einer Konfiguration eingestellt werden kann. Das beeinflusst dann die Erstellung der Bundles (Bündeln) aufgrund von Modulen, die wiederum selbst in einem Dependency Graph (Abhängigkeitsgraph) enthalten sind und der Konstruktion dienen. Eine sehr hilfreich Funktion von Webpack ist außerdem, dass ungültig gewordene Hashes nach einer Dateiänderung entfernt werden, sodass Integrität gewährleistet werden kann <a href='https://survivejs.com/webpack/what-is-webpack/' class='informationLink'>(Vepsäläinen, 2018)</a>",
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp ÖFFNE SICHERE WEBSITE"];
 
-    var english = ["(Forgotten) Comments", "TEXT", "<b>How can it be avoided beforehand?</b>", "TEXT",
+    var english = ["(Forgotten) Comments", "", "<b>How can it be avoided beforehand?</b>", "<i class='feather' data-feather='compass' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Further Information:</b><br><br>There are also methods such as Webpack to remove those comments automatically while refactoring the code for efficient usage. This offers especially high customizability, since Webpack can be completely configured within a configuration file. This will affect the bundle creation from modules based on the underneath laying dependency graph constructed with it. A really useful function of Webpack is also to invalidate Hashes of files after a change, so integrity can be granted <a href='https://survivejs.com/webpack/what-is-webpack/' class='informationLink'>(Vepsäläinen, 2018)</a>",
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE"];
 
     var languageToUse = english;

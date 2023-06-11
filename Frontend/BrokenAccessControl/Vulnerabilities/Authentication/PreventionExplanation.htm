@@ -31,6 +31,19 @@
             color: whitesmoke;
             padding: 1%;
         }
+        .information{
+            position: relative;
+            left: 5%;
+            width: 90%;
+            text-align: left;
+            hyphens: auto;
+            word-wrap: break-word;
+            letter-spacing: .04em;
+        }
+        .informationLink{
+            color: lightsteelblue;
+            font-weight: bold;
+        }
         .websiteName{
             background-color: black;
             padding: 2%;
@@ -63,20 +76,20 @@
 <body class="body">
 <div>
     <h2 id="0" class="title"><br></h2>
-    <p id="1"></p>
+    <p id="1" class="information"></p>
     <div class="explanationContainer">
         <p id="2" class="explanationInformation"></p>
         <div class="websiteName">NetflixLogin.htm # line4890<embed src="../Views/Secure/NetflixLogin.htm#line4888" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div>
         <div class="websiteName">CommandProcessor.php # line33<embed src="../Views/CommandProcessor.htm#line30" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div>
         <button id="4" class="switchSite" onclick="window.open('../../../CommandProcessor.php?action=ChangeWebsite&website=BrokenAccessControl/Secure/NetflixLogin.htm')"></button>
     </div>
-    <p id="3"></p>
+    <p id="3" class="information"></p>
 </div>
 <script>
-    var german = ["Authentifizierung", "TEXT", "<b>Wie kann man diese Lücke bereits vorab verhindern?</b>", "TEXT",
+    var german = ["Authentifizierung", "", "<b>Wie kann man diese Lücke bereits vorab verhindern?</b>", "<i class='feather' data-feather='compass' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Weiterführende Informationen:</b><br><br>Ein sicher geschriebener Login basiert auf einem Tokensystem, wobei die Überprüfung serverseitig durchgeführt wird <a href='https://www.loginradius.com/blog/engineering/guest-post/nodejs-authentication-guide/' class='informationLink'>(Victor, n.d.)</a>. Daher ist die gezeigte Lösung nicht die sicherste, löst aber das Problem, dass die Login-Daten innerhalb der Webseite sichtbar sind. Open Authorization (Oauth 2.0) wird empfohlen, da dies exakt die angesprochene token-basierte Authentifizierung verwendet und von Google und anderen großen Firmen weltweit eingesetzt wird <a href='https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html' class='informationLink'>(CheatSheets Series Team, 2021)</a>",
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp ÖFFNE SICHERE WEBSITE"];
 
-    var english = ["Authentication", "TEXT", "<b>How can it be avoided beforehand?</b>", "TEXT",
+    var english = ["Authentication", "", "<b>How can it be avoided beforehand?</b>", "<i class='feather' data-feather='compass' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Further Information:</b><br><br>A secure written login is based on Tokens checked and created server side <a href='https://www.loginradius.com/blog/engineering/guest-post/nodejs-authentication-guide/' class='informationLink'>(Victor, n.d.)</a>, so the shown solution is definitely not the most secure, but solves the problem of the login data being visible on the website. Open authorization (Oauth 2.0) is recommended to use, which exactly provides the mentioned token based authentication and is used by Google and other big companies worldwide <a href='https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html' class='informationLink'>(CheatSheets Series Team, 2021)</a>",
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE"];
 
     var languageToUse = english;
