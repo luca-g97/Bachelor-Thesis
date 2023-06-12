@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction</title>
+    <!-- Include the library of sweetalert to display the language picker -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+    <!-- Add an icon library -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+            background-color: #222222;
+            text-align: center;
+            color: lightgrey;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .title {
+            background-color: #111111;
+            border-radius: 5px;
+            padding: 1%;
+        }
+
+        .introduction {
+            position: relative;
+            width: 84%;
+            left: 6%;
+            font-size: 1.3em;
+        }
+
+        .topicsContainer {
+            position: absolute;
+            left: 5%;
+            width: 90%;
+            border-spacing: 20px;
+            background-color: #111111;
+            font-size: 1.1em;
+            color: lightgrey;
+            border: 10px solid #151515;
+            border-radius: 5px;
+        }
+
+        .topicContainer {
+            width: 33%;
+            background-color: #333333;
+            text-align: center;
+            border-radius: 5%;
+            border: 10px solid #111111;
+            padding: 1%;
+            cursor: pointer;
+        }
+
+        .topicContainer {
+            width: 33%;
+            background-color: #333333;
+            text-align: center;
+            border-radius: 5%;
+            border: 10px solid #111111;
+            padding: 1%;
+            cursor: pointer;
+        }
+
+        .topic {
+            color: lightgrey;
+        }
+        .topic {
+            color: lightgrey;
+        }
+
+        .topicHoverable:hover{
+            background-color: #444444;
+        }
+
+        .hackExplanationTip
+        {
+            padding: 1%;
+            border: #999999 solid 3px;
+            margin: 2%;
+            border-radius: 10px;
+        }
+        .hackExplanationSolution
+        {
+            padding: 1%;
+            border: lightgrey solid 3px;
+            margin: 2%;
+            border-radius: 10px;
+        }
+        .hackExplanationResult
+        {
+            padding: 1%;
+            border: darkorange solid 3px;
+            margin: 2%;
+            border-radius: 10px;
+        }
+        .hackExplanation{
+            word-wrap: break-word;
+            letter-spacing: .04em;
+            align-content: center;
+            font-size: 0.9em;
+            color: lightgrey;
+            white-space: inherit;
+            cursor: pointer;
+            user-select: none;
+            padding: 1%;
+        }
+
+        .hackExplanationTip:hover, .hackExplanationSolution:hover, .switchSite:hover{
+            background-color: #333333;
+        }
+        .switchSite:hover{
+            background-color: #333333;
+        }
+        .switchSite {
+            opacity: 0.8;
+            background-color: black;
+            padding: 1%;
+            font-size: 1em;
+            border-radius: 10px;
+            cursor: pointer;
+            color: whitesmoke;
+            font-weight: bold;
+            border: 3px solid orangered;
+        }
+        #languageIcon{
+            font-size: 2em;
+            background-color: transparent;
+            border: none;
+        }
+        .feather{
+            width: 7%;
+            vertical-align: bottom;
+            color: lightgrey;
+        }
+        .featherBig{
+            width: 10%;
+            color: lightgrey;
+            align-content: center;
+            vertical-align: super;
+        }
+        .feather-right{
+            float: right;
+            width: 7%;
+            vertical-align: bottom;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1 id="0" class="title"></h1>
+    <h3 id="1" class="introduction"></h3>
+    <div>
+        <table class="topicsContainer">
+            <tr>
+                <td class="topicContainer"><div class="topicHoverable" id="2"></div></td>
+                <td class="topicContainer"><div class="topic" id="3"></div><br><button id="languageIcon" title="Change Language" onclick="setLanguage(this, true)"></button></td>
+                <td class="topicContainer"><div class="topic" id="4"></div><br><div class="hackExplanationTip"><div class="hackExplanation" id="5" ondblclick="showTip(this)"></div></div><div class="hackExplanationSolution"><div class="hackExplanation" id="6" ondblclick="showTip(this)"></div></div><div class="hackExplanationResult"><div class="hackExplanation" id="7" ondblclick="showTip(this)"></div></div></td>
+            </tr>
+            <tr>
+                <td class="topicContainer"><div class="topic" id="8"></div><div class="websiteName"><embed src="./HomeView.htm" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div></td>
+                <td class="topicContainer"><div class="topic" id="9"></div></td>
+                <td class="topicContainer"><div class="topic" id="10"></div></td>
+            </tr>
+            <tr><td></td><td id="11" class="switchSite" onclick="window.location.assign('./index.htm')"></td><td></td></tr>
+        </table>
+    </div>
+</div>
+<script>
+    var german = ["Einführung in die Funktionen der Applikation",
+        "",
+        "<b>Identifizierung klickbarer Felder</b><br><br>Wenn der Mauszeiger sich über diesem Feld befindet, verändert sich der Grauwert leicht. Dies symbolisiert anklickbare Felder", 
+        "<b>Sprache ändern</b><br><br>Diese kann jederzeit auf der Startseite über einen Klick auf die jeweilige Flagge geändert werden. Testen Sie dies indem Sie auf die Flagge klicken", 
+        "<b>Standardansicht beim Wechseln zwischen Sicherheitslücken (um Spoiler zu vermeiden)</b><br><br>Doppelklicken Sie auf einen Hinweis um ihn zu öffnen oder zu schließen. Nur wenn der Hinweis geöffnet ist, kann der Inhalt markiert werden",
+        "<i class='feather' data-feather=\'help-circle\'></i> &nbsp Tipp <i class='feather-right' data-feather=\'chevron-down\'></i>", 
+        "<i class='feather' data-feather=\'info\'></i> &nbsp Lösungsschritt<i class='feather-right' data-feather=\'chevron-down\'></i>", 
+        "<i class='feather' data-feather=\'info\'></i> &nbsp Lösungsergebnis<i class='feather-right' data-feather=\'chevron-down\'></i>", 
+        "<b>Ansicht eines Programmcodes</b><br><br>", 
+        "<b>Farbwahl und ihre Bedeutung</b><br><br><div style='color: yellow'>Markierung einer Sicherheitslücke</div><br><div style='color: lawngreen'>Markierung einer Verhinderung</div><br><div style='color: deepskyblue'>Markierung einer idealen Lösung</div><br><div style='color: lightsteelblue'>Markierung eines weiterführenden Links</div>", 
+        "<b>Zeichen und ihre Bedeutung</b><br><br>Bewegen Sie den Zeiger auf eines der Zeichen um zu sehen, was sie bedeuten<br><br><img title='Zeichen für Sicherheitslücke' style='width: 10%' src='./Logo.png'>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='help-circle' title='Zeichen für Tipp'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather=\'info\' title='Zeichen für Teil der Lösung'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='compass' title='Zeichen für Weiterführende Informationen'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='external-link' title='Zeichen fürs Öffnen einer Seite'></i><br><br><i class='featherBig' data-feather='x-square' title='Zeichen für Fehler'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='check-square' title='Zeichen für Lösungsvorschlag'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='minimize-2' title='Zeichen für Minimierung der Erklärungen'></i>", 
+        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp EINFÜHRUNG ÜBERSPRINGEN",
+        "Ich enthalte nützliche Tipps falls Sie mal nicht weiterkommen", 
+        "Ich beinhalte alle nötigen Lösungsschritte um den Hack auszuführen", 
+        "Ich sage Ihnen immer wo Sie sich nach der Durchführung des Hacks befinden sollten"];
+
+    var english = ["Introduction into the functions of the application",
+        "",
+        "<b>Identification of clickable fields</b><br><br>If the mouse cursor is on top of the field, the value of the grey slightly changes. This symbolizes clickable fields",
+        "<b>Change language</b><br><br>This can be done anytime on the homepage by clicking on the flag in the upper right corner. Test it here to see what happens",
+        "<b>Standardview after the change of the vulnerability (to prevent spoilers)</b><br><br>Doubleclick on any advice to open or close it. Only if the advice is open, the content can be marked",
+        "<i class='feather' data-feather=\'help-circle\'></i> &nbsp Tip <i class='feather-right' data-feather=\'chevron-down\'></i>",
+        "<i class='feather' data-feather=\'info\'></i> &nbsp Solution Step<i class='feather-right' data-feather=\'chevron-down\'></i>",
+        "<i class='feather' data-feather=\'info\'></i> &nbsp Solution Result<i class='feather-right' data-feather=\'chevron-down\'></i>",
+        "<b>View of the code of a program</b><br><br>",
+        "<b>Colorchoice and its meaning</b><br><br><div style='color: yellow'>Marking of a vulnerability</div><br><div style='color: lawngreen'>Marking of a prevention</div><br><div style='color: deepskyblue'>Marking of an ideal solution</div><br><div style='color: lightsteelblue'>Marking of a link for further investigation</div>",
+        "<b>Signs and their meanings</b><br><br>Move the cursor on one of the signs to see what they mean<br><br><img title='Sign for a vulnerability' style='width: 10%' src='./Logo.png'>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='help-circle' title='Sign for a tip'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather=\'info\' title='Sign for a part of a solution'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='compass' title='Sign for further information'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='external-link' title='Sign for the opening of a website'></i><br><br><i class='featherBig' data-feather='x-square' title='Sign for a mistake'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='check-square' title='Sign for a suggested solution'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='minimize-2' title='Sign for the minimization of the explanation'></i>",
+        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp SKIP TUTORIAL",
+        "I provide useful tips if you are stuck",
+        "I provide any solution step needed to execute the hack",
+        "I always tell you where you should be after the execution of the hack"];
+
+    if(localStorage.getItem("language") != null){
+        setLanguage(document.getElementById("languageIcon"), false);
+    }
+    
+    function setText(){
+        if (localStorage.getItem("language") === "German")
+        {
+            languageToUse = german;
+        }
+
+        for (var i = 0; i < 12; i++)
+        {
+            document.getElementById(i.toString()).innerHTML = languageToUse[i];
+        }
+    }
+
+    function setLanguage(element, change){
+        var languageToSet = localStorage.getItem("language");
+
+        if (change) {
+            if (localStorage.getItem("language") === "German") {
+                languageToSet = "English";
+            } else {
+                languageToSet = "German";
+            }
+        }
+
+        if (languageToSet === "German") {
+            languageToUse = german;
+            element.innerHTML = "🇩🇪"
+        } else {
+            languageToUse = english;
+            element.innerHTML = "🇬🇧";
+        }
+        localStorage.setItem("language", languageToSet);
+        setText();
+        feather.replace();
+        
+        //https://github.com/feathericons/feather/issues/585 -> Showing a title on an feather icon
+        Array.from(document.querySelectorAll('svg.feather[title]')).forEach((element) => {
+            element.insertAdjacentHTML('afterbegin', `<title>${element.attributes.title.value}</title>`);
+        });
+    }
+
+    var visibleElements = [];
+    
+    function showTip(element)
+    {
+        var index;
+        if (!visibleElements.includes(element.id))
+        {
+            visibleElements.push(element.id);
+            index = parseInt(element.id) + 7;
+            element.style.textAlign = "left";
+            element.style.hyphens = "auto";
+            element.style.userSelect = "auto";
+            element.style.cursor = "text";
+        }
+        else
+        {
+            index = visibleElements.indexOf(element.id);
+            visibleElements.splice(index, index+1);
+            index = element.id;
+            element.style.textAlign = "center";
+            element.style.userSelect = "none";
+            element.style.cursor = "pointer";
+        }
+        element.innerHTML = languageToUse[index];
+        feather.replace();
+    }
+
+    //Replace the icons with svgs
+    feather.replace();
+</script>
+</body>
+</html>

@@ -31,6 +31,12 @@
             color: whitesmoke;
             padding: 1%;
         }
+        .explanation{
+            font-size: 0.8em;
+            background-color: #111111;
+            color: lightgrey;
+            padding: 2%;
+        }
         .information{
             position: relative;
             left: 5%;
@@ -117,7 +123,6 @@
                         <div class="hackExplanationSolution"><div class="hackExplanation" id="10" ondblclick="showTip(this)"></div></div>
                         <div class="hackExplanationSolution"><div class="hackExplanation" id="11" ondblclick="showTip(this)"></div></div>
                         <div class="hackExplanationSolution"><div class="hackExplanation" id="12" ondblclick="showTip(this)"></div></div>
-                        <div class="hackExplanationSolution"><div class="hackExplanation" id="13" ondblclick="showTip(this)"></div></div>
                         <button id="4" class="switchSite" onclick="window.open('../../../../CommandProcessor.php?action=ChangeWebsite&website=Phishing/Gmail/SteamMail.htm')"></button>
                     </div>
                 <p id="3" class="information"></p>
@@ -166,7 +171,7 @@
             languageToUse = german;
         }
 
-        for (var i = 0; i < 14; i++)
+        for (var i = 0; i < 13; i++)
         {
             document.getElementById(i.toString()).innerHTML = languageToUse[i];
         }
@@ -181,9 +186,9 @@
             if (!visibleElements.includes(element.id))
             {
                 visibleElements.push(element.id);
-                index = parseInt(element.id) + 9;
+                index = parseInt(element.id) + 8;
                 element.style.textAlign = "left";
-element.style.hyphens = "auto";
+                element.style.hyphens = "auto";
                 element.style.userSelect = "auto";
                 element.style.cursor = "text";
             }

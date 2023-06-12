@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width"><title>HomeView</title><link rel="stylesheet" type="text/css" href="./view.css"></head><body id="viewsource" class="wrap highlight" style="tab-size: 4; background-color: #1C1B22"><pre id="line1"><span style="color: whitesmoke; background-color: #1C1B22"><span></span><span class="doctype">&lt;!DOCTYPE html&gt;</span><span>
+<span id="line2"></span></span><span>&lt;<span class="start-tag">html</span> <span class="attribute-name">lang</span>="<a class="attribute-value">en</a>"&gt;</span><span>
+<span id="line3"></span></span><span>&lt;<span class="start-tag">head</span>&gt;</span><span>
+<span id="line4"></span></span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">charset</span>="<a class="attribute-value">UTF-8</a>"&gt;</span><span>
+<span id="line5"></span></span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">name</span>="<a class="attribute-value">viewport</a>" <span class="attribute-name">content</span>="<a class="attribute-value">width=device-width, initial-scale=1.0</a>"&gt;</span><span>
+<span id="line6"></span></span><span>&lt;<span class="start-tag">title</span>&gt;</span><span>Home</span><span>&lt;/<span class="end-tag">title</span>&gt;</span><span>
+<span id="line7"></span></span><span class="comment">&lt;!-- Include the library of sweetalert to display the language picker --&gt;</span><span>
+<span id="line8"></span></span><span>&lt;<span class="start-tag">script</span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js">https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line9"></span></span><span>&lt;<span class="start-tag">link</span> <span class="attribute-name">rel</span>='<a class="attribute-value">stylesheet</a>' <span class="attribute-name">href</span>='<a class="attribute-value" href="view-source:https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css">https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css</a>'&gt;</span><span>
+<span id="line10"></span></span><span class="comment">&lt;!-- Add an icon library --&gt;</span><span>
+<span id="line11"></span></span><span>&lt;<span class="start-tag">script</span> <span class="attribute-name">src</span>="<a class="attribute-value" href="view-source:https://unpkg.com/feather-icons">https://unpkg.com/feather-icons</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line12"></span></span><span>&lt;<span class="start-tag">style</span>&gt;</span><span>
+<span id="line13"></span>body {
+<span id="line14"></span>background-color: #222222;
+<span id="line15"></span>text-align: center;
+<span id="line16"></span>color: lightgrey;
+<span id="line17"></span>font-family: 'Open Sans', sans-serif;
+<span id="line18"></span>}
+<span id="line19"></span>
+<span id="line20"></span>.title {
+<span id="line21"></span>background-color: #111111;
+<span id="line22"></span>border-radius: 5px;
+<span id="line23"></span>padding: 2%;
+<span id="line24"></span>}
+<span id="line25"></span>
+<span id="line26"></span>.introduction {
+<span id="line27"></span>position: relative;
+<span id="line28"></span>width: 84%;
+<span id="line29"></span>left: 6%;
+<span id="line30"></span>padding: 2%;
+<span id="line31"></span>font-size: 1.3em;
+<span id="line32"></span>}
+<span id="line33"></span>
+<span id="line34"></span>.topicsContainer {
+<span id="line35"></span>position: absolute;
+<span id="line36"></span>left: 5%;
+<span id="line37"></span>width: 90%;
+<span id="line38"></span>border-spacing: 20px;
+<span id="line39"></span>background-color: #111111;
+<span id="line40"></span>font-size: 1.1em;
+<span id="line41"></span>padding: 1%;
+<span id="line42"></span>color: lightgrey;
+<span id="line43"></span>border: 10px solid #151515;
+<span id="line44"></span>border-radius: 5px;
+<span id="line45"></span>}
+<span id="line46"></span>
+<span id="line47"></span>.topicContainer {
+<span id="line48"></span>width: 33%;
+<span id="line49"></span>background-color: #333333;
+<span id="line50"></span>text-align: center;
+<span id="line51"></span>border-radius: 5%;
+<span id="line52"></span>border: 10px solid #111111;
+<span id="line53"></span>padding: 1%;
+<span id="line54"></span>cursor: pointer;
+<span id="line55"></span>}
+<span id="line56"></span>
+<span id="line57"></span>.topic {
+<span id="line58"></span>color: lightgrey;
+<span id="line59"></span>}  
+<span id="line60"></span>.topicContainer:hover{
+<span id="line61"></span>background-color: #444444;
+<span id="line62"></span>}
+<span id="line63"></span>
+<span id="line64"></span>.explanation {
+<span id="line65"></span>}
+<span id="line66"></span>        
+<span id="line67"></span>#languageIcon{
+<span id="line68"></span>position: absolute;
+<span id="line69"></span>right: 1%;
+<span id="line70"></span>top: 2%;
+<span id="line71"></span>font-size: 2em;
+<span id="line72"></span>background-color: transparent;
+<span id="line73"></span>border: none;
+<span id="line74"></span>}
+<span id="line75"></span>.feather {
+<span id="line76"></span>padding: 3%;
+<span id="line77"></span>background: #111111;
+<span id="line78"></span>border-radius: 10%;
+<span id="line79"></span>border: 5px solid orangered;
+<span id="line80"></span>width: 20%;
+<span id="line81"></span>height: 20%;
+<span id="line82"></span>}
+<span id="line83"></span></span><span>&lt;/<span class="end-tag">style</span>&gt;</span><span>
+<span id="line84"></span></span><span>&lt;/<span class="end-tag">head</span>&gt;</span><span>
+<span id="line85"></span></span><span>&lt;<span class="start-tag">body</span>&gt;</span><span>
+<span id="line86"></span></span><span>&lt;<span class="start-tag">div</span>&gt;</span><span>
+<span id="line87"></span></span><span>&lt;<span class="start-tag">button</span> <span class="attribute-name">id</span>="<a class="attribute-value">languageIcon</a>" <span class="attribute-name">title</span>="<a class="attribute-value">Change Language</a>" <span class="attribute-name">onclick</span>="<a class="attribute-value">setLanguage(this, true)</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">button</span>&gt;</span><span>
+<span id="line88"></span></span><span>&lt;<span class="start-tag">h1</span> <span class="attribute-name">id</span>="<a class="attribute-value">0</a>" <span class="attribute-name">class</span>="<a class="attribute-value">title</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">h1</span>&gt;</span><span>
+<span id="line89"></span></span><span>&lt;<span class="start-tag">h3</span> <span class="attribute-name">id</span>="<a class="attribute-value">1</a>" <span class="attribute-name">class</span>="<a class="attribute-value">introduction</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">br</span>&gt;</span><span>
+<span id="line90"></span></span><span>&lt;/<span class="end-tag">h3</span>&gt;</span><span>
+<span id="line91"></span></span><span>&lt;<span class="start-tag">div</span>&gt;</span><span>
+<span id="line92"></span></span><span>&lt;<span class="start-tag">table</span> <span class="attribute-name">class</span>="<a class="attribute-value">topicsContainer</a>"&gt;</span><span>
+<span id="line93"></span></span><span>&lt;<span class="start-tag">tr</span>&gt;</span><span>
+<span id="line94"></span></span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">class</span>="<a class="attribute-value">topicContainer</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">a</span> <span class="attribute-name">style</span>="<a class="attribute-value">text-decoration: none</a>" <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:http://localhost:8080/CommandProcessor.php?action=ChangeWebsite&amp;website=BrokenAccessControl/Vulnerable/Netflix.htm">./CommandProcessor.php?action=ChangeWebsite<span><span>&amp;</span>we</span>bsite=BrokenAccessControl/Vulnerable/Netflix.htm</a>"&gt;</span><span>
+<span id="line95"></span></span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">topic</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">i</span> <span class="attribute-name">class</span>='<a class="attribute-value">feather</a>' <span class="attribute-name">data-feather</span>='<a class="attribute-value">key</a>'&gt;</span><span></span><span>&lt;/<span class="end-tag">i</span>&gt;</span><span>
+<span id="line96"></span></span><span>&lt;<span class="start-tag">h2</span> <span class="attribute-name">id</span>="<a class="attribute-value">2</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">h2</span>&gt;</span><span></span><span>&lt;<span class="start-tag">h4</span> <span class="attribute-name">id</span>="<a class="attribute-value">3</a>" <span class="attribute-name">class</span>="<a class="attribute-value">explanation</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">h4</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line97"></span></span><span>&lt;/<span class="end-tag">a</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line98"></span></span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">class</span>="<a class="attribute-value">topicContainer</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">a</span> <span class="attribute-name">style</span>="<a class="attribute-value">text-decoration: none</a>" <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:http://localhost:8080/CommandProcessor.php?action=ChangeWebsite&amp;website=Database/Vulnerable/DatabaseLogin.htm">./CommandProcessor.php?action=ChangeWebsite<span><span>&amp;</span>we</span>bsite=Database/Vulnerable/DatabaseLogin.htm</a>"&gt;</span><span>
+<span id="line99"></span></span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">topic</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">i</span> <span class="attribute-name">class</span>='<a class="attribute-value">feather</a>' <span class="attribute-name">data-feather</span>='<a class="attribute-value">database</a>'&gt;</span><span></span><span>&lt;/<span class="end-tag">i</span>&gt;</span><span>
+<span id="line100"></span></span><span>&lt;<span class="start-tag">h2</span> <span class="attribute-name">id</span>="<a class="attribute-value">4</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">h2</span>&gt;</span><span></span><span>&lt;<span class="start-tag">h4</span> <span class="attribute-name">id</span>="<a class="attribute-value">5</a>" <span class="attribute-name">class</span>="<a class="attribute-value">explanation</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">h4</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line101"></span></span><span>&lt;/<span class="end-tag">a</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line102"></span></span><span>&lt;<span class="start-tag">td</span> <span class="attribute-name">class</span>="<a class="attribute-value">topicContainer</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">a</span> <span class="attribute-name">style</span>="<a class="attribute-value">text-decoration: none</a>" <span class="attribute-name">href</span>="<a class="attribute-value" href="view-source:http://localhost:8080/CommandProcessor.php?action=ChangeWebsite&amp;website=Phishing/Gmail/Inbox.htm">./CommandProcessor.php?action=ChangeWebsite<span><span>&amp;</span>we</span>bsite=Phishing/Gmail/Inbox.htm</a>"&gt;</span><span>
+<span id="line103"></span></span><span>&lt;<span class="start-tag">div</span> <span class="attribute-name">class</span>="<a class="attribute-value">topic</a>"&gt;</span><span></span><span>&lt;<span class="start-tag">i</span> <span class="attribute-name">class</span>='<a class="attribute-value">feather</a>' <span class="attribute-name">data-feather</span>='<a class="attribute-value">inbox</a>'&gt;</span><span></span><span>&lt;/<span class="end-tag">i</span>&gt;</span><span>
+<span id="line104"></span></span><span>&lt;<span class="start-tag">h2</span> <span class="attribute-name">id</span>="<a class="attribute-value">6</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">h2</span>&gt;</span><span></span><span>&lt;<span class="start-tag">h4</span> <span class="attribute-name">id</span>="<a class="attribute-value">7</a>" <span class="attribute-name">class</span>="<a class="attribute-value">explanation</a>"&gt;</span><span></span><span>&lt;/<span class="end-tag">h4</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line105"></span></span><span>&lt;/<span class="end-tag">a</span>&gt;</span><span></span><span>&lt;/<span class="end-tag">td</span>&gt;</span><span>
+<span id="line106"></span></span><span>&lt;/<span class="end-tag">tr</span>&gt;</span><span>
+<span id="line107"></span></span><span>&lt;/<span class="end-tag">table</span>&gt;</span><span>
+<span id="line108"></span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line109"></span></span><span>&lt;/<span class="end-tag">div</span>&gt;</span><span>
+<span id="line110"></span></span><span>&lt;<span class="start-tag">script</span>&gt;</span><span>
+<span id="line111"></span>var german = ["Bewusstsein schaffen für Cybersicherheit: Eine Applikation für zukünftige Medieningenieure und normale Nutzer, zum Ausprobieren der häufigsten Gefahren und Lösungen in Bezug auf Hacking",
+<span id="line112"></span>"Diese Webseite entstand im Zuge meiner Bachelorarbeit und dient anderen Programmierern und Interessierten dazu, ein Bewusstsein für ihre Verantwortung bezüglich der Sicherheit ihrer entwickelten Applikation zu erlangen. Sie zeigt außerdem die einfachsten und am wenigsten zeitaufwändigen Lösungen, um Fehler die zu Hacks führen können zu vermeiden, was eine Verhinderung bereits im Entwicklungsprozess vorsieht. </span><span>&lt;b</span><span>r&gt;</span><span>&lt;b</span><span>r&gt;Damit soll insbesondere mehr Verständnis geschaffen werden zwischen Entwicklern und Nutzern, um gemeinsam dafür zu sorgen, dass die Gefahren des Internets reduziert werden.",
+<span id="line113"></span>"Broken Access Control", "Klicken Sie hier, um mehr über die Gefahr eines unautorisierten Zugriff zu erhalten und wie Sie Zugriffsfehler von vornherein vermeiden können - </span><span>&lt;b</span><span>&gt;in einer Netflix ähnlichen Umgebung</span><span>&lt;/<span></span>b</span><span>&gt;",
+<span id="line114"></span>"Datenbanken &amp; Injections", "Klicken Sie hier, um mehr über die Risiken eines ungewollten Datenbankzugriffs zu erfahren und wie Sie speziell Injections verhindern können - </span><span>&lt;b</span><span>&gt;in einer simulierten Datenbankumgebung</span><span>&lt;/<span></span>b</span><span>&gt;",
+<span id="line115"></span>"Phishing &amp; Social Engineering", "Klicken Sie hier, um mehr über die Möglichkeiten zu erfahren, nicht auf Phishing hereinzufallen und Links schnell als gefährlich einzustufen - </span><span>&lt;b</span><span>&gt;in einer Google Mail ähnlichen Umgebung</span><span>&lt;/<span></span>b</span><span>&gt;"];
+<span id="line116"></span>
+<span id="line117"></span>var english = ["Bridging Cybersecurity Awareness: A Try-It-Yourself Application for upcoming Media Engineers &amp; regular Users, addressing Common Risks and Solutions associated with Hacking",
+<span id="line118"></span>"This website was created during my bachelor thesis and is meant to help other programmers and interested people, in gaining a consciousness for their responsibility of security in any application they develop. It is also helpful to find the easiest and least time consuming solutions to prevent those errors which might cause a hack or other dangers beforehand, which means prevention of those mistakes already in the development progress.</span><span>&lt;b</span><span>r&gt;</span><span>&lt;b</span><span>r&gt;It especially focuses on bridging comprehension between developers and regular users, since the minimization of the dangers in the internet can only be achieved together",
+<span id="line119"></span>"Broken Access Control", "Click here to learn more about the possibilities to gain unauthorized access and how to avoid access control errors - </span><span>&lt;b</span><span>&gt;in a Netflix lookalike playground</span><span>&lt;/<span></span>b</span><span>&gt;",
+<span id="line120"></span>"Database Usage &amp; Injection", "Click here to learn more about the risks a wrong database access can cause and how to prevent especially injections easily - </span><span>&lt;b</span><span>&gt;in a PHPLiteAdmin database playground</span><span>&lt;/<span></span>b</span><span>&gt;",
+<span id="line121"></span>"Phishing &amp;amp; Social Engineering", "Click here to learn more about avoiding getting scammed by phishing and how you can certify a link as harmful with ease - </span><span>&lt;b</span><span>&gt;in a Google Mail lookalike playground</span><span>&lt;/<span></span>b</span><span>&gt;"];
+<span id="line122"></span>    
+<span id="line123"></span>if (localStorage.getItem("language") === null)
+<span id="line124"></span>{
+<span id="line125"></span>swal({
+<span id="line126"></span>title: 'Sprache &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbspLanguage',
+<span id="line127"></span>html: '</span><span>&lt;t</span><span>able style="width:100%"&gt;</span><span>&lt;t</span><span>r&gt;</span><span>&lt;t</span><span>d&gt;</span><span>&lt;b</span><span>&gt;In welcher Sprache sollen die Erkl&amp;aumlrungen angezeigt werden?</span><span>&lt;/<span></span>b</span><span>&gt;</span><span>&lt;/<span></span>t</span><span>d&gt;</span><span>&lt;t</span><span>d&gt;</span><span>&lt;b</span><span>&gt;In which language should the explanations be displayed?</span><span>&lt;/<span></span>b</span><span>&gt;</span><span>&lt;/<span></span>t</span><span>d&gt;</span><span>&lt;/<span></span>t</span><span>r&gt;</span><span>&lt;/<span></span>t</span><span>able&gt;',
+<span id="line128"></span>type: 'question',
+<span id="line129"></span>showCancelButton: true,
+<span id="line130"></span>focusCancel: true,
+<span id="line131"></span>confirmButtonText: 'English',
+<span id="line132"></span>confirmButtonColor: '#323232',
+<span id="line133"></span>cancelButtonColor: '#1A1A1A',
+<span id="line134"></span>cancelButtonText: 'Deutsch',
+<span id="line135"></span>reverseButtons: true
+<span id="line136"></span>}).then(result =&gt; {
+<span id="line137"></span>if (result.value) {
+<span id="line138"></span>swal({
+<span id="line139"></span>title: 'This worked!',
+<span id="line140"></span>html: "</span><span>&lt;d</span><span>iv&gt;English will be used to display explanations!</span><span>&lt;/<span></span>d</span><span>iv&gt;",
+<span id="line141"></span>type: 'success',
+<span id="line142"></span>confirmButtonColor: '#1A1A1A'
+<span id="line143"></span>})
+<span id="line144"></span>localStorage.setItem("language", "English");
+<span id="line145"></span>setLanguage(document.getElementById("languageIcon"), false);
+<span id="line146"></span>} else if (result.value === undefined){
+<span id="line147"></span>swal({
+<span id="line148"></span>title: 'Das hat geklappt!',
+<span id="line149"></span>html: "</span><span>&lt;d</span><span>iv&gt;Erkl&amp;aumlrungen werden ab sofort in Deutsch angezeigt!</span><span>&lt;/<span></span>d</span><span>iv&gt;",
+<span id="line150"></span>type: 'success',
+<span id="line151"></span>confirmButtonColor: '#1A1A1A'
+<span id="line152"></span>})
+<span id="line153"></span>localStorage.setItem("language", "German");
+<span id="line154"></span>setLanguage(document.getElementById("languageIcon"), false);
+<span id="line155"></span>}
+<span id="line156"></span>window.location.assign("./Introduction.htm");
+<span id="line157"></span>})}
+<span id="line158"></span>
+<span id="line159"></span>if(localStorage.getItem("language") != null){
+<span id="line160"></span>setLanguage(document.getElementById("languageIcon"), false);
+<span id="line161"></span>}
+<span id="line162"></span>
+<span id="line163"></span>function setText(){
+<span id="line164"></span>var languageToUse = english;
+<span id="line165"></span>if (localStorage.getItem("language") === "German")
+<span id="line166"></span>{
+<span id="line167"></span>languageToUse = german;
+<span id="line168"></span>}
+<span id="line169"></span>        
+<span id="line170"></span>for (var i = 0; i </span><span>&lt; </span><span>8; i++)
+<span id="line171"></span>{
+<span id="line172"></span>document.getElementById(i.toString()).innerHTML = languageToUse[i];
+<span id="line173"></span>}
+<span id="line174"></span>}
+<span id="line175"></span>    
+<span id="line176"></span>function setLanguage(element, change){
+<span id="line177"></span>var languageToSet = localStorage.getItem("language");
+<span id="line178"></span>        
+<span id="line179"></span>if (change) {
+<span id="line180"></span>if (localStorage.getItem("language") === "German") {
+<span id="line181"></span>languageToSet = "English";
+<span id="line182"></span>} else {
+<span id="line183"></span>languageToSet = "German";
+<span id="line184"></span>}
+<span id="line185"></span>}
+<span id="line186"></span>                    
+<span id="line187"></span>if (languageToSet === "German") {
+<span id="line188"></span>element.innerHTML = "🇩🇪"
+<span id="line189"></span>} else {
+<span id="line190"></span>element.innerHTML = "🇬🇧";
+<span id="line191"></span>}
+<span id="line192"></span>localStorage.setItem("language", languageToSet);
+<span id="line193"></span>setText();
+<span id="line194"></span>}
+<span id="line195"></span>
+<span id="line196"></span>//Replace the icons with svgs
+<span id="line197"></span>feather.replace();
+<span id="line198"></span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line199"></span></span><span>&lt;/<span class="end-tag">body</span>&gt;</span><span>
+<span id="line200"></span></span><span>&lt;/<span class="end-tag">html</span>&gt;</span><span></span></span></pre></body></html>

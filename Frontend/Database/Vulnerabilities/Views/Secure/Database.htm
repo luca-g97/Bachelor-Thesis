@@ -4045,7 +4045,9 @@
 <span id="line4043"></span><span style="font-weight: bold"> {</span>
 <span id="line4044"></span><span style="font-weight: bold"> //destroy everything - cookies and session vars</span>
 <span id="line4045"></span><span style="color: lawngreen; font-weight: bold"> setcookie(COOKIENAME, "", time() - 86400, null, null, null, true);</span>
+<span></span><span style="color: deepskyblue; font-weight: bold"> setcookie("Ideal-Argon2", "", time() - 86400, null, null, null, true);</span>
 <span id="line4046"></span><span style="color: lawngreen; font-weight: bold"> unset($_COOKIE[COOKIENAME]);</span>
+<span></span><span style="color: deepskyblue; font-weight: bold"> unset($_COOKIE["Ideal-Argon2"]);</span>
 <span id="line4047"></span><span style="font-weight: bold"> session_unset();</span>
 <span id="line4048"></span><span style="font-weight: bold"> session_destroy();</span>
 <span id="line4049"></span><span style="font-weight: bold"> $this->authorized = false;</span>

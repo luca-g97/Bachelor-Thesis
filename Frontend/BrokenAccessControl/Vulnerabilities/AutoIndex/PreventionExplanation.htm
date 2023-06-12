@@ -31,6 +31,12 @@
             color: whitesmoke;
             padding: 1%;
         }
+        .explanation{
+            font-size: 0.8em;
+            background-color: #111111;
+            color: lightgrey;
+            padding: 2%;
+        }
         .information{
             position: relative;
             left: 5%;
@@ -79,18 +85,18 @@
     <p id="1" class="information"></p>
     <div class="explanationContainer">
         <p id="2" class="explanationInformation"></p>
-        <div class="websiteName">Secure.conf # line12<embed src="../Views/Secure/SecureConfig.htm#line7" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div>
-        <div class="websiteName">Secure.conf # line15<embed src="../Views/Secure/SecureConfig.htm#line9" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div>
+        <div class="websiteName">Secure.conf # line12<embed src="../Views/Secure/SecureConfig.htm#line7" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"><p id="5" class="explanation"></p></div>
+        <div class="websiteName">Secure.conf # line15<embed src="../Views/Secure/SecureConfig.htm#line9" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"><p id="6" class="explanation"></p></div>
         <button id="4" class="switchSite" onclick="window.open('../../../CommandProcessor.php?action=LoadConfig&securityLevel=Secure')"></button>
     </div>
     <p id="3" class="information"></p>
 </div>
 <script>
     var german = ["Auto-Index für Verzeichnisse", "", "<b>Wie kann man diese Lücke bereits vorab verhindern?</b>", "<i class='feather' data-feather='compass' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Weiterführende Informationen:</b><br><br>Die erste Phase eines Angriffs, Reconnaissance-Phase (Aufklärungsphase) genannt, zielt meist auf Versionsnummern und andere systemrelevante Information ab, insbesondere Strukturen. <a href='https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html' class='informationLink'>(CheatSheets Series Team, 2021)</a> Die Verhinderung einer frei einsehbaren Ordnerstruktur kann, zumindest auf Webservern, fast überall problemlos durchgeführt werden. Einige Lösungen sind in diesem Blog gelistet, der alles von Tomcat bis Apache abdeckt. <a href='https://www.invicti.com/blog/web-security/disable-directory-listing-web-servers/' class='informationLink'>(Banach, 2019)</a>",
-        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp ÖFFNE SICHERE WEBSITE"];
+        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp ÖFFNE SICHERE WEBSITE", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Was macht die markierte Zeile?</b><br><br>Sie verhindert die Anzeige der Ordnerstruktur in jedem Fall", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Was macht die markierte Zeile?</b><br><br>Diese Zeile wird verwendet um die Seitennamen festzulegen die bevorzugt angezeigt werden wenn das Verzeichnis gewechselt wird. Sie enthält nicht mehr die index.php die alle Infos die für PHP relevant sind enthält"];
 
     var english = ["Auto-Index Directories", "", "<b>How can it be avoided beforehand?</b>", "<i class='feather' data-feather='compass' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>Further Information:</b><br><br>The first phase of an attack called the Reconnaissance phase, is mostly focussed on version numbers and other critical information of the system including structures. <a href='https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html' class='informationLink'>(CheatSheets Series Team, 2021)</a> Prevention of an exposed folder structure is available and easy to be included almost everywhere, at least on webservers. A few solutions are listed in this Blog, ranging from Tomcat to Apache. <a href='https://www.invicti.com/blog/web-security/disable-directory-listing-web-servers/' class='informationLink'>(Banach, 2019)</a>",
-        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE"];
+        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line?</b><br><br>It prevents the folder structure to be shown in any case", "<i class='feather' data-feather='check-square' style='color: whitesmoke'></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line?</b><br><br>This line is used to set the names of the preferred files to be shown when a Directory is entered. It no longer includes the index.php which shows the info from everything PHP relevant."];
 
     var languageToUse = english;
     if (localStorage.getItem("language") === "German")
@@ -98,7 +104,7 @@
         languageToUse = german;
     }
 
-    for (var i = 0; i < 5; i++)
+    for (var i = 0; i < 7; i++)
     {
         document.getElementById(i.toString()).innerHTML = languageToUse[i];
     }

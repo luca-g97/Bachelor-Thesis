@@ -63,7 +63,15 @@
 
         .explanation {
         }
-
+        
+        #languageIcon{
+            position: absolute;
+            right: 1%;
+            top: 2%;
+            font-size: 2em;
+            background-color: transparent;
+            border: none;
+        }
         .feather {
             padding: 3%;
             background: #111111;
@@ -76,6 +84,7 @@
 </head>
 <body>
 <div>
+    <button id="languageIcon" title="Change Language" onclick="setLanguage(this, true)"></button>
     <h1 id="0" class="title"></h1>
     <h3 id="1" class="introduction"><br>
     </h3>
@@ -111,7 +120,8 @@
         "Database Usage & Injection", "Click here to learn more about the risks a wrong database access can cause and how to prevent especially injections easily - <b>in a PHPLiteAdmin database playground</b>",
     "Phishing &amp; Social Engineering", "Click here to learn more about avoiding getting scammed by phishing and how you can certify a link as harmful with ease - <b>in a Google Mail lookalike playground</b>"];
 
-    localStorage.clear();
+    var languageToUse = english;
+    
     if (localStorage.getItem("language") === null)
     {
         swal({
@@ -132,28 +142,30 @@
                     html: "<div>English will be used to display explanations!</div>",
                     type: 'success',
                     confirmButtonColor: '#1A1A1A'
+                }).then(result => {
+                    localStorage.setItem("language", "English");
+                    setLanguage(document.getElementById("languageIcon"), false);
+                    window.location.assign("./Introduction.htm");
                 })
-                localStorage.setItem("language", "English");
-                setText();
             } else if (result.value === undefined){
                 swal({
                     title: 'Das hat geklappt!',
                     html: "<div>Erkl&aumlrungen werden ab sofort in Deutsch angezeigt!</div>",
                     type: 'success',
                     confirmButtonColor: '#1A1A1A'
+                }).then(result => {
+                    localStorage.setItem("language", "German");
+                    setLanguage(document.getElementById("languageIcon"), false);
+                    window.location.assign("./Introduction.htm");
                 })
-                localStorage.setItem("language", "German");
-                setText();
             }
         })}
 
     if(localStorage.getItem("language") != null){
-        setText();
+        setLanguage(document.getElementById("languageIcon"), false);
     }
 
     function setText(){
-        console.log(localStorage.getItem("language"));
-        var languageToUse = english;
         if (localStorage.getItem("language") === "German")
         {
             languageToUse = german;
@@ -163,6 +175,28 @@
         {
             document.getElementById(i.toString()).innerHTML = languageToUse[i];
         }
+    }
+    
+    function setLanguage(element, change){
+        var languageToSet = localStorage.getItem("language");
+        
+        if (change) {
+            if (localStorage.getItem("language") === "German") {
+                languageToSet = "English";
+            } else {
+                languageToSet = "German";
+            }
+        }
+                    
+        if (languageToSet === "German") {
+            languageToUse = german;
+            element.innerHTML = "🇩🇪"
+        } else {
+            languageToUse = english;
+            element.innerHTML = "🇬🇧";
+        }
+        localStorage.setItem("language", languageToSet);
+        setText();
     }
 
     //Replace the icons with svgs
