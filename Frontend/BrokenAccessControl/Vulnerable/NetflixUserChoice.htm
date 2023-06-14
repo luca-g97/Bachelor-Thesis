@@ -4596,6 +4596,7 @@
         padding: 2%;
     }
     .informationChoice {
+        user-select: none;
         padding: 1.7%;
         color: white;
         border: 1px solid #333333;
@@ -4611,6 +4612,7 @@
         overflow: auto;
     }
     .flex-item {
+        user-select: none;
         flex: 0 0 auto;
         width: 20%;
         height:20%;
@@ -4690,7 +4692,7 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
             <td id="Comments" class="flex-item" title="Comments" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="Authentication" class="flex-item" title="Authentication" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="AutoIndex" class="flex-item" title="Auto Index" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="Pseudoencryption" class="flex-item" title="Pseudoencryption" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Pseudo-encryption" class="flex-item" title="Pseudo-encryption" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
             <td id="UserMisconfiguration" class="flex-item" title="User Misconfiguration" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
         </tr></table></div></div>
 </div>
@@ -4701,7 +4703,7 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
         "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
 
     var english = ["  Switch between the topics by clicking on the desired", "Vulnerability", "Exploit / Hack", "Prevention",
-        "Switch between the vulnerabilities by clicking on the desired"];
+        "Select the vulnerability by clicking on the button below"];
 
     var languageToUse = english;
     if (localStorage.getItem("language") === "German")

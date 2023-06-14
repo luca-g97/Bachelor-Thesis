@@ -60,6 +60,7 @@
         padding: 2%;
     }
     .informationChoice {
+        user-select: none;
         padding: 1.7%;
         color: white;
         border: 1px solid #333333;
@@ -75,6 +76,7 @@
         overflow: auto;
     }
     .flex-item {
+        user-select: none;
         flex: 0 0 auto;
         width: 20%;
         height:20%;
@@ -165,7 +167,7 @@
         "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
 
     var english = ["  Switch between the topics by clicking on the desired", "Vulnerability", "Exploit / Hack", "Prevention",
-        "Switch between the vulnerabilities by clicking on the desired"];
+        "Select the vulnerability by clicking on the button below"];
 
     var languageToUse = english;
     if (localStorage.getItem("language") === "German")
