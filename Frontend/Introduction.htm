@@ -167,10 +167,9 @@
     </div>
 </div>
 <script>
-    var german = ["Einführung in die Funktionen der Applikation",
-        "",
+    var german = ["Einführung in die Funktionen der Applikation", "",
         "<b>Identifizierung klickbarer Felder</b><br><br>Wenn der Mauszeiger sich über diesem Feld befindet, verändert sich der Grauwert leicht. Dies symbolisiert anklickbare Felder", 
-        "<b>Sprache ändern</b><br><br>Diese kann jederzeit auf der Startseite über einen Klick auf die jeweilige Flagge geändert werden. Testen Sie dies indem Sie auf die Flagge klicken", 
+        "<b>Sprache ändern</b><br><br>Diese kann jederzeit auf der Startseite über einen Klick auf die jeweilige Flagge geändert werden. Testen Sie dies, indem Sie auf die Flagge klicken", 
         "<b>Standardansicht beim Wechseln zwischen Sicherheitslücken (um Spoiler zu vermeiden)</b><br><br>Doppelklicken Sie auf einen Hinweis um ihn zu öffnen oder zu schließen. Nur wenn der Hinweis geöffnet ist, kann der Inhalt markiert werden",
         "<i class='feather' data-feather=\'help-circle\'></i> &nbsp Tipp <i class='feather-right' data-feather=\'chevron-down\'></i>", 
         "<i class='feather' data-feather=\'info\'></i> &nbsp Lösungsschritt<i class='feather-right' data-feather=\'chevron-down\'></i>", 
@@ -183,16 +182,15 @@
         "Ich beinhalte alle nötigen Lösungsschritte um den Hack auszuführen", 
         "Ich sage Ihnen immer wo Sie sich nach der Durchführung des Hacks befinden sollten"];
 
-    var english = ["Introduction into the functions of the application",
-        "",
+    var english = ["Introduction into the functions of the application", "",
         "<b>Identification of clickable fields</b><br><br>If the mouse cursor is on top of the field, the value of the grey slightly changes. This symbolizes clickable fields",
-        "<b>Change language</b><br><br>This can be done anytime on the homepage by clicking on the flag in the upper right corner. Test it here to see what happens",
-        "<b>Standardview after the change of the vulnerability (to prevent spoilers)</b><br><br>Doubleclick on any advice to open or close it. Only if the advice is open, the content can be marked",
+        "<b>Change language</b><br><br>This can be done anytime on the homepage by clicking on the flag in the upper right corner. Test it by clicking the flag here",
+        "<b>Standard view after the change of the vulnerability (to prevent spoilers)</b><br><br>Double click on any advice to open or close it. Only if the advice is open, the content can be marked",
         "<i class='feather' data-feather=\'help-circle\'></i> &nbsp Tip <i class='feather-right' data-feather=\'chevron-down\'></i>",
         "<i class='feather' data-feather=\'info\'></i> &nbsp Solution Step<i class='feather-right' data-feather=\'chevron-down\'></i>",
         "<i class='feather' data-feather=\'info\'></i> &nbsp Solution Result<i class='feather-right' data-feather=\'chevron-down\'></i>",
         "<b>View of the code of a program</b><br><br>",
-        "<b>Colorchoice and its meaning</b><br><br><div style='color: yellow'>Marking of a vulnerability</div><br><div style='color: lawngreen'>Marking of a prevention</div><br><div style='color: deepskyblue'>Marking of an ideal solution</div><br><div style='color: lightsteelblue'>Marking of a link for further investigation</div>",
+        "<b>Color choice and its meaning</b><br><br><div style='color: yellow'>Marking of a vulnerability</div><br><div style='color: lawngreen'>Marking of a prevention</div><br><div style='color: deepskyblue'>Marking of an ideal solution</div><br><div style='color: lightsteelblue'>Marking of a link for further investigation</div>",
         "<b>Signs and their meanings</b><br><br>Move the cursor on one of the signs to see what they mean<br><br><img title='Sign for a vulnerability' style='width: 10%' src='./Logo.png'>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='help-circle' title='Sign for a tip'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather=\'info\' title='Sign for a part of a solution'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='compass' title='Sign for further information'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='external-link' title='Sign for the opening of a website'></i><br><br><i class='featherBig' data-feather='x-square' title='Sign for a mistake'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='check-square' title='Sign for a suggested solution'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='minimize-2' title='Sign for the minimization of the explanation'></i>",
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp SKIP TUTORIAL",
         "I provide useful tips if you are stuck",
@@ -237,7 +235,7 @@
         setText();
         feather.replace();
         
-        //https://github.com/feathericons/feather/issues/585 -> Showing a title on an feather icon
+        //https://github.com/feathericons/feather/issues/585 -> Showing a title on a feather icon
         Array.from(document.querySelectorAll('svg.feather[title]')).forEach((element) => {
             element.insertAdjacentHTML('afterbegin', `<title>${element.attributes.title.value}</title>`);
         });
