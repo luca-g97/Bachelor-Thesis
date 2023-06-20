@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        background-color: #222222;
+        text-align: center;
+        color: lightgrey;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .introduction {
+        font-size: 3em;
+    }
+</style>
+<body>
+    <div id="0" class="introduction"></div>
+</body>
+<script>
+    var german = ["Hier wäre nun die nächste Sicherheitslücke zu sehen. Gehen Sie zurück zur Beispiels-Lücke"];
+
+    var english = ["Here would now be the next vulnerability. Go back to the Example Vulnerability"];
+
+    var languageToUse = english;
+    if (localStorage.getItem("language") === "German")
+    {
+        languageToUse = german;
+    }
+
+    for (var i = 0; i < languageToUse.length; i++)
+    {
+        document.getElementById(i.toString()).innerText = languageToUse[i];
+    }
+</script>
+</html>

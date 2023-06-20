@@ -31,7 +31,7 @@
         }
 
         .topicsContainer {
-            position: absolute;
+            position: relative;
             left: 5%;
             width: 90%;
             border-spacing: 20px;
@@ -69,44 +69,7 @@
             color: lightgrey;
         }
 
-        .topicHoverable:hover{
-            background-color: #444444;
-        }
-
-        .hackExplanationTip
-        {
-            padding: 1%;
-            border: #999999 solid 3px;
-            margin: 2%;
-            border-radius: 10px;
-        }
-        .hackExplanationSolution
-        {
-            padding: 1%;
-            border: lightgrey solid 3px;
-            margin: 2%;
-            border-radius: 10px;
-        }
-        .hackExplanationResult
-        {
-            padding: 1%;
-            border: darkorange solid 3px;
-            margin: 2%;
-            border-radius: 10px;
-        }
-        .hackExplanation{
-            word-wrap: break-word;
-            letter-spacing: .04em;
-            align-content: center;
-            font-size: 0.9em;
-            color: lightgrey;
-            white-space: inherit;
-            cursor: pointer;
-            user-select: none;
-            padding: 1%;
-        }
-
-        .hackExplanationTip:hover, .hackExplanationSolution:hover, .switchSite:hover{
+        .switchSite:hover{
             background-color: #333333;
         }
         .switchSite:hover{
@@ -139,63 +102,236 @@
             align-content: center;
             vertical-align: super;
         }
-        .feather-right{
-            float: right;
-            width: 7%;
-            vertical-align: bottom;
-        }
     </style>
 </head>
-<body>
+<!-- Start of my insert -->
+<style>
+    #explanationOpener {
+        opacity: 0.7;
+        width: 100px;
+        height: 100px;
+        z-index: 100;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        cursor: pointer;
+        border-radius: 2%;
+    }
+    #explanationCloser {
+        width: 1.3%;
+        height: 2%;
+        z-index: 100;
+        top: 1%;
+        left: 100.5%;
+        position: fixed;
+        color: lightgrey;
+        cursor: pointer;
+        border: 2px solid lightgrey;
+        background-color: black;
+        border-radius: 3px;
+    }
+    #explanation{
+        margin: 0;
+        position: fixed;
+        background-color: black;
+        top: 0;
+        width: 30%;
+        left: 100%;
+        height: 100%;
+        border: 2px solid black;
+        font-family: 'Open Sans',sans-serif;
+    }
+    .information {
+        color: whitesmoke;
+        background-color: #111111;
+        text-align: center;
+        font-weight: bold;
+        height: 10%;
+        padding: 2%;
+    }
+    .informationChoice {
+        user-select: none;
+        padding: 1.7%;
+        color: white;
+        border: 1px solid #333333;
+        width: 33%;
+        text-align: center;
+        background-color: black;
+        cursor: pointer;
+        border-radius: 2%;
+    }
+    .flex-container {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: auto;
+    }
+    .flex-item {
+        user-select: none;
+        flex: 0 0 auto;
+        width: 20%;
+        height:20%;
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        border: 1px solid #333333;
+        cursor: pointer;
+    }
+    #explanationCloser:hover{
+        background-color: #333333;
+    }
+    #explanationOpener:hover{
+        opacity: 1;
+    }
+    .picked {
+        background-color: #222222;
+    }
+</style>
+<!-- Need to be called before the elements, so the elements know what to do onclick -->
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    var currentlyPicked = [];
+
+    function showExplanation(element, topic)
+    {
+        var currentlyClickedVulnerability = element.id;
+        //Remove the class picked from the old picked elements
+        for (var i = 0; i < currentlyPicked.length; i++)
+        {
+            if("" !== topic)
+            {
+                if(!currentlyPicked[i].classList.contains("flex-item"))
+                {
+                    currentlyPicked[i].classList.remove("picked");
+                }
+                else
+                {
+                    currentlyClickedVulnerability = currentlyPicked[i].id;
+                }
+            }
+            else {
+                currentlyPicked[i].classList.remove("picked");
+            }
+        }
+
+        //Add the class picked to the new picked elements
+        if(topic === "") {
+            document.getElementById("2").classList.add("picked");
+            currentlyPicked.push(document.getElementById("2"));
+        }
+        element.classList.add("picked");
+        currentlyPicked.push(element);
+
+
+        //Set the website source to the picked one
+        var newSource = "./Example/" + currentlyClickedVulnerability + "/" + topic + ".htm";
+        if(topic === "") {
+            newSource = "./Example/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
+        }
+        
+        if(element.id === "Elements" || currentlyClickedVulnerability === "Elements")
+        {
+            newSource = "./Example/Elements.htm";
+        }
+        localStorage.setItem("OpenedInIntroduction", currentlyClickedVulnerability);
+        document.getElementById("website").setAttribute("src", newSource);
+    }
+</script>
+<img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Logo.png" alt="Click here to open the hacking Explanation">
+<i class="feather" data-feather="minimize-2" title="Close Explanation" id="explanationCloser" onclick="showExplanations(false)"></i>
+<div id="explanation">
+    <div id="choice"><div id="0" class="information"></div>
+        <div class="information"><table style="width: 100%"><tr>
+            <td id="1" class="informationChoice" style="color: yellow" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
+            <td id="2" class="informationChoice" onclick="showExplanation(this, 'ExploitExplanation')"></td>
+            <td id="3" class="informationChoice" style="color: lawngreen" onclick="showExplanation(this, 'PreventionExplanation')"></td>
+        </tr></table></div></div>
+    <embed id="website" src="" width="100%" style="background-color: transparent">
+    <div id="vulnerabilities"><div id="4" class="information"></div>
+        <div class="flex-container"><table style="width:100%"><tr>
+            <td id="ExampleExplanation" class="flex-item" title="ExampleExplanation" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            <td id="Elements" class="flex-item" title="Elements" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+        </tr></table></div></div>
+</div>
+
+<!-- Needs to be called here, because otherwise the elements are not known yet -->
+<script>
+    var german = ["  Wechseln Sie zwischen den Themen per Klick", "Sicherheitslücke", "Hack-Ausführung", "Verhinderung",
+        "Wechseln Sie zwischen den Sicherheitslücken per Klick"];
+
+    var english = ["  Switch between the topics by clicking on the desired", "Vulnerability", "Exploit / Hack", "Prevention",
+        "Select the vulnerability by clicking on the button below"];
+
+    var languageToUse = english;
+    if (localStorage.getItem("language") === "German")
+    {
+        languageToUse = german;
+    }
+
+    for (var i = 0; i < languageToUse.length; i++)
+    {
+        document.getElementById(i.toString()).innerText = languageToUse[i];
+    }
+    var tabToOpen = "ExampleExplanation";
+    if(localStorage.getItem("OpenedInIntroduction") !== null){
+        tabToOpen= localStorage.getItem("OpenedInIntroduction");
+    }
+    showExplanation(document.getElementById(tabToOpen), "");
+    feather.replace();
+
+    //https://github.com/feathericons/feather/issues/585 -> Showing a title on an feather icon
+    Array.from(document.querySelectorAll('svg.feather[title]')).forEach((element) => {
+        element.insertAdjacentHTML('afterbegin', `<title>${element.attributes.title.value}</title>`);
+    });
+
+    function showExplanations(show) {
+        if (show)
+        {
+            document.getElementById("explanationOpener").style.zIndex = "-100";
+            document.getElementById("explanationCloser").style.left = "70.5%";
+            document.getElementById("body").style.width = "70%";
+            document.getElementById("explanation").style.left = "70%";
+
+            var choice = document.getElementById("choice").offsetHeight;
+            var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
+            document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
+        }
+        else
+        {
+            document.getElementById("explanationOpener").style.zIndex = "100";
+            document.getElementById("explanationCloser").style.left = "100.5%";
+            document.getElementById("body").style.width = "100%";
+            document.getElementById("explanation").style.left = "100%";
+        }
+    }
+</script>
+<!-- End of my insert -->
+<body id="body">
 <div>
-    <h1 id="0" class="title"></h1>
-    <h3 id="1" class="introduction"></h3>
+    <h1 id="intro0" class="title"></h1>
+    <h3 id="intro1" class="introduction"></h3>
     <div>
         <table class="topicsContainer">
             <tr>
-                <td class="topicContainer"><div class="topicHoverable" id="2"></div></td>
-                <td class="topicContainer"><div class="topic" id="3"></div><br><button id="languageIcon" title="Change Language" onclick="setLanguage(this, true)"></button></td>
-                <td class="topicContainer"><div class="topic" id="4"></div><br><div class="hackExplanationTip"><div class="hackExplanation" id="5" ondblclick="showTip(this)"></div></div><div class="hackExplanationSolution"><div class="hackExplanation" id="6" ondblclick="showTip(this)"></div></div><div class="hackExplanationResult"><div class="hackExplanation" id="7" ondblclick="showTip(this)"></div></div></td>
+                <td class="topicContainer"><div class="topic" id="intro2"></div><br><button id="languageIcon" title="Change Language" onclick="setLanguage(this, true)"></button></td>
+                <td class="topicContainer"><div class="topic" id="intro3"></div></td>
+                <td class="topicContainer"><div class="topic" id="intro4"></div></td>
             </tr>
-            <tr>
-                <td class="topicContainer"><div class="topic" id="8"></div><div class="websiteName"><embed src="./HomeView.htm" type="text/html" width="100%" height="200px" style="text-align: left; white-space: normal; text-wrap: none"></div></td>
-                <td class="topicContainer"><div class="topic" id="9"></div></td>
-                <td class="topicContainer"><div class="topic" id="10"></div></td>
-            </tr>
-            <tr><td></td><td id="11" class="switchSite" onclick="window.location.assign('./index.htm')"></td><td></td></tr>
+            <tr><td></td><td id="intro5" class="switchSite" onclick="window.location.assign('./index.htm')"></td><td></td></tr>
         </table>
     </div>
 </div>
 <script>
-    var german = ["Einführung in die Funktionen der Applikation", "",
-        "<b>Identifizierung klickbarer Felder</b><br><br>Wenn der Mauszeiger sich über diesem Feld befindet, verändert sich der Grauwert leicht. Dies symbolisiert anklickbare Felder", 
-        "<b>Sprache ändern</b><br><br>Diese kann jederzeit auf der Startseite über einen Klick auf die jeweilige Flagge geändert werden. Testen Sie dies, indem Sie auf die Flagge klicken", 
-        "<b>Standardansicht beim Wechseln zwischen Sicherheitslücken (um Spoiler zu vermeiden)</b><br><br>Doppelklicken Sie auf einen Hinweis um ihn zu öffnen oder zu schließen. Nur wenn der Hinweis geöffnet ist, kann der Inhalt markiert werden",
-        "<i class='feather' data-feather=\'help-circle\'></i> &nbsp Tipp <i class='feather-right' data-feather=\'chevron-down\'></i>", 
-        "<i class='feather' data-feather=\'info\'></i> &nbsp Lösungsschritt<i class='feather-right' data-feather=\'chevron-down\'></i>", 
-        "<i class='feather' data-feather=\'info\'></i> &nbsp Lösungsergebnis<i class='feather-right' data-feather=\'chevron-down\'></i>", 
-        "<b>Ansicht eines Programmcodes</b><br><br>", 
+    var german = ["Einführung in die Funktionen der Applikation", "Die Funktionsweise der Applikation ist der Vorgehensweise eines echten Hackers nachempfunden, was mit einem Öffnen der Website beginnt. Im Anschluss würde ein Hacker dort nach möglichen Lücken suchen.<br><br>In der Applikation ist das genauso, allerdings gibt es noch das Herz der Applikation, nämlich das Zeichen unten rechts auf jeder Website. Wenn Sie darauf klicken öffnet sich als Hilfestellung auf der rechten Seite das Erklärungsfenster, indem Sie alle Erklärungen und Schritte, die den Hack betreffen, finden.",
+        "<b>Sprache ändern</b><br><br>Diese kann jederzeit in der rechten oberen Ecke der Startseite über einen Klick auf die jeweilige Flagge geändert werden. Testen Sie dies, indem Sie auf die Flagge klicken",
         "<b>Farbwahl und ihre Bedeutung</b><br><br><div style='color: yellow'>Markierung einer Sicherheitslücke</div><br><div style='color: lawngreen'>Markierung einer Verhinderung</div><br><div style='color: deepskyblue'>Markierung einer idealen Lösung</div><br><div style='color: lightsteelblue'>Markierung eines weiterführenden Links</div>", 
         "<b>Zeichen und ihre Bedeutung</b><br><br>Bewegen Sie den Zeiger auf eines der Zeichen um zu sehen, was sie bedeuten<br><br><img title='Zeichen für Sicherheitslücke' style='width: 10%' src='./Logo.png'>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='help-circle' title='Zeichen für Tipp'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather=\'info\' title='Zeichen für Teil der Lösung'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='compass' title='Zeichen für Weiterführende Informationen'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='external-link' title='Zeichen fürs Öffnen einer Seite'></i><br><br><i class='featherBig' data-feather='x-square' title='Zeichen für Fehler'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='check-square' title='Zeichen für Lösungsvorschlag'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='minimize-2' title='Zeichen für Minimierung der Erklärungen'></i>", 
-        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp EINFÜHRUNG ÜBERSPRINGEN",
-        "Ich enthalte nützliche Tipps falls Sie mal nicht weiterkommen", 
-        "Ich beinhalte alle nötigen Lösungsschritte um den Hack auszuführen", 
-        "Ich sage Ihnen immer wo Sie sich nach der Durchführung des Hacks befinden sollten"];
+        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp EINFÜHRUNG ABGESCHLOSSEN"];
 
-    var english = ["Introduction into the functions of the application", "",
-        "<b>Identification of clickable fields</b><br><br>If the mouse cursor is on top of the field, the value of the grey slightly changes. This symbolizes clickable fields",
-        "<b>Change language</b><br><br>This can be done anytime on the homepage by clicking on the flag in the upper right corner. Test it by clicking the flag here",
-        "<b>Standard view after the change of the vulnerability (to prevent spoilers)</b><br><br>Double click on any advice to open or close it. Only if the advice is open, the content can be marked",
-        "<i class='feather' data-feather=\'help-circle\'></i> &nbsp Tip <i class='feather-right' data-feather=\'chevron-down\'></i>",
-        "<i class='feather' data-feather=\'info\'></i> &nbsp Solution Step<i class='feather-right' data-feather=\'chevron-down\'></i>",
-        "<i class='feather' data-feather=\'info\'></i> &nbsp Solution Result<i class='feather-right' data-feather=\'chevron-down\'></i>",
-        "<b>View of the code of a program</b><br><br>",
+    var english = ["Introduction into the functions of the application", "The application is inspired by the methods of a real hacker, which starts always with opening a website. Afterward a hacker would now look for possible vulnerabilities there.<br><br>This is the case in the application as well, but there is also the heart of the application, which is the sign in the bottom right corner on each website. If you click on it, the explanation window is shown on the right side of the screen, to provide help. This includes all explanations and steps for the hack",
+        "<b>Change language</b><br><br>This can be done anytime in the upper right corner of the homepage by clicking on the flag in the upper right corner. Test it by clicking the flag here",
         "<b>Color choice and its meaning</b><br><br><div style='color: yellow'>Marking of a vulnerability</div><br><div style='color: lawngreen'>Marking of a prevention</div><br><div style='color: deepskyblue'>Marking of an ideal solution</div><br><div style='color: lightsteelblue'>Marking of a link for further investigation</div>",
         "<b>Signs and their meanings</b><br><br>Move the cursor on one of the signs to see what they mean<br><br><img title='Sign for a vulnerability' style='width: 10%' src='./Logo.png'>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='help-circle' title='Sign for a tip'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather=\'info\' title='Sign for a part of a solution'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='compass' title='Sign for further information'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='external-link' title='Sign for the opening of a website'></i><br><br><i class='featherBig' data-feather='x-square' title='Sign for a mistake'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='check-square' title='Sign for a suggested solution'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='minimize-2' title='Sign for the minimization of the explanation'></i>",
-        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp SKIP TUTORIAL",
-        "I provide useful tips if you are stuck",
-        "I provide any solution step needed to execute the hack",
-        "I always tell you where you should be after the execution of the hack"];
+        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp TUTORIAL COMPLETED"];
 
     if(localStorage.getItem("language") != null){
         setLanguage(document.getElementById("languageIcon"), false);
@@ -207,9 +343,9 @@
             languageToUse = german;
         }
 
-        for (var i = 0; i < 12; i++)
+        for (var i = 0; i < 6; i++)
         {
-            document.getElementById(i.toString()).innerHTML = languageToUse[i];
+            document.getElementById("intro" + i.toString()).innerHTML = languageToUse[i];
         }
     }
 
@@ -240,34 +376,7 @@
             element.insertAdjacentHTML('afterbegin', `<title>${element.attributes.title.value}</title>`);
         });
     }
-
-    var visibleElements = [];
     
-    function showTip(element)
-    {
-        var index;
-        if (!visibleElements.includes(element.id))
-        {
-            visibleElements.push(element.id);
-            index = parseInt(element.id) + 7;
-            element.style.textAlign = "left";
-            element.style.hyphens = "auto";
-            element.style.userSelect = "auto";
-            element.style.cursor = "text";
-        }
-        else
-        {
-            index = visibleElements.indexOf(element.id);
-            visibleElements.splice(index, index+1);
-            index = element.id;
-            element.style.textAlign = "center";
-            element.style.userSelect = "none";
-            element.style.cursor = "pointer";
-        }
-        element.innerHTML = languageToUse[index];
-        feather.replace();
-    }
-
     //Replace the icons with svgs
     feather.replace();
 </script>

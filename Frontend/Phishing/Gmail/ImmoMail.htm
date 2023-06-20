@@ -102686,11 +102686,11 @@
 <img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Logo.png" alt="Click here to open the hacking Explanation">
 <i class="feather" data-feather="minimize-2" title="Close Explanation" id="explanationCloser" onclick="showExplanations(false)"></i>
 <div id="explanation">
-    <div><div id="0" class="information"></div>
+    <div id="choice"><div id="0" class="information"></div>
         <div class="information"><table style="width: 100%"><tr>
             <td id="1" class="informationChoice" onclick="showExplanation(this)"></td>
         </tr></table></div></div>
-    <embed id="website" src="" width="100%" height="70%" style="background-color: transparent">
+    <embed id="website" src="" width="100%" style="background-color: transparent">
     <div id="vulnerabilities"><div id="2" class="information"></div>
         <div class="flex-container"><table style="width:100%"><tr>
             <td id="MalwarePhishing" class="flex-item" title="Malware Phishing" onclick="showExplanation(this)"><img src="../../Logo.png" style="width:100px; height:100px"></td>
@@ -102736,6 +102736,10 @@
             document.getElementById("explanationCloser").style.left = "70.5%";
             document.getElementById("body").style.width = "70%";
             document.getElementById("explanation").style.left = "70%";
+
+            var choice = document.getElementById("choice").offsetHeight;
+            var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
+            document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
         }
         else
         {
@@ -102747,7 +102751,7 @@
     }
 </script>
 <!-- End of my insert -->
-<body id="body" jscontroller="hS6RLb" jsmodel="utMpr"
+<body id="body" style="width: 100%" jscontroller="hS6RLb" jsmodel="utMpr"
       jsaction="rcuQ6b:rcuQ6b;A59Jsf:aeO1Sd;RW0A4:WBopzd;FwQykc:k0aXUd;kQx1de:QSAxne;LPBdz:LCjO0c;jrvfrd:PB0Csf;FGHbk:Nx2Sl;qNGYPc:LEY81c;Mehhhf:dCAGAe;UMTqxf:rioWAc;jSI5yb:Lzhzdc;JpvSPb:EL4Jr;Aeulrb:nixEK;YweIdb:.CLIENT;iE7Vzc:.CLIENT;v9KJX:.CLIENT;Ly2fm:.CLIENT;ORuuO:.CLIENT;RzaMQe:.CLIENT"
       class="aAU" tabindex="-1"
       jslog="20276; u014N:xr6bB; 1:WyJ0aHJlYWQtZjoxNzYyNDEzMTMwMjU3NTEzNDA4Iix0cnVlLG51bGwsbnVsbCxbbnVsbCxbXV0sZmFsc2UsbnVsbCxmYWxzZSxudWxsLG51bGwsbnVsbCxudWxsLG51bGwsW11d"

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width"><title>HomeView</title><link rel="stylesheet" type="text/css" href="./view.css"></head><body id="viewsource" class="wrap highlight" style="tab-size: 4; background-color: #1C1B22"><pre id="line1"><span style="color: whitesmoke; background-color: #1C1B22"><span></span><span class="doctype">&lt;!DOCTYPE html&gt;</span><span>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width"><title>HomeView</title><link rel="stylesheet" type="text/css" href="../view.css"></head><body id="viewsource" class="wrap highlight" style="tab-size: 4; background-color: #1C1B22"><pre id="line1"><span style="color: whitesmoke; background-color: #1C1B22"><span></span><span class="doctype">&lt;!DOCTYPE html&gt;</span><span>
 <span id="line2"></span></span><span>&lt;<span class="start-tag">html</span> <span class="attribute-name">lang</span>="<a class="attribute-value">en</a>"&gt;</span><span>
 <span id="line3"></span></span><span>&lt;<span class="start-tag">head</span>&gt;</span><span>
 <span id="line4"></span></span><span>&lt;<span class="start-tag">meta</span> <span class="attribute-name">charset</span>="<a class="attribute-value">UTF-8</a>"&gt;</span><span>
@@ -177,26 +177,29 @@
 <span id="line175"></span>    
 <span id="line176"></span>function setLanguage(element, change){
 <span id="line177"></span>var languageToSet = localStorage.getItem("language");
-<span id="line178"></span>        
-<span id="line179"></span>if (change) {
-<span id="line180"></span>if (localStorage.getItem("language") === "German") {
-<span id="line181"></span>languageToSet = "English";
-<span id="line182"></span>} else {
-<span id="line183"></span>languageToSet = "German";
-<span id="line184"></span>}
-<span id="line185"></span>}
-<span id="line186"></span>                    
-<span id="line187"></span>if (languageToSet === "German") {
-<span id="line188"></span>element.innerHTML = "🇩🇪"
-<span id="line189"></span>} else {
-<span id="line190"></span>element.innerHTML = "🇬🇧";
-<span id="line191"></span>}
-<span id="line192"></span>localStorage.setItem("language", languageToSet);
-<span id="line193"></span>setText();
-<span id="line194"></span>}
-<span id="line195"></span>
-<span id="line196"></span>//Replace the icons with svgs
-<span id="line197"></span>feather.replace();
-<span id="line198"></span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
-<span id="line199"></span></span><span>&lt;/<span class="end-tag">body</span>&gt;</span><span>
-<span id="line200"></span></span><span>&lt;/<span class="end-tag">html</span>&gt;</span><span></span></span></pre></body></html>
+<span id="line178"></span> 
+<span id="line179"></span><span class="comment" style="color: lawngreen; font-weight: bold">This line prevents the vulnerability</span>
+<span id="line180"></span><span class="comment" style="color: deepskyblue; font-weight: bold">This line is the best option for this type of vulnerability</span>
+<span id="line181"></span>if (change) {
+<span id="line182"></span>if (localStorage.getItem("language") === "German") {
+<span id="line183"></span>languageToSet = "English";
+<span id="line184"></span>} else {
+<span id="line185"></span>languageToSet = "German";
+<span id="line186"></span>}
+<span id="line187"></span>}
+<span id="line188"></span>                    
+<span id="line189"></span>if (languageToSet === "German") {
+<span id="line190"></span>element.innerHTML = "🇩🇪"
+<span id="line191"></span>} else {
+<span id="line192"></span>element.innerHTML = "🇬🇧";
+<span id="line193"></span>}
+<span id="line194"></span>localStorage.setItem("language", languageToSet);
+<span id="line195"></span>setText();
+<span id="line196"></span>}
+<span id="line197"></span><span class="comment" style="color: yellow; font-weight: bold">This line causes the vulnerability</span>
+<span id="line198"></span>
+<span id="line199"></span>//Replace the icons with svgs
+<span id="line200"></span>feather.replace();
+<span id="line201"></span></span><span>&lt;/<span class="end-tag">script</span>&gt;</span><span>
+<span id="line202"></span></span><span>&lt;/<span class="end-tag">body</span>&gt;</span><span>
+<span id="line203"></span></span><span>&lt;/<span class="end-tag">html</span>&gt;</span><span></span></span></pre></body></html>
