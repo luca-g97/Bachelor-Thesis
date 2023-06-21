@@ -102,6 +102,18 @@
             align-content: center;
             vertical-align: super;
         }
+        .featherLeft{
+            left: 0;
+            width: 7%;
+            vertical-align: bottom;
+            color: lightgrey;
+        }
+        .featherRight{
+            right: 0;
+            width: 7%;
+            vertical-align: bottom;
+            color: lightgrey;
+        }
     </style>
 </head>
 <!-- Start of my insert -->
@@ -316,22 +328,31 @@
                 <td class="topicContainer"><div class="topic" id="intro3"></div></td>
                 <td class="topicContainer"><div class="topic" id="intro4"></div></td>
             </tr>
+            <tr><td></td><td class="topicContainer"><div class="topic" id="intro6" style="color: orangered;"></div></td><td></td></tr>
+            <tr><td class="topicContainer"><div class="topic" id="intro7"></div></td><td></td><td class="topicContainer"><div class="topic" id="intro8"></div></td></tr>
             <tr><td></td><td id="intro5" class="switchSite" onclick="window.location.assign('./index.htm')"></td><td></td></tr>
         </table>
     </div>
 </div>
 <script>
     var german = ["Einführung in die Funktionen der Applikation", "Die Funktionsweise der Applikation ist der Vorgehensweise eines echten Hackers nachempfunden, was mit einem Öffnen der Website beginnt. Im Anschluss würde ein Hacker dort nach möglichen Lücken suchen.<br><br>In der Applikation ist das genauso, allerdings gibt es noch das Herz der Applikation, nämlich das Zeichen unten rechts auf jeder Website. Wenn Sie darauf klicken öffnet sich als Hilfestellung auf der rechten Seite das Erklärungsfenster, indem Sie alle Erklärungen und Schritte, die den Hack betreffen, finden.",
-        "<b>Sprache ändern</b><br><br>Diese kann jederzeit in der rechten oberen Ecke der Startseite über einen Klick auf die jeweilige Flagge geändert werden. Testen Sie dies, indem Sie auf die Flagge klicken",
+        "<b>Sprache der Erklärungen ändern</b><br><br>Diese kann jederzeit in der rechten oberen Ecke der Startseite über einen Klick auf die jeweilige Flagge geändert werden. Testen Sie dies, indem Sie auf die Flagge klicken",
         "<b>Farbwahl und ihre Bedeutung</b><br><br><div style='color: yellow'>Markierung einer Sicherheitslücke</div><br><div style='color: lawngreen'>Markierung einer Verhinderung</div><br><div style='color: deepskyblue'>Markierung einer idealen Lösung</div><br><div style='color: lightsteelblue'>Markierung eines weiterführenden Links</div>", 
         "<b>Zeichen und ihre Bedeutung</b><br><br>Bewegen Sie den Zeiger auf eines der Zeichen um zu sehen, was sie bedeuten<br><br><img title='Zeichen für Sicherheitslücke' style='width: 10%' src='./Logo.png'>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='help-circle' title='Zeichen für Tipp'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather=\'info\' title='Zeichen für Teil der Lösung'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='compass' title='Zeichen für Weiterführende Informationen'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='external-link' title='Zeichen fürs Öffnen einer Seite'></i><br><br><i class='featherBig' data-feather='x-square' title='Zeichen für Fehler'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='check-square' title='Zeichen für Lösungsvorschlag'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='minimize-2' title='Zeichen für Minimierung der Erklärungen'></i>", 
-        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp EINFÜHRUNG ABGESCHLOSSEN"];
+        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp EINFÜHRUNG ABGESCHLOSSEN",
+        "<b>Bitte stellen Sie sicher, dass Pop-Ups für diese Seite erlaubt sind bevor Sie fortfahren!</b><br><div style='color: whitesmoke'><i class='featherLeft' data-feather='arrow-down-left' style=\"color: whitesmoke\"></i>Wählen Sie die Anleitung für Ihren Browser<i class='featherRight' data-feather='arrow-down-right' style=\"color: whitesmoke\"></i></div>",
+        "<b>Für Firefox:</b><br><br> Klicken Sie auf das Zeichen direkt links der URL <br>(URL = <b>" + window.location.host + "/Introduction.htm</b>).<br> Wählen Sie dort bei Pop-Up-Fenster öffnen <b>Erlauben</b> aus",
+        "<b>Für Chrome:</b><br><br> Klicken Sie auf das Infosymbol links der URL <br>(URL = <b>" + window.location.host + "/Introduction.htm</b>)<br> und öffnen Sie die Website-Einstellungen. Wählen Sie bei Pop-Ups und Weiterleitungen <b>Zulassen</b> aus. Kehren Sie im Anschluss auf die Applikationsseite zurück"];
+    
 
     var english = ["Introduction into the functions of the application", "The application is inspired by the methods of a real hacker, which starts always with opening a website. Afterward a hacker would now look for possible vulnerabilities there.<br><br>This is the case in the application as well, but there is also the heart of the application, which is the sign in the bottom right corner on each website. If you click on it, the explanation window is shown on the right side of the screen, to provide help. This includes all explanations and steps for the hack",
-        "<b>Change language</b><br><br>This can be done anytime in the upper right corner of the homepage by clicking on the flag in the upper right corner. Test it by clicking the flag here",
+        "<b>Change language of explanations</b><br><br>This can be done anytime in the upper right corner of the homepage by clicking on the flag in the upper right corner. Test it by clicking the flag here",
         "<b>Color choice and its meaning</b><br><br><div style='color: yellow'>Marking of a vulnerability</div><br><div style='color: lawngreen'>Marking of a prevention</div><br><div style='color: deepskyblue'>Marking of an ideal solution</div><br><div style='color: lightsteelblue'>Marking of a link for further investigation</div>",
         "<b>Signs and their meanings</b><br><br>Move the cursor on one of the signs to see what they mean<br><br><img title='Sign for a vulnerability' style='width: 10%' src='./Logo.png'>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='help-circle' title='Sign for a tip'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather=\'info\' title='Sign for a part of a solution'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='compass' title='Sign for further information'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='external-link' title='Sign for the opening of a website'></i><br><br><i class='featherBig' data-feather='x-square' title='Sign for a mistake'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='check-square' title='Sign for a suggested solution'></i>&nbsp;&nbsp;&nbsp;<i class='featherBig' data-feather='minimize-2' title='Sign for the minimization of the explanation'></i>",
-        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp TUTORIAL COMPLETED"];
+        "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp TUTORIAL COMPLETED",
+        "<b>Please make sure that Pop-Ups are enabled before you proceed!</b><br><div style='color: whitesmoke'><i class='featherLeft' data-feather='arrow-down-left' style=\"color: whitesmoke\"></i>Pick the instructions for your browser<i class='featherRight' data-feather='arrow-down-right' style=\"color: whitesmoke\"></i></div>",
+        "<b>For Firefox:</b><br><br> Click on the sign directly left of the URL <br>(URL = <b>" + window.location.host + "/Introduction.htm</b>).<br> Choose <b>Allow</b> for Pop-Up windows there",
+        "<b>For Chrome:</b><br><br> Click on the info icon left of the URL <br>(URL = <b>" + window.location.host + "/Introduction.htm</b>)<br> and open the Website settings. Choose <b>Allow</b> for Pop-Ups and Redirects. Go back to the application website afterward"];
 
     if(localStorage.getItem("language") != null){
         setLanguage(document.getElementById("languageIcon"), false);
@@ -343,7 +364,7 @@
             languageToUse = german;
         }
 
-        for (var i = 0; i < 6; i++)
+        for (var i = 0; i < 9; i++)
         {
             document.getElementById("intro" + i.toString()).innerHTML = languageToUse[i];
         }
