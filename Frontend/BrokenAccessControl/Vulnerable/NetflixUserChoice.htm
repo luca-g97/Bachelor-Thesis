@@ -4566,8 +4566,9 @@
     #explanationCloser {
         width: 1.3%;
         height: 2%;
+        min-height: 20px;
         z-index: 100;
-        top: 1%;
+        top: 10px;
         left: 100.5%;
         position: fixed;
         color: lightgrey;
@@ -4622,14 +4623,37 @@
         border: 1px solid #333333;
         cursor: pointer;
     }
+    .disclaimer{
+        width: 100%;
+        position: absolute;
+        z-index: 10;
+        text-align: center;
+        color: orangered;
+        font-size: 1.5em;
+        font-weight: bold;
+        background-color: #111111
+    }
     .picked {
         background-color: #222222;
     }
-    td:hover, #explanationCloser:hover{
+    td:hover, .switchSite:hover, #explanationCloser:hover{
         background-color: #333333;
     }
     #explanationOpener:hover{
         opacity: 1;
+    }
+    .switchSite {
+        padding: 0.5%;
+        opacity: 0.8;
+        background-color: black;
+        border-radius: 10px;
+        cursor: pointer;
+        color: whitesmoke;
+        font-weight: bold;
+        border: 3px solid orangered;
+    }
+    .feather {
+        vertical-align: bottom;
     }
 </style>
 <!-- Need to be called before the elements, so the elements know what to do onclick -->
@@ -4732,8 +4756,9 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
         {
             document.getElementById("explanationOpener").style.zIndex = "-100";
             document.getElementById("explanationCloser").style.left = "70.5%";
-            document.getElementById("body").style.width = "70%";
+            document.getElementById("disclaimer").style.width = "70%";
             document.getElementById("explanation").style.left = "70%";
+            document.getElementsByClassName("profiles-gate-container").item(0).style.width = "70%";
 
             var choice = document.getElementById("choice").offsetHeight;
             var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
@@ -4743,13 +4768,28 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
         {
             document.getElementById("explanationOpener").style.zIndex = "100";
             document.getElementById("explanationCloser").style.left = "100.5%";
-            document.getElementById("body").style.width = "100%";
+            document.getElementById("disclaimer").style.width = "100%";
             document.getElementById("explanation").style.left = "100%";
+            document.getElementsByClassName("profiles-gate-container").item(0).style.width = "100%";
         }
     }
+
+    //https://web.dev/resize-observer/
+    var ro = new ResizeObserver(entries => {
+         for (let entry of entries) {
+             var choice = document.getElementById("choice").offsetHeight;
+             var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
+             document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
+         }
+    });
+
+    // Observe one or multiple elements
+    ro.observe(document.getElementById("explanation"));
 </script>
 <!-- End of my insert -->
 <body id="body">
+<div id="disclaimer" class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one! &nbsp;&nbsp;&nbsp;<button class="switchSite" onclick="window.location.assign('../../../CommandProcessor.php?action=ChangeWebsite&website=/index.htm')"><i class='feather' data-feather='home' style="color: whitesmoke"></i>&nbsp; Home</button></div>
+<script>feather.replace();</script>
 <!-- From here on everything is build by a generator, so changes won´t work!-->
 <div id="appMountPoint">
     <div class="netflix-sans-font-loaded">

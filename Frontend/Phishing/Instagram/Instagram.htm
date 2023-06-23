@@ -58,16 +58,26 @@
         border: 1px solid #333333;
         cursor: pointer;
     }
+    .disclaimer{
+        font-family: 'Open Sans',sans-serif;
+        width: 70%;
+        padding: 0.7%;
+        text-align: center;
+        color: orangered;
+        font-size: 1.5em;
+        font-weight: bold;
+        background-color: #111111
+    }
     .picked {
         background-color: #222222;
     }
-    .flex-item:hover, .informationChoice:hover{
+    .flex-item:hover, .switchSite:hover, .informationChoice:hover{
         background-color: #333333;
     }
     .pictures{
         position: absolute;
         left: 14.55%;
-        top: 27%;
+        top: 33%;
         width: 55.5%;
         z-index: 50;
         height: 32.5%;
@@ -77,6 +87,19 @@
         z-index: -50;
         width: 70%;
         height: 100%;
+    }
+    .switchSite {
+        padding: 0.5%;
+        opacity: 0.8;
+        background-color: black;
+        border-radius: 10px;
+        cursor: pointer;
+        color: whitesmoke;
+        font-weight: bold;
+        border: 3px solid orangered;
+    }
+    .feather {
+        vertical-align: bottom;
     }
 </style>
 <!-- Need to be called before the elements, so the elements know what to do onclick -->
@@ -139,6 +162,10 @@
     }
     showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();
+
+    var choice = document.getElementById("choice").offsetHeight;
+    var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
+    document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
     
     function changeSite(site)
     {
@@ -164,10 +191,24 @@
             clickType[i].style.zIndex = zIndex;
         }
     }
+
+    //https://web.dev/resize-observer/
+    var ro = new ResizeObserver(entries => {
+         for (let entry of entries) {
+             var choice = document.getElementById("choice").offsetHeight;
+             var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
+             document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
+         }
+    });
+
+    // Observe one or multiple elements
+    ro.observe(document.getElementById("explanation"));
 </script>
 <!-- End of my insert -->
 <body>
-<table class="pictures"><tr><td onclick="changeSite('Brunch')"></td><td onclick="changeSite('Birthday')"></td><td onclick="changeSite('Family')"></td></tr></table>
+<div class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one! &nbsp;&nbsp;&nbsp;<button class="switchSite" onclick="window.location.assign('../../../CommandProcessor.php?action=ChangeWebsite&website=/index.htm')"><i class='feather' data-feather='home' style="color: whitesmoke"></i>&nbsp; Home</button></div>
+<script>feather.replace();</script>
+<table class="pictures"><tr><td onclick="changeSite('Family')"></td><td onclick="changeSite('Birthday')"></td><td onclick="changeSite('Brunch')"></td></tr></table>
 <div class="close" onclick="changeSite('Startpage')"></div>
 <img id="instagram" src="Startpage.png" width="70%" height="100%" alt="Instagram page">
 </body>

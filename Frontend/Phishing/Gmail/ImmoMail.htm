@@ -102588,8 +102588,9 @@
     #explanationCloser {
         width: 1.3%;
         height: 2%;
+        min-height: 20px;
         z-index: 100;
-        top: 1%;
+        top: 10px;
         left: 100.5%;
         position: fixed;
         color: lightgrey;
@@ -102654,11 +102655,24 @@
     .picked {
         background-color: #222222;
     }
-    .flex-item:hover, .informationChoice:hover, #explanationCloser:hover{
+    .flex-item:hover, .switchSite:hover, #explanationCloser:hover{
         background-color: #333333;
     }
     #explanationOpener:hover{
         opacity: 1;
+    }
+    .switchSite {
+        padding: 0.5%;
+        opacity: 0.8;
+        background-color: black;
+        border-radius: 10px;
+        cursor: pointer;
+        color: whitesmoke;
+        font-weight: bold;
+        border: 3px solid orangered;
+    }
+    .feather {
+        vertical-align: bottom;
     }
 </style>
 <!-- Need to be called before the elements, so the elements know what to do onclick -->
@@ -102751,6 +102765,18 @@
             document.getElementById("explanation").style.left = "100%";
         }
     }
+
+    //https://web.dev/resize-observer/
+    var ro = new ResizeObserver(entries => {
+         for (let entry of entries) {
+             var choice = document.getElementById("choice").offsetHeight;
+             var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
+             document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
+         }
+    });
+
+    // Observe one or multiple elements
+    ro.observe(document.getElementById("explanation"));
 </script>
 <!-- End of my insert -->
 <body jscontroller="hS6RLb" jsmodel="utMpr"
@@ -102758,7 +102784,8 @@
       class="aAU" tabindex="-1"
       jslog="20276; u014N:xr6bB; 1:WyJ0aHJlYWQtZjoxNzYyNDEzMTMwMjU3NTEzNDA4Iix0cnVlLG51bGwsbnVsbCxbbnVsbCxbXV0sZmFsc2UsbnVsbCxmYWxzZSxudWxsLG51bGwsbnVsbCxudWxsLG51bGwsW11d"
       data-awr-sg-installed="true">
-      <div id="disclaimer" class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one!</div>
+      <div id="disclaimer" class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one! &nbsp;&nbsp;&nbsp;<button class="switchSite" onclick="window.location.assign('../../../CommandProcessor.php?action=ChangeWebsite&website=/index.htm')"><i class='feather' data-feather='home' style="color: whitesmoke"></i>&nbsp; Home</button></div>
+<script>feather.replace();</script>
 <iframe style="position: absolute; width: 9em; height: 9em; top: -99em;" tabindex="-1" aria-hidden="true"></iframe>
 <!--<link data-recorded-src="https://mail.google.com/mail/u/0/data?sw=2&amp;token=%5B%22cftp%22,%223b274a4d3e%22,%22gmail.pinto-server_20230330.06_p0%22,%22ZyMrc6cBAw-rFZnvtXyj5A%5Cu003d%5Cu003d%22,null,3,%22%22%5D&amp;dilte=0&amp;gme=1&amp;sme=1&amp;pt=ji"
       id="embedded_data_iframe">-->
