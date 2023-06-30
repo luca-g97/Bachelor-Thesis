@@ -63,15 +63,20 @@
         if($website === "http://www.immowelt.de/expose/2HRTN4U")
         {
             $memeNumber = random_int(0, 3);
+            
+            //For everyone
             if($memeNumber === 0) { //Can´t fall for Phishing if you don´t check your emails
                 exec("cd ./Phishing/ && wget 'https://www.intercity.technology/hubfs/Imported_Blog_Media/2_fbf6b1d00535f63c7652ae47d36e53d9_800-1.jpeg' && cp 2_fbf6b1d00535f63c7652ae47d36e53d9_800-1.jpeg ThisCouldHaveBeenAVirus && rm 2_fbf6b1d00535f63c7652ae47d36e53d9_800-1.jpeg");
             } else if($memeNumber === 1) { //You clicked the link, didn´t you?
                 exec("cd ./Phishing/ && wget 'https://www.wgtwo.com/assets/images/mr-bean-phishing-meme-a6e86ee3cba84bc1daa770c6acde2376.jpeg' && cp mr-bean-phishing-meme-a6e86ee3cba84bc1daa770c6acde2376.jpeg ThisCouldHaveBeenAVirus && rm mr-bean-phishing-meme-a6e86ee3cba84bc1daa770c6acde2376.jpeg");
-            } else if($memeNumber === 2) { //Have mercy with our souls - Your it-team
-                exec("cd ./Phishing/ && wget 'https://www.wizer-training.com/hs-fs/hubfs/Security%20Awareness%20Have%20Mercy-png.png' && cp Security%20Awareness%20Have%20Mercy-png.png ThisCouldHaveBeenAVirus && rm Security%20Awareness%20Have%20Mercy-png.png");
+            } else if($memeNumber === 2) { //Tell me again Ipad
+                exec("cd ./Phishing/ && wget 'https://pbs.twimg.com/media/D_2PiGkXsAMGoZG.png' && cp D_2PiGkXsAMGoZG.png ThisCouldHaveBeenAVirus && rm D_2PiGkXsAMGoZG.png");
             } else { //Changed password to incorrect
                 exec("cd ./Phishing/ && wget 'https://pbs.twimg.com/media/DDG7VWvXsAA_izM.jpg' && cp DDG7VWvXsAA_izM.jpg ThisCouldHaveBeenAVirus && rm DDG7VWvXsAA_izM.jpg");
             }
+            
+            //For Media Engineers only
+            //exec("cd ./Phishing/ && wget '\\zuse1.efi.ohmportal.de\webgr\lib\BA_Geiger\Meme$memeNumber.jpg' && cp Meme$memeNumber.jpg ThisCouldHaveBeenAVirus && rm Meme$memeNumber.jpg");
         }
         header("Location: $website", true, false);
     }
