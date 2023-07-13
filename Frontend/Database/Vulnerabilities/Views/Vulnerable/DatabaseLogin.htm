@@ -268,7 +268,7 @@
 <span id="line266"></span> "Select the vulnerability by clicking on the button below"];
 <span id="line267"></span>
 <span id="line268"></span> var languageToUse = english;
-<span id="line269"></span> if (localStorage.getItem("language") === "German")
+<span id="line269"></span> if (sessionStorage.getItem("language") === "German")
 <span id="line270"></span> {
 <span id="line271"></span> languageToUse = german;
 <span id="line272"></span> }
@@ -278,8 +278,8 @@
 <span id="line276"></span> document.getElementById(i.toString()).innerText = languageToUse[i];
 <span id="line277"></span> }
 <span id="line278"></span> var tabToOpen = "PasswordStrength";
-<span id="line279"></span> if(localStorage.getItem("OpenedInDatabase") !== null){
-<span id="line280"></span> tabToOpen= localStorage.getItem("OpenedInDatabase");
+<span id="line279"></span> if(sessionStorage.getItem("OpenedInDatabase") !== null){
+<span id="line280"></span> tabToOpen= sessionStorage.getItem("OpenedInDatabase");
 <span id="line281"></span> }
 <span id="line282"></span> showExplanation(document.getElementById(tabToOpen), "");
 <span id="line283"></span> feather.replace();

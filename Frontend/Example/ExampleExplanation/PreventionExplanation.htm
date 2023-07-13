@@ -103,7 +103,7 @@
         "When you click on the button, the secure website will be opened in the foreground (It is not possible to switch the site in the same window, because an embedded site is used and it would be opened here then). Here the button has no function since it is only for presentation purposes"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }

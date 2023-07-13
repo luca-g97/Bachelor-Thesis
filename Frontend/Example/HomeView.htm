@@ -122,7 +122,7 @@
 <span id="line120"></span>"Database Usage &amp; Injection", "Click here to learn more about the risks a wrong database access can cause and how to prevent especially injections easily - </span><span>&lt;b</span><span>&gt;in a PHPLiteAdmin database playground</span><span>&lt;/<span></span>b</span><span>&gt;",
 <span id="line121"></span>"Phishing &amp;amp; Social Engineering", "Click here to learn more about avoiding getting scammed by phishing and how you can certify a link as harmful with ease - </span><span>&lt;b</span><span>&gt;in a Google Mail lookalike playground</span><span>&lt;/<span></span>b</span><span>&gt;"];
 <span id="line122"></span>    
-<span id="line123"></span>if (localStorage.getItem("language") === null)
+<span id="line123"></span>if (sessionStorage.getItem("language") === null)
 <span id="line124"></span>{
 <span id="line125"></span>swal({
 <span id="line126"></span>title: 'Sprache &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbspLanguage',
@@ -143,7 +143,7 @@
 <span id="line141"></span>type: 'success',
 <span id="line142"></span>confirmButtonColor: '#1A1A1A'
 <span id="line143"></span>})
-<span id="line144"></span>localStorage.setItem("language", "English");
+<span id="line144"></span>sessionStorage.setItem("language", "English");
 <span id="line145"></span>setLanguage(document.getElementById("languageIcon"), false);
 <span id="line146"></span>} else if (result.value === undefined){
 <span id="line147"></span>swal({
@@ -152,19 +152,19 @@
 <span id="line150"></span>type: 'success',
 <span id="line151"></span>confirmButtonColor: '#1A1A1A'
 <span id="line152"></span>})
-<span id="line153"></span>localStorage.setItem("language", "German");
+<span id="line153"></span>sessionStorage.setItem("language", "German");
 <span id="line154"></span>setLanguage(document.getElementById("languageIcon"), false);
 <span id="line155"></span>}
 <span id="line156"></span>window.location.assign("./Introduction.htm");
 <span id="line157"></span>})}
 <span id="line158"></span>
-<span id="line159"></span>if(localStorage.getItem("language") != null){
+<span id="line159"></span>if(sessionStorage.getItem("language") != null){
 <span id="line160"></span>setLanguage(document.getElementById("languageIcon"), false);
 <span id="line161"></span>}
 <span id="line162"></span>
 <span id="line163"></span>function setText(){
 <span id="line164"></span>var languageToUse = english;
-<span id="line165"></span>if (localStorage.getItem("language") === "German")
+<span id="line165"></span>if (sessionStorage.getItem("language") === "German")
 <span id="line166"></span>{
 <span id="line167"></span>languageToUse = german;
 <span id="line168"></span>}
@@ -176,12 +176,12 @@
 <span id="line174"></span>}
 <span id="line175"></span>    
 <span id="line176"></span>function setLanguage(element, change){
-<span id="line177"></span>var languageToSet = localStorage.getItem("language");
+<span id="line177"></span>var languageToSet = sessionStorage.getItem("language");
 <span id="line178"></span> 
 <span id="line179"></span><span class="comment" style="color: lawngreen; font-weight: bold">This line prevents the vulnerability</span>
 <span id="line180"></span><span class="comment" style="color: deepskyblue; font-weight: bold">This line is the best option for this type of vulnerability</span>
 <span id="line181"></span>if (change) {
-<span id="line182"></span>if (localStorage.getItem("language") === "German") {
+<span id="line182"></span>if (sessionStorage.getItem("language") === "German") {
 <span id="line183"></span>languageToSet = "English";
 <span id="line184"></span>} else {
 <span id="line185"></span>languageToSet = "German";
@@ -193,7 +193,7 @@
 <span id="line191"></span>} else {
 <span id="line192"></span>element.innerHTML = "🇬🇧";
 <span id="line193"></span>}
-<span id="line194"></span>localStorage.setItem("language", languageToSet);
+<span id="line194"></span>sessionStorage.setItem("language", languageToSet);
 <span id="line195"></span>setText();
 <span id="line196"></span>}
 <span id="line197"></span><span class="comment" style="color: yellow; font-weight: bold">This line causes the vulnerability</span>

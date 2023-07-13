@@ -259,7 +259,7 @@
         if(topic === "") {
             newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
         }
-        localStorage.setItem("OpenedInDatabase", currentlyClickedVulnerability);
+        sessionStorage.setItem("OpenedInDatabase", currentlyClickedVulnerability);
         document.getElementById("website").setAttribute("src", newSource);
     }
 </script>
@@ -292,7 +292,7 @@
         "Select the vulnerability by clicking on the button below"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }
@@ -302,8 +302,8 @@
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
     var tabToOpen = "ErrorMessages";
-    if(localStorage.getItem("OpenedInDatabase") !== null){
-        tabToOpen= localStorage.getItem("OpenedInDatabase");
+    if(sessionStorage.getItem("OpenedInDatabase") !== null){
+        tabToOpen= sessionStorage.getItem("OpenedInDatabase");
     }
     showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();

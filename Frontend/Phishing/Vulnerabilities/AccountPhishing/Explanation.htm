@@ -147,7 +147,7 @@
             "<b>Step 3:</b><br><br>To test now without any risk what happens exactly by an Account Phishing please enter any username and any password (doesn´t matter what) and click on <b>login</b>. On the now opening site enter any code you want. <i>At steam there is another security question inside the steam app on the smartphone (Steamguard), which changes all 20 seconds the 5-letter code. This makes it extremely difficult for hackers to enter the data in time, but not if the user provides them self as in this case. Since you entered all relevant data the hacker just redirects them to the real steam website and can overtake your account without any chance for you to stop him<br><br>The developers can also not do anything, since you gave the hacker the necessary data to surpass every security measure (password and code). Since hackers are often using bot nets not only for the Phishing but also for the redirection of the data, the login can be fully automatic and afterward your account (also your BANKACCOUNT if you didn´t protect your payment methods) emptied within a few minutes!</i>"];
 
         var languageToUse = english;
-        if (localStorage.getItem("language") === "German")
+        if (sessionStorage.getItem("language") === "German")
         {
             languageToUse = german;
         }

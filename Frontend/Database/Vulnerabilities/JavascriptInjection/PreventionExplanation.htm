@@ -98,7 +98,7 @@
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>It switches all executable letters to html entities, so they are not used for execution anymore. Those look identical though:<ul><li>This is an executable letter: <</li><li>And this is the HTML Entity <b>&amp;lt</b>: &lt;</li></ul>"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }

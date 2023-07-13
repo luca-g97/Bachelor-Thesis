@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Introduction</title>
+</head>
+<body style="text-align: center;">
+<script>
+    setInterval(displayStoredValues, 1000);
+    
+    function displayStoredValues() {
+        var stored = "";
+        for (var i = 0; i < localStorage.length; i++) {
+            if (localStorage.getItem("" + i) !== null) {
+                stored += localStorage.getItem("" + i) + "<br>";
+            }
+        }
+        document.getElementById("output").innerHTML = stored;
+    }
+</script>
+<label for="input">Enter your name to be displayed underneath: </label><input id="input">
+<div id="label">The entered name was</div>
+<div id="output"></div>
+<script>
+    var counter = 0;
+    document.addEventListener('keyup', (event)=> {
+        if (event.key === "Enter")
+        {
+            localStorage.setItem("" + counter, document.getElementById("input").value);
+            counter++;
+        }
+    });
+    alert();
+</script>
+</body>
+</html>

@@ -122,7 +122,7 @@
 </style>
 <!-- Need to be called before the elements, so the elements know what to do onclick -->
 <script src="https://unpkg.com/feather-icons"></script>
-<script>
+<script>    
     var currentlyPicked = [];
 
     function showExplanation(element, topic)
@@ -161,10 +161,11 @@
         if(topic === "") {
             newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
         }
-        localStorage.setItem("OpenedInDatabase", currentlyClickedVulnerability);
+        sessionStorage.setItem("OpenedInDatabase", currentlyClickedVulnerability);
         document.getElementById("website").setAttribute("src", newSource);
     }
 </script>
+<div id="deleteToAvoidDoubling">
 <img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Logo.png" alt="Click here to open the hacking Explanation">
 <i class="feather" data-feather="minimize-2" title="Close Explanation" id="explanationCloser" onclick="showExplanations(false)"></i>
 <div id="explanation">
@@ -184,6 +185,7 @@
             <td id="PasswordStorage" class="flex-item" title="Password Storage" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
         </tr></table></div></div>
 </div>
+</div>
 
 <!-- Needs to be called here, because otherwise the elements are not known yet -->
 <script>
@@ -194,7 +196,7 @@
         "Select the vulnerability by clicking on the button below"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }
@@ -204,8 +206,8 @@
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
     var tabToOpen = "ErrorMessages";
-    if(localStorage.getItem("OpenedInDatabase") !== null){
-        tabToOpen= localStorage.getItem("OpenedInDatabase");
+    if(sessionStorage.getItem("OpenedInDatabase") !== null){
+        tabToOpen= sessionStorage.getItem("OpenedInDatabase");
     }
     showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();
@@ -221,6 +223,7 @@
             document.getElementById("explanationOpener").style.zIndex = "-100";
             document.getElementById("explanationCloser").style.left = "70.5%";
             document.getElementById("body").style.width = "70%";
+            document.getElementById("disclaimer").style.width = "70%";
             document.getElementById("explanation").style.left = "70%";
 
             var choice = document.getElementById("choice").offsetHeight;
@@ -232,6 +235,7 @@
             document.getElementById("explanationOpener").style.zIndex = "100";
             document.getElementById("explanationCloser").style.left = "100.5%";
             document.getElementById("body").style.width = "100%";
+            document.getElementById("disclaimer").style.width = "100%";
             document.getElementById("explanation").style.left = "100%";
         }
     }
@@ -250,8 +254,16 @@
 </script>
 <!-- End of my insert -->
 <body>
-<div class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one! &nbsp;&nbsp;&nbsp;<button class="switchSite" onclick="window.location.assign('../../../CommandProcessor.php?action=ChangeWebsite&website=/index.htm')"><i class='feather' data-feather='home' style="color: whitesmoke"></i>&nbsp; Home</button></div>
-<script>feather.replace();</script>
+<div id="disclaimer" class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one! &nbsp;&nbsp;&nbsp;<button class="switchSite" onclick="window.location.assign('../../../CommandProcessor.php?action=ChangeWebsite&website=/index.htm')"><i class='feather' data-feather='home' style="color: whitesmoke"></i>&nbsp; Home</button></div>
+<script>
+    feather.replace();     const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.get("LoggedIn") === "true")
+    {
+        document.getElementById("deleteToAvoidDoubling").remove();
+        document.getElementById("disclaimer").remove();
+    }
+</script>
 <iframe id="body" src="./Database.php"></iframe>
 </body>
 </html>

@@ -4825,7 +4825,7 @@
         if(topic === "") {
             newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/ExploitExplanation.htm";
         }
-localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerability);
+sessionStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerability);
         document.getElementById("website").setAttribute("src", newSource);
     }
 </script>
@@ -4858,7 +4858,7 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
         "Select the vulnerability by clicking on the button below"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }
@@ -4868,8 +4868,8 @@ localStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabilit
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
     var tabToOpen = "Comments";
-    if(localStorage.getItem("OpenedInBrokenAccessControl") !== null){
-        tabToOpen= localStorage.getItem("OpenedInBrokenAccessControl");
+    if(sessionStorage.getItem("OpenedInBrokenAccessControl") !== null){
+        tabToOpen= sessionStorage.getItem("OpenedInBrokenAccessControl");
     }
     showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();

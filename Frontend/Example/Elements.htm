@@ -24,7 +24,7 @@
     var english = ["Here would now be the next vulnerability. Go back to the Example Vulnerability"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }

@@ -95,7 +95,7 @@
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>It checks in the SecureHtPasswd file if the received data is included there", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>Nothing, there is no test user included, so the test user is not permitted to enter the root area anymore"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }

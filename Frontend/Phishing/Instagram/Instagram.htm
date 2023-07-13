@@ -120,7 +120,7 @@
         currentlyPicked = element;
 
         newSource = "../Vulnerabilities/" + currentlyClickedVulnerability + "/Explanation.htm";
-        localStorage.setItem("OpenedInPhishing", currentlyClickedVulnerability);
+        sessionStorage.setItem("OpenedInPhishing", currentlyClickedVulnerability);
         document.getElementById("website").setAttribute("src", newSource);
     }
 </script>
@@ -147,7 +147,7 @@
         "Switch between the explanations by clicking on the desired"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }
@@ -157,8 +157,8 @@
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
     var tabToOpen = "MalwarePhishing";
-    if(localStorage.getItem("OpenedInPhishing") !== null){
-        tabToOpen = localStorage.getItem("OpenedInPhishing");
+    if(sessionStorage.getItem("OpenedInPhishing") !== null){
+        tabToOpen = sessionStorage.getItem("OpenedInPhishing");
     }
     showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();

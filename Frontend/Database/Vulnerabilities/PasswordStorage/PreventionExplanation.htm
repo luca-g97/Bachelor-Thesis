@@ -99,7 +99,7 @@
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>It hashes the stored password with MD5 and salt (unique random string), so it can not be found in rainbow tables anymore", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>Even more ideal is the use of an unbroken hashing method such as Argon2, which is shown here (more information underneath in Further Information)"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }

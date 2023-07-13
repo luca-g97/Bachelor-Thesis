@@ -244,7 +244,7 @@
         {
             newSource = "./Example/Elements.htm";
         }
-        localStorage.setItem("OpenedInIntroduction", currentlyClickedVulnerability);
+        sessionStorage.setItem("OpenedInIntroduction", currentlyClickedVulnerability);
         document.getElementById("website").setAttribute("src", newSource);
     }
 </script>
@@ -274,7 +274,7 @@
         "Select the vulnerability by clicking on the button below"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }
@@ -284,8 +284,8 @@
         document.getElementById(i.toString()).innerText = languageToUse[i];
     }
     var tabToOpen = "ExampleExplanation";
-    if(localStorage.getItem("OpenedInIntroduction") !== null){
-        tabToOpen= localStorage.getItem("OpenedInIntroduction");
+    if(sessionStorage.getItem("OpenedInIntroduction") !== null){
+        tabToOpen= sessionStorage.getItem("OpenedInIntroduction");
     }
     showExplanation(document.getElementById(tabToOpen), "");
     feather.replace();
@@ -366,12 +366,12 @@
         "<b>For Firefox:</b><br><br> Click on the sign directly left of the URL <br>(URL = <b>" + window.location.host + "/Introduction.htm</b>).<br> Choose <b>Allow</b> for Pop-Up windows there",
         "<b>For Chrome:</b><br><br> Click on the info icon left of the URL <br>(URL = <b>" + window.location.host + "/Introduction.htm</b>)<br> and open the Website settings. Choose <b>Allow</b> for Pop-Ups and Redirects. Go back to the application website afterward"];
 
-    if(localStorage.getItem("language") != null){
+    if(sessionStorage.getItem("language") != null){
         setLanguage(document.getElementById("languageIcon"), false);
     }
     
     function setText(){
-        if (localStorage.getItem("language") === "German")
+        if (sessionStorage.getItem("language") === "German")
         {
             languageToUse = german;
         }
@@ -383,10 +383,10 @@
     }
 
     function setLanguage(element, change){
-        var languageToSet = localStorage.getItem("language");
+        var languageToSet = sessionStorage.getItem("language");
 
         if (change) {
-            if (localStorage.getItem("language") === "German") {
+            if (sessionStorage.getItem("language") === "German") {
                 languageToSet = "English";
             } else {
                 languageToSet = "German";
@@ -400,7 +400,7 @@
             languageToUse = english;
             element.innerHTML = "🇬🇧";
         }
-        localStorage.setItem("language", languageToSet);
+        sessionStorage.setItem("language", languageToSet);
         setText();
         feather.replace();
         

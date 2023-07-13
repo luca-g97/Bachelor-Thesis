@@ -99,7 +99,7 @@
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>It prevents the folder structure to be shown in any case", "<i class='feather' data-feather='check-square' style='color: whitesmoke'></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>This line is used to set the names of the preferred files to be shown when a Directory is entered. It no longer includes the index.php which shows the info from everything PHP relevant."];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }

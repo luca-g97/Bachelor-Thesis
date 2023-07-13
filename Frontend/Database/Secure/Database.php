@@ -1815,7 +1815,7 @@ if (!$auth->isAuthorized()) {
         Redirect($url, false);
     }
     else {
-        Redirect("./Database.htm", false);
+        Redirect("./Database.htm?LoggedIn=true", false);
         //$params->redirect($attempt ? array() : array('failed' => '1'));
     }
 

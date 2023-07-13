@@ -122,7 +122,7 @@
 
     var languageToUse = english;
     
-    if (localStorage.getItem("language") === null)
+    if (sessionStorage.getItem("language") === null)
     {
         swal({
             title: 'Sprache &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspLanguage',
@@ -143,7 +143,7 @@
                     type: 'success',
                     confirmButtonColor: '#1A1A1A'
                 }).then(result => {
-                    localStorage.setItem("language", "English");
+                    sessionStorage.setItem("language", "English");
                     setLanguage(document.getElementById("languageIcon"), false);
                     window.open("https://forms.gle/vuzJXWbkYoeALBi28");
                     window.location.assign("./Introduction.htm");
@@ -155,7 +155,7 @@
                     type: 'success',
                     confirmButtonColor: '#1A1A1A'
                 }).then(result => {
-                    localStorage.setItem("language", "German");
+                    sessionStorage.setItem("language", "German");
                     setLanguage(document.getElementById("languageIcon"), false);
                     window.open("https://forms.gle/Zd3LkhiNsoHwMPkt6");
                     window.location.assign("./Introduction.htm");
@@ -163,12 +163,12 @@
             }
         })}
 
-    if(localStorage.getItem("language") != null){
+    if(sessionStorage.getItem("language") != null){
         setLanguage(document.getElementById("languageIcon"), false);
     }
 
     function setText(){
-        if (localStorage.getItem("language") === "German")
+        if (sessionStorage.getItem("language") === "German")
         {
             languageToUse = german;
         }
@@ -180,10 +180,10 @@
     }
     
     function setLanguage(element, change){
-        var languageToSet = localStorage.getItem("language");
+        var languageToSet = sessionStorage.getItem("language");
         
         if (change) {
-            if (localStorage.getItem("language") === "German") {
+            if (sessionStorage.getItem("language") === "German") {
                 languageToSet = "English";
             } else {
                 languageToSet = "German";
@@ -197,7 +197,7 @@
             languageToUse = english;
             element.innerHTML = "🇬🇧";
         }
-        localStorage.setItem("language", languageToSet);
+        sessionStorage.setItem("language", languageToSet);
         setText();
     }
 

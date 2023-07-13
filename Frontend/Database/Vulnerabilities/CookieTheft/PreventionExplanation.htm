@@ -101,7 +101,7 @@
         "<i class='feather' data-feather='external-link' style=\"color: whitesmoke\"></i> &nbsp OPEN SECURE WEBSITE", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>It sets the flag HTTPOnly active, so any cookie inside this document is not visible for Javascript", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>It hashes the password with the recommended Argon2id function, which is the most secure these days", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>It sets the lifetime of the cookie to one month from now and activates the cookie afterward. It also deletes the stored cookies, when the user does not want to be remembered", "<i class='feather' data-feather='check-square' style=\"color: whitesmoke\"></i>&nbsp;&nbsp;&nbsp;<b>What does the marked line do?</b><br><br>It destroys the cookie (and session) when the session is closed, so it is not valid anymore"];
 
     var languageToUse = english;
-    if (localStorage.getItem("language") === "German")
+    if (sessionStorage.getItem("language") === "German")
     {
         languageToUse = german;
     }
