@@ -145,7 +145,6 @@
                 }).then(result => {
                     sessionStorage.setItem("language", "English");
                     setLanguage(document.getElementById("languageIcon"), false);
-                    window.open("https://forms.gle/vuzJXWbkYoeALBi28");
                     window.location.assign("./Introduction.htm");
                 })
             } else if (result.value === undefined){
@@ -157,7 +156,6 @@
                 }).then(result => {
                     sessionStorage.setItem("language", "German");
                     setLanguage(document.getElementById("languageIcon"), false);
-                    window.open("https://forms.gle/Zd3LkhiNsoHwMPkt6");
                     window.location.assign("./Introduction.htm");
                 })
             }
