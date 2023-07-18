@@ -4897,7 +4897,20 @@ sessionStorage.setItem("OpenedInBrokenAccessControl", currentlyClickedVulnerabil
             document.getElementById("explanation").style.opacity = "0";
         }
     }
+    
+    //https://web.dev/resize-observer/
+    var ro = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            var choice = document.getElementById("choice").offsetHeight;
+            var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
+            document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
+        }
+    });
 
+    // Observe one or multiple elements
+    ro.observe(document.getElementById("explanation"));
+</script>
+<script>
     function checkLoginData() {
         var userId = document.getElementById("id_userLoginId").value;
         var password = document.getElementById("id_password").value;

@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Database</title>
 </head>
 <!-- Start of my insert -->
@@ -107,9 +108,9 @@
     .switchSite {
         padding: 0.5%;
         opacity: 0.8;
+        font-size: 1em;
         background-color: black;
         border-radius: 10px;
-        font-size: 1em;
         cursor: pointer;
         color: whitesmoke;
         font-weight: bold;
@@ -165,25 +166,25 @@
     }
 </script>
 <div id="deleteToAvoidDoubling">
-<img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Logo.png" alt="Click here to open the hacking Explanation">
-<i class="feather" data-feather="minimize-2" title="Close Explanation" id="explanationCloser" onclick="showExplanations(false)"></i>
-<div id="explanation">
-    <div id="choice"><div id="0" class="information"></div>
-        <div class="information"><table style="width: 100%"><tr>
-            <td id="1" class="informationChoice" style="color: yellow" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
-            <td id="2" class="informationChoice" onclick="showExplanation(this, 'ExploitExplanation')"></td>
-            <td id="3" class="informationChoice" style="color: lawngreen" onclick="showExplanation(this, 'PreventionExplanation')"></td>
-        </tr></table></div></div>
-    <embed id="website" src="" width="100%" style="background-color: transparent">
-    <div id="vulnerabilities"><div id="4" class="information"></div>
-        <div class="flex-container"><table style="width:100%"><tr>
-            <td id="ErrorMessages" class="flex-item" title="Error Messages" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="SQLInjection" class="flex-item" title="SQL Injection" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="JavascriptInjection" class="flex-item" title="Javascript Injection" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="CookieTheft" class="flex-item" title="CookieTheft" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-            <td id="PasswordStorage" class="flex-item" title="Password Storage" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
-        </tr></table></div></div>
-</div>
+    <img id="explanationOpener" title="Click here to open&#013 the explanations" onclick="showExplanations(true)" src="../../Logo.png" alt="Click here to open the hacking Explanation">
+    <i class="feather" data-feather="minimize-2" title="Close Explanation" id="explanationCloser" onclick="showExplanations(false)"></i>
+    <div id="explanation">
+        <div id="choice"><div id="0" class="information"></div>
+            <div class="information"><table style="width: 100%"><tr>
+                <td id="1" class="informationChoice" style="color: yellow" onclick="showExplanation(this, 'VulnerabilityExplanation')"></td>
+                <td id="2" class="informationChoice" onclick="showExplanation(this, 'ExploitExplanation')"></td>
+                <td id="3" class="informationChoice" style="color: lawngreen" onclick="showExplanation(this, 'PreventionExplanation')"></td>
+            </tr></table></div></div>
+        <embed id="website" src="" width="100%" style="background-color: transparent">
+        <div id="vulnerabilities"><div id="4" class="information"></div>
+            <div class="flex-container"><table style="width:100%"><tr>
+                <td id="ErrorMessages" class="flex-item" title="Error Messages" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+                <td id="SQLInjection" class="flex-item" title="SQL Injection" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+                <td id="JavascriptInjection" class="flex-item" title="Javascript Injection" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+                <td id="CookieTheft" class="flex-item" title="CookieTheft" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+                <td id="PasswordStorage" class="flex-item" title="Password Storage" onclick="showExplanation(this, '')"><img src="../../Logo.png" style="width:100px; height:100px"></td>
+            </tr></table></div></div>
+    </div>
 </div>
 
 <!-- Needs to be called here, because otherwise the elements are not known yet -->
@@ -241,11 +242,11 @@
 
     //https://web.dev/resize-observer/
     var ro = new ResizeObserver(entries => {
-         for (let entry of entries) {
-             var choice = document.getElementById("choice").offsetHeight;
-             var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
-             document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
-         }
+        for (let entry of entries) {
+            var choice = document.getElementById("choice").offsetHeight;
+            var vulnerabilities = document.getElementById("vulnerabilities").offsetHeight;
+            document.getElementById("website").style.height = document.getElementById("explanation").offsetHeight - document.getElementById("explanation").offsetHeight * 0.01 - choice - vulnerabilities+ "px";
+        }
     });
 
     // Observe one or multiple elements
@@ -255,7 +256,8 @@
 <body>
 <div id="disclaimer" class="disclaimer">This website is just a clone for presentation purposes, it is NOT the real one! &nbsp;&nbsp;&nbsp;<button class="switchSite" onclick="window.location.assign('../../../CommandProcessor.php?action=ChangeWebsite&website=/index.htm')"><i class='feather' data-feather='home' style="color: whitesmoke"></i>&nbsp; Home</button></div>
 <script>
-    feather.replace();
+    feather.replace();     
+    const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.get("LoggedIn") === "true")
     {

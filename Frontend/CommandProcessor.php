@@ -60,7 +60,7 @@
     {
         $website = $_GET['website'];
         exec("rm /etc/nginx/conf.d/* && cp /etc/nginx/Config/Vulnerable.conf /etc/nginx/conf.d/ && nginx -s reload");
-        if($website === "http://www.immowelt.de/expose/2HRTN4U")
+        if($website === "https://www.immowelt.de/expose/2HRTN4U")
         {
             $memeNumber = random_int(0, 3);
             
@@ -76,7 +76,7 @@
             }
             
             //For Media Engineers only
-            //exec("cd ./Phishing/ && wget '\\zuse1.efi.ohmportal.de\webgr\lib\BA_Geiger\Meme$memeNumber.jpg' && cp Meme$memeNumber.jpg ThisCouldHaveBeenAVirus && rm Meme$memeNumber.jpg");
+            //exec("cd ./Phishing/ && wget 'http://zuse1.efi.ohmportal.de:8000/webgr/lib/BA_Geiger/Meme$memeNumber.jpg' && cp Meme$memeNumber.jpg ThisCouldHaveBeenAVirus && rm Meme$memeNumber.jpg");
         }
         header("Location: $website", true, false);
     }
