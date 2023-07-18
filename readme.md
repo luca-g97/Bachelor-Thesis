@@ -33,7 +33,7 @@ Install it by double clicking it in the Download folder. Follow the instructions
 6. Launch Docker Desktop from the ***Start menu (this might take a while), and navigate to ***Settings (Settingswheel) > General***.
 7. Ensure the ***Use WSL 2 based engine*** check box is enabled. 
 
-*If an error occurs please have a look at the official documentation: https://docs.docker.com/desktop/install/windows-install/ or contact me per mail at geigerlu78845@th-nuernberg.de.*
+*If an error occurs please have a look at the official documentation: https://docs.docker.com/desktop/install/windows-install/*
 
 **Setup the docker container for the application:**
 
@@ -63,7 +63,7 @@ Download ***Docker Desktop for MacOS*** by clicking on this link: https://docs.d
 3. The Docker menu now displays the Docker Subscription Service Agreement window. Click on ***Accept***.
 4. In the now opened window click ***Skip*** to get to the dashboard of Docker.
 
-*If an error occurs please have a look at the official documentation: https://docs.docker.com/desktop/install/mac-install or contact me per mail at geigerlu78845@th-nuernberg.de.*
+*If an error occurs please have a look at the official documentation: https://docs.docker.com/desktop/install/mac-install*
 
 **Set up the docker container for the application:**
 
@@ -144,7 +144,7 @@ Installieren Sie es indem Sie es im Download-Ordner doppelklicken. Folgen Sie de
 6. Starten Sie Docker aus dem Startmenü (dies kann etwas dauern), und navigieren Sie zu ***Settings (Einstellungsrad) > General***.
 7. Vergewissern Sie sich, dass der Haken bei ***Use WSL 2 based engine*** gesetzt ist. 
 
-*Falls ein Fehler auftaucht, schauen Sie sich bitte in die offizielle Dokumentation:  https://docs.docker.com/desktop/install/windows-install/ oder kontaktieren Sie mich per Mail unter geigerlu78845@th-nuernberg.de.*
+*Falls ein Fehler auftaucht, schauen Sie sich bitte in die offizielle Dokumentation:  https://docs.docker.com/desktop/install/windows-install/*
 
 **Aufsetzen des Docker-Containers für die Applikation:**
 
@@ -175,7 +175,7 @@ Laden Sie ***Docker Desktop für MacOS*** herunter indem Sie auf diesen Link kli
 3. Das Docker-Menü zeigt nun das Docker Abonnement-Bestätigungsfenster an. Drücken Sie auf ***Accept***.
 4. Im nun geöffneten Fenster klicken Sie auf ***Skip*** um in das Dashboard von Docker zu kommen.
 
-*Falls ein Fehler auftaucht, schauen Sie sich bitte in die offizielle Dokumentation: https://docs.docker.com/desktop/install/mac-install oder kontaktieren Sie mich per Mail unter geigerlu78845@th-nuernberg.de.*
+*Falls ein Fehler auftaucht, schauen Sie sich bitte in die offizielle Dokumentation: https://docs.docker.com/desktop/install/mac-install*
 
 **Aufsetzen des Docker-Containers für die Applikation:**
 
